@@ -4,21 +4,13 @@
 
 
 angular.module('app')
-  .component("main",{
-    templateUrl: 'app/main/main.html',
-    controller: mainCtrl
-  })
-  .config(['$stateProvider',function ($stateProvider) {
-    $stateProvider
-      .state('main', {
-        url: '/',
-        template: '<main></main>'
-      });
-  }]);
+  .component("toolbar",{
+    templateUrl: 'components/toolbar/toolbar.html',
+    controller: toolbarCtrl
+  });
 
 
-
-  function mainCtrl(){
+  function toolbarCtrl(){
     var ctrl = this;
 
 
