@@ -1,5 +1,5 @@
 <!doctype html>
-<html >
+<html>
 <head>
   <meta charset="utf-8">
   <base href="/">
@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="/app/app.css">
   <link rel="stylesheet" href="/components/toolbar/toolbar.scss">
   <link rel="stylesheet" href="/components/itemCarouselTemplate/itemCarouselTemplate.scss">
+  <link rel="stylesheet" href="/components/signUpForm/signUpForm.scss">
+  <link rel="stylesheet" href="/components/homeItemSearchBar/homeItemSearchBar.scss">
+  <link rel="stylesheet" href="/components/carouselContainer/carouselContainer.scss">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
   <!-- endbuild -->
 </head>
@@ -26,12 +29,12 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-
-<toolbar></toolbar>
-<div>
-  <div ui-view=""></div>
+<div layout="column" flex>
+  <toolbar></toolbar>
+  <md-content style="overflow: auto;" flex>
+    <div ui-view=""></div>
+  </md-content>
 </div>
-
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
@@ -56,6 +59,9 @@
 <script src="/app/main/main.js"></script>
 <script src="/components/toolbar/toolbar.js"></script>
 <script src="/components/itemCarouselTemplate/itemCarouselTemplate.js"></script>
+<script src="/components/signUpForm/signUpForm.js"></script>
+<script src="/components/homeItemSearchBar/homeItemSearchBar.js"></script>
+<script src="/components/carouselContainer/carouselContainer.js"></script>
 
 <!-- endbuild -->
 </body>
