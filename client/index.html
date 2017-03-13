@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html style="background-color: white">
 <head>
   <meta charset="utf-8">
   <base href="/">
@@ -19,10 +19,11 @@
   <link rel="stylesheet" href="/components/signUpForm/signUpForm.scss">
   <link rel="stylesheet" href="/components/homeItemSearchBar/homeItemSearchBar.scss">
   <link rel="stylesheet" href="/components/carouselContainer/carouselContainer.scss">
+  <link rel="stylesheet" href="/components/footer/footer.scss">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
   <!-- endbuild -->
 </head>
-<body ng-app="app" style="background: white">
+<body ng-app="app"  style="background-color: white">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
@@ -31,7 +32,7 @@
 <!-- Add your site or application content here -->
 <div layout="column" flex>
   <toolbar></toolbar>
-  <md-content style="overflow: auto;" flex>
+  <md-content style="overflow: auto; background-color: white" flex>
     <div ui-view=""></div>
   </md-content>
 </div>
@@ -62,6 +63,7 @@
 <script src="/components/signUpForm/signUpForm.js"></script>
 <script src="/components/homeItemSearchBar/homeItemSearchBar.js"></script>
 <script src="/components/carouselContainer/carouselContainer.js"></script>
+<script src="/components/footer/footer.js"></script>
 
 <!-- endbuild -->
 </body>
