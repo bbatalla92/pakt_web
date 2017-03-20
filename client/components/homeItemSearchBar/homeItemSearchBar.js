@@ -14,9 +14,6 @@ angular.module('app')
     var ctrl = this;
 
 
-
-
-
   }
 
 

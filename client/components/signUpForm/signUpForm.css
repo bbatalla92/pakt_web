@@ -1,0 +1,40 @@
+
+#signUpFormContainer {
+  width: 360px;
+  border-top: 8px solid #f1f1f1 !important;
+  background-color: #f8f8f9;
+}
+
+#signUpForm {
+  position: absolute;
+  top: 7%;
+  right: 13%;
+}
+
+@media screen and (max-width: 1200px) {
+
+  #signUpFormContainer {
+    width: 330px;
+    border-top: 8px solid #f1f1f1 !important;
+    background-color: #f8f8f9;
+  }
+
+  #signUpForm {
+    position: absolute;
+    top: 7%;
+    right: 3% !important;
+  }
+
+}
+
+@media screen and (max-width: 820px) {
+
+
+  #signUpForm {
+    position: absolute;
+    top: 7%;
+    right: 3% !important;
+
+    display: none;
+  }
+}

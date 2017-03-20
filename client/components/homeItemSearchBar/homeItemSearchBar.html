@@ -1,26 +1,62 @@
-<div md-whiteframe="3" class="md-padding"
-     style="width: 75%; height: 80px; background: white;margin: 0 auto !important;" layout="row"
-     layout-align="start start">
-  <md-input-container flex>
-    <label style="font-size: x-large;">Address</label>
-    <input type="text"/>
-  </md-input-container>
-  <div style="height: 80px; margin-top: -16px; opacity: .2; width: 1px; background-color: #3e4f56;"></div>
-  <md-input-container flex>
-    <label style="font-size: x-large;">Keyword Search</label>
-    <input type="text"/>
-  </md-input-container>
-  <div style="height: 80px; margin-top: -16px; opacity: .2; width: 1px; background-color: #3e4f56;"></div>
-  <md-input-container flex>
-    <label style="font-size: x-large;">Start Date</label>
-    <input type="date"/>
-  </md-input-container>
-  <div style="height: 80px; margin-top: -16px; opacity: .2; width: 1px; background-color: #3e4f56;"></div>
-  <md-input-container flex>
-    <label style="font-size: x-large;">End Date</label>
-    <input type="date"/>
-  </md-input-container>
-  <div style="height: 80px; margin-top: -16px; opacity: .2; width: 1px; background-color: #3e4f56;"></div>
-  <md-button class="md-raised md-primary" style="    height: 100%;margin-top: 0px; margin-right: -8px;">Search
-  </md-button>
+
+<div md-whiteframe="3" class="md-padding blah"
+     style="width: 60%; background: white; margin: 0 auto !important;position: absolute; left: 20%;">
+  <div layout="row" layout-align="start center" style="height: 30px;cursor: pointer"
+       ng-click="$ctrl.showSearchForm = !$ctrl.showSearchForm">
+    <md-icon style="margin: 0 10px 0 0;">
+      <ng-md-icon icon="search"></ng-md-icon>
+    </md-icon>
+    <h3>Search</h3>
+  </div>
+
+  <div style="border-top: 1px solid;" ng-if="$ctrl.showSearchForm">
+    <md-input-container style="margin: 18px 0 0;width: 95%;height: 35px;">
+      <md-icon>
+        <ng-md-icon icon="pan_tool"></ng-md-icon>
+      </md-icon>
+      <label style="">Keyword for Item</label>
+      <input type="text"/>
+    </md-input-container>
+
+    <md-input-container style="margin: 15px 0 0;width: 95%;height: 35px;">
+      <md-icon>
+        <ng-md-icon icon="home"></ng-md-icon>
+      </md-icon>
+      <label style="">Where to...</label>
+      <input type="text"/>
+    </md-input-container>
+
+    <div layout="row">
+      <md-input-container style="margin: 15px 0 0;width: 45%;height: 35px;">
+        <label style="">Start Date</label>
+        <md-datepicker ng-model="ctrl.myDate" md-open-on-focus flex></md-datepicker>
+      </md-input-container>
+      <md-input-container style="margin: 15px 0 0;width: 45%;height: 35px;">
+        <label style="">Start Date</label>
+        <md-datepicker ng-model="ctrl.myDate" md-open-on-focus flex></md-datepicker>
+      </md-input-container>
+
+      <md-button style="min-width: 1%; width: 50px;" class="md-primary" ng-click="$ctrl.showSearchForm = false">Go</md-button>
+    </div>
+
+  </div>
+
+  <!-- <md-input-container style="margin: 0;" flex>
+     <label style="font-size: x-large;">Where to...</label>
+     <input type="text"/>
+   </md-input-container>
+   <md-input-container style="margin: 0;" flex>
+     <label style="font-size: x-large;">keyword</label>
+     <input type="text"/>
+   </md-input-container>
+   <md-input-container style="margin: 0;" flex>
+     <label style="font-size: x-large;">Start Date</label>
+     <md-datepicker ng-model="ctrl.startDate" md-open-on-focus></md-datepicker>
+   </md-input-container>
+   <md-input-container style="margin: 0;" flex>
+     <label style="font-size: x-large;">End Date</label>
+     <md-datepicker ng-model="ctrl.endDate" md-open-on-focus></md-datepicker>
+   </md-input-container>
+   <md-button class="md-raised md-primary" style="    height: 100%;margin-top: 0px; margin-right: -8px;">Search
+   </md-button>-->
 </div>
