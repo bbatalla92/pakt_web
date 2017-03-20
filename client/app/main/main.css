@@ -55,3 +55,27 @@
 
 
 }
+
+@media screen and (max-width: 450px) {
+
+  #mainHeaderText{
+    padding-right:0% !important;
+    padding-left: 10% !important;
+    font-size: 33px !important;
+  }
+
+  #mainHeaderSubHeader {
+    font-size: 27px !important;
+    line-height: 40px;
+    padding-right:2% !important;
+    padding-left: 10% !important;
+  }
+
+  #mainHeaderTextContainer {
+    width: 100%;
+    margin-bottom: -60px;
+  }
+
+
+
+}
