@@ -7,7 +7,16 @@
   opacity: .7;
   margin-top: 0;
   margin-bottom: 80px !important;
-  padding-left: 80px !important;
+  padding-left: 15% !important;
+  padding-right: 80px !important;
+  font-size: 48px !important;
+  letter-spacing: -0.8px !important;
+  line-height: 56px;
+}
+
+#mainHeaderText {
+  padding-left: 15% !important;
+  margin-bottom: 0;
   padding-right: 80px !important;
   font-size: 48px !important;
   letter-spacing: -0.8px !important;
@@ -26,5 +35,23 @@
 
   }
 
+}
 
+@media screen and (max-width: 600px) {
+
+  #mainHeaderText{
+    padding-right:0% !important;
+    padding-left: 10% !important;
+    font-size: 40px !important;
   }
+
+  #mainHeaderSubHeader {
+    font-size: 35px !important;
+    line-height: 40px;
+    padding-right:2% !important;
+    padding-left: 10% !important;
+  }
+
+
+
+}
