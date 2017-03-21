@@ -1,0 +1,46 @@
+
+#footerContainer {
+  width: 100%;
+  background-color: rgb(199, 165, 177);
+  color: white;
+  padding: 32px 0;
+  margin-top: 75px
+}
+
+.footerColumnContainer{
+  width: 33%;
+}
+
+#footerColumnsContainer{
+  padding: 0 50px;
+}
+
+#footerInnerContainer {
+  margin-left: 10% !important;
+  margin-right: 10% !important;
+}
+
+.footerColumnContainer{
+  width: 25%;
+}
+#footerColumnContainerDropDowns{
+  width: 25%;
+}
+
+.footerDropdownFields{
+  width:75%;
+}
+
+@media screen and (max-width: 1000px) {
+  #footerInnerContainer {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  #footerColumnsContainer{
+    padding: 0;
+  }
+}

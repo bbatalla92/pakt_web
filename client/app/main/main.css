@@ -1,81 +1,78 @@
 
 #mainHeaderTextContainer {
-  width: 75%;
-}
-
-#mainHeaderSubHeader {
-  opacity: .7;
-  margin-top: 0;
-  margin-bottom: 80px !important;
+  width: 50%;
   padding-left: 15% !important;
   padding-right: 80px !important;
-  font-size: 48px !important;
+}
+
+.mainHeaderSubHeader {
+  opacity: .7;
+  margin-top: 0;
+  font-size: 45px !important;
   letter-spacing: -0.8px !important;
   line-height: 56px;
 }
 
 #mainHeaderText {
-  padding-left: 15% !important;
   margin-bottom: 0;
-  padding-right: 80px !important;
   font-size: 48px !important;
   letter-spacing: -0.8px !important;
   line-height: 56px;
 }
 
-@media screen and (max-width: 820px) {
+#signupComponent {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+}
+
+@media screen and (max-width: 1200px) {
+
+  #signupComponent {
+    top: 3%;
+  }
+
+  .mainHeaderSubHeader {
+    font-size: 40px !important;
+    line-height: 40px;
+  }
+
+  #mainHeaderTextContainer {
+    width: 55%;
+    padding-left: 7% !important;
+    padding-right: 80px !important;
+  }
+
+}
+
+@media screen and (max-width: 900px) {
 
   #mainHeaderTextContainer {
     width: 100%;
   }
 
-  #mainHeaderSubHeader {
-    font-size: 42px !important;
-    line-height: 40px;
-
+  #mainHeaderText {
+    font-size: 36px !important;
   }
 
-}
-
-@media screen and (max-width: 600px) {
-
-  #mainHeaderText{
-    padding-right:0% !important;
-    padding-left: 10% !important;
-    font-size: 40px !important;
+  .mainHeaderSubHeader {
+    font-size: 33px !important;
   }
-
-  #mainHeaderSubHeader {
-    font-size: 35px !important;
-    line-height: 40px;
-    padding-right:2% !important;
-    padding-left: 10% !important;
-  }
-
-
-
 }
 
 @media screen and (max-width: 450px) {
 
-  #mainHeaderText{
-    padding-right:0% !important;
-    padding-left: 10% !important;
+  #mainHeaderText {
     font-size: 33px !important;
   }
 
-  #mainHeaderSubHeader {
+  .mainHeaderSubHeader {
     font-size: 27px !important;
-    line-height: 40px;
-    padding-right:2% !important;
-    padding-left: 10% !important;
+    line-height: 20px;
   }
 
   #mainHeaderTextContainer {
     width: 100%;
-    margin-bottom: -60px;
   }
-
-
 
 }

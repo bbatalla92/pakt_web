@@ -14,12 +14,12 @@
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="/app/main/main.css">
   <link rel="stylesheet" href="/app/app.css">
-  <link rel="stylesheet" href="/components/toolbar/toolbar.scss">
+  <link rel="stylesheet" href="/components/toolbar/toolbar.css">
   <link rel="stylesheet" href="/components/itemCarouselTemplate/itemCarouselTemplate.scss">
   <link rel="stylesheet" href="/components/signUpForm/signUpForm.css">
   <link rel="stylesheet" href="/components/homeItemSearchBar/homeItemSearchBar.css">
   <link rel="stylesheet" href="/components/carouselContainer/carouselContainer.scss">
-  <link rel="stylesheet" href="/components/footer/footer.scss">
+  <link rel="stylesheet" href="/components/footer/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
   <!-- endbuild -->
 </head>
@@ -30,9 +30,9 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div layout="column" flex>
+<div layout="column" style="height: 100%">
   <toolbar></toolbar>
-  <md-content style="overflow: hidden; background-color: white" flex>
+  <md-content style=" background-color: white" flex>
     <div ui-view=""></div>
   </md-content>
 </div>
@@ -66,5 +66,25 @@
 <script src="/components/footer/footer.js"></script>
 
 <!-- endbuild -->
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBBKyZE06uiZlQ2WUXa_1SORl4xgF2CfPg",
+    authDomain: "pakt-f51bc.firebaseapp.com",
+    databaseURL: "https://pakt-f51bc.firebaseio.com",
+    storageBucket: "pakt-f51bc.appspot.com",
+    messagingSenderId: "671420847668"
+  };
+  firebase.initializeApp(config);
+</script>
+
 </body>
 </html>

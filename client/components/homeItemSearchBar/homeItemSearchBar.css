@@ -1,10 +1,39 @@
 
+div.md-datepicker-input-container {
+  width: 75%;
+  margin-left: 0 !important;
+}
 
-  div.md-datepicker-input-container{
-    width:75%;
-    margin-left:0 !important;
+button.md-button.md-icon-button {
+  margin-left: -7px;
+}
+
+#mainSearchBar {
+  width: 60%;
+  background: white;
+  margin: 0 auto !important;
+  position: absolute;
+  left: 20%;
+}
+
+@media screen and (max-width: 900px) {
+  #mainSearchBar {
+    width: 70%;
+    left: 15%;
   }
 
-  button.md-button.md-icon-button{
-    margin-left:-7px;
+}
+
+@media screen and (max-width: 500px) {
+  #mainSearchBar {
+    width: 90%;
+    left: 3%;
+    font-size:15px;
   }
+
+}
+
+
+
+
+
