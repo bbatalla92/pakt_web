@@ -1,16 +1,21 @@
-<div style="margin-top: 30px">
-  <h3 style="margin-left: 4%;font-weight: bold;">Title goes here</h3>
-  <div style="width:99%; margin-top:20px" layout="row" layout-align="space-between center">
-    <div style="height:100%; margin-right: 10px;">
+<div id="carouselOuterContainer" style="">
+  <h3 id="carouselTitle" style="">Title goes here</h3>
+  <div id="carouselCoreContainer" layout="row" layout-align="space-between center">
+    <!--<div class="carouselLeftRightButtons" style="">
       <ng-md-icon icon="keyboard_arrow_left" size="44"></ng-md-icon>
-    </div>
-    <div flex layout="row" layout-align="space-around">
+    </div>-->
+
+
+    <div id="carouselItemsContainer" layout="row" layout-align="space-between">
       <item-carousel-template image-path="assets/images/lawnmower.jpg"></item-carousel-template>
       <item-carousel-template image-path="assets/images/firepit.jpeg"></item-carousel-template>
       <item-carousel-template image-path="assets/images/surboard.jpeg"></item-carousel-template>
+      <item-carousel-template image-path="assets/images/surboard.jpeg"></item-carousel-template>
     </div>
-    <div style="height:100%; margin-left: 10px;">
+
+
+    <!--<div class="carouselLeftRightButtons">
       <ng-md-icon icon="keyboard_arrow_right" size="44"></ng-md-icon>
-    </div>
+    </div>-->
   </div>
 </div>

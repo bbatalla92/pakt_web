@@ -2,7 +2,12 @@
 #mainHeaderTextContainer {
   width: 50%;
   padding-left: 15% !important;
-  padding-right: 80px !important;
+}
+
+#mainSearchComponent {
+  display: block;
+  margin-top: 5%;
+  position: relative
 }
 
 .mainHeaderSubHeader {
@@ -11,6 +16,11 @@
   font-size: 45px !important;
   letter-spacing: -0.8px !important;
   line-height: 56px;
+}
+
+#mainImage {
+  width: 80%;
+  max-height: 600px;
 }
 
 #mainHeaderText {
@@ -22,15 +32,16 @@
 
 #signupComponent {
   position: absolute;
-  top: 6%;
+  top: -19%;
   right: 8%;
 }
 
 @media screen and (max-width: 1200px) {
 
   #signupComponent {
-    top: 3%;
+    right: 3%;
   }
+
 
   .mainHeaderSubHeader {
     font-size: 40px !important;
@@ -38,10 +49,18 @@
   }
 
   #mainHeaderTextContainer {
-    width: 55%;
+    width: 60%;
     padding-left: 7% !important;
-    padding-right: 80px !important;
   }
+
+}
+
+@media screen and (max-width: 1040px) {
+
+  #signupComponent {
+    top: -19%;
+  }
+
 
 }
 
@@ -58,21 +77,36 @@
   .mainHeaderSubHeader {
     font-size: 33px !important;
   }
+
+  #mainImage {
+    width: 90%;
+  }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 700px) {
 
   #mainHeaderText {
-    font-size: 33px !important;
+    font-size: 26px !important;
   }
 
   .mainHeaderSubHeader {
-    font-size: 27px !important;
+    font-size: 24px !important;
     line-height: 20px;
   }
 
   #mainHeaderTextContainer {
     width: 100%;
+  }
+
+  #mainImage {
+    width: 100%;
+    max-height: 600px;
+  }
+
+  #mainSearchComponent {
+    display: block;
+    margin-top: -3%;
+    position: relative
   }
 
 }

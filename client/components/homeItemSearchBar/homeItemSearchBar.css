@@ -10,25 +10,30 @@ button.md-button.md-icon-button {
 
 #mainSearchBar {
   width: 60%;
-  background: white;
   margin: 0 auto !important;
-  position: absolute;
-  left: 20%;
+  background-color: white;
+}
+
+#searchBarText{
+    opacity: 07;
 }
 
 @media screen and (max-width: 900px) {
   #mainSearchBar {
     width: 70%;
-    left: 15%;
   }
 
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   #mainSearchBar {
     width: 90%;
-    left: 3%;
-    font-size:15px;
+
+  }
+
+  #searchBarText{
+    font-size:14px;
+
   }
 
 }

@@ -15,10 +15,10 @@
   <link rel="stylesheet" href="/app/main/main.css">
   <link rel="stylesheet" href="/app/app.css">
   <link rel="stylesheet" href="/components/toolbar/toolbar.css">
-  <link rel="stylesheet" href="/components/itemCarouselTemplate/itemCarouselTemplate.scss">
+  <link rel="stylesheet" href="/components/itemCarouselTemplate/itemCarouselTemplate.css">
   <link rel="stylesheet" href="/components/signUpForm/signUpForm.css">
   <link rel="stylesheet" href="/components/homeItemSearchBar/homeItemSearchBar.css">
-  <link rel="stylesheet" href="/components/carouselContainer/carouselContainer.scss">
+  <link rel="stylesheet" href="/components/carouselContainer/carouselContainer.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
   <!-- endbuild -->
@@ -32,8 +32,9 @@
 <!-- Add your site or application content here -->
 <div layout="column" style="height: 100%">
   <toolbar></toolbar>
-  <md-content style=" background-color: white" flex>
+  <md-content style=" background-color: white; overflow-x: hidden;" flex>
     <div ui-view=""></div>
+    <foot></foot>
   </md-content>
 </div>
 
