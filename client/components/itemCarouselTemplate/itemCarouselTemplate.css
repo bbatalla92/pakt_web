@@ -1,0 +1,28 @@
+#itemCarouselContainer{
+  margin-bottom: 30px;
+}
+
+#imageHeight {
+  height: 200px;
+  margin: 5px;
+}
+
+
+#itemCarouselDescription {
+  margin: 0;
+  font-weight: 100;
+  font-size: 15px;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 700px) {
+  #imageHeight {
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #imageHeight {
+    height: 120px;
+  }
+}

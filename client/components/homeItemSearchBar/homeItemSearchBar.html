@@ -1,23 +1,22 @@
-
 <div md-whiteframe="3" class="md-padding blah" id="mainSearchBar">
   <div layout="row" layout-align="start center" style="height: 30px;cursor: pointer"
        ng-click="$ctrl.showSearchForm = !$ctrl.showSearchForm">
     <md-icon style="margin: 0 10px 0 0;">
       <ng-md-icon icon="search"></ng-md-icon>
     </md-icon>
-    <h3 id="searchBarText">Search anywhere, for anything at anytime</h3>
+    <h3 id="searchBarText">Rent anything, anywhere</h3>
   </div>
 
-  <div style="border-top: 1px solid;" ng-if="$ctrl.showSearchForm">
-    <md-input-container style="margin: 18px 0 0;width: 95%;height: 35px;">
+  <div style="border-top: 1px solid rgba(0, 0, 0, 0.42);margin-top: 5px;" ng-if="$ctrl.showSearchForm">
+    <md-input-container style="margin: 18px 0 0;width: 90%;height: 35px;">
       <md-icon>
         <ng-md-icon icon="pan_tool"></ng-md-icon>
       </md-icon>
       <label style="">Keyword for Item</label>
-      <input type="text"/>
+      <input type="text" />
     </md-input-container>
 
-    <md-input-container style="margin: 15px 0 0;width: 95%;height: 35px;">
+    <md-input-container style="margin: 15px 0 0;width: 90%;height: 35px;">
       <md-icon>
         <ng-md-icon icon="home"></ng-md-icon>
       </md-icon>
@@ -25,37 +24,19 @@
       <input type="text"/>
     </md-input-container>
 
-    <div layout="row">
-      <md-input-container style="margin: 15px 0 0;width: 45%;height: 35px;">
+    <div layout="row" layout-xs="column">
+      <md-input-container class="datePickerContainers">
         <label style="">Start Date</label>
         <md-datepicker ng-model="ctrl.myDate" md-open-on-focus flex></md-datepicker>
       </md-input-container>
-      <md-input-container style="margin: 15px 0 0;width: 45%;height: 35px;">
+      <md-input-container class="datePickerContainers">
         <label style="">Start Date</label>
         <md-datepicker ng-model="ctrl.myDate" md-open-on-focus flex></md-datepicker>
       </md-input-container>
 
-      <md-button style="min-width: 1%; width: 50px;" class="md-primary" ng-click="$ctrl.showSearchForm = false">Go</md-button>
+      <md-button id="searchBarGoButton" class="md-primary" ng-click="$ctrl.showSearchForm = false">Go
+      </md-button>
     </div>
 
   </div>
-
-  <!-- <md-input-container style="margin: 0;" flex>
-     <label style="font-size: x-large;">Where to...</label>
-     <input type="text"/>
-   </md-input-container>
-   <md-input-container style="margin: 0;" flex>
-     <label style="font-size: x-large;">keyword</label>
-     <input type="text"/>
-   </md-input-container>
-   <md-input-container style="margin: 0;" flex>
-     <label style="font-size: x-large;">Start Date</label>
-     <md-datepicker ng-model="ctrl.startDate" md-open-on-focus></md-datepicker>
-   </md-input-container>
-   <md-input-container style="margin: 0;" flex>
-     <label style="font-size: x-large;">End Date</label>
-     <md-datepicker ng-model="ctrl.endDate" md-open-on-focus></md-datepicker>
-   </md-input-container>
-   <md-button class="md-raised md-primary" style="    height: 100%;margin-top: 0px; margin-right: -8px;">Search
-   </md-button>-->
 </div>

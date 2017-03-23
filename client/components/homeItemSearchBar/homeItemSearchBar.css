@@ -14,9 +14,22 @@ button.md-button.md-icon-button {
   background-color: white;
 }
 
-#searchBarText{
-    opacity: 07;
+#searchBarText {
+  opacity: 07;
 }
+
+.datePickerContainers {
+  margin: 15px 0 0;
+  width: 45%;
+  height: 35px;
+}
+
+#searchBarGoButton {
+  min-width: 1%;
+  width: 50px;
+}
+
+/*-------------------------------------------*/
 
 @media screen and (max-width: 900px) {
   #mainSearchBar {
@@ -25,15 +38,25 @@ button.md-button.md-icon-button {
 
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
+
+  .datePickerContainers {
+    width: 100%;
+  }
+
   #mainSearchBar {
     width: 90%;
 
   }
 
-  #searchBarText{
-    font-size:14px;
+  #searchBarText {
+    font-size: 14px;
 
+  }
+
+  #searchBarGoButton {
+    left: 85%;
+    margin-top: -42px;
   }
 
 }

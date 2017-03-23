@@ -1,7 +1,7 @@
 #carouselOuterContainer {
   margin-top: 30px;
-  margin-right: 15%;
-  margin-left: 15%;
+  margin-right: 10%;
+  margin-left: 10%;
   overflow-y: hidden;
 }
 
@@ -12,9 +12,6 @@
 }
 
 #carouselCoreContainer {
-  width: 100%;
-  margin-top: 20px;
-  overflow: hidden;
 }
 
 .carouselLeftRightButtons {
@@ -28,4 +25,24 @@
   width: 100%;
   margin-bottom: -25px;
   padding-bottom: -25px;
+}
+
+
+/* -------------Media Queries Below Ascending order----------------------------*/
+
+@media screen and (max-width: 700px) {
+  #carouselOuterContainer {
+    margin-top: 10px;
+    margin-right: 8%;
+    margin-left: 8%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #carouselOuterContainer {
+    margin-top: 5px;
+    margin-right: 5%;
+    margin-left: 5%;
+
+  }
 }
