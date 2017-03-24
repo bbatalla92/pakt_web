@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngMaterial',
-    'ngMdIcons'
+    'ngMdIcons',
+    'firebase'
   ])
   .config(function ( $urlRouterProvider, $locationProvider) {
 
