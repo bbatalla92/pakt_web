@@ -113,11 +113,10 @@ gulp.task('watch', function () {
 
   $.watch(paths.scripts)
     .pipe($.plumber())
-    .pipe(lintScripts())
+    .pipe(lintScripts());
 
   $.watch(paths.test)
-    .pipe($.plumber())
-
+    .pipe($.plumber());
   gulp.watch('bower.json', ['bower']);
 });
 

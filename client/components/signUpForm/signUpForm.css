@@ -1,6 +1,5 @@
 
 #signUpFormContainer {
-  width: 360px;
   border-top: 8px solid #f1f1f1 !important;
   background-color: #f8f8f9;
 }
@@ -9,7 +8,6 @@
 @media screen and (max-width: 1100px) {
 
   #signUpFormContainer {
-    width: 330px;
   }
 
 }
