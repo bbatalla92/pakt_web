@@ -24,7 +24,7 @@ angular
   ])
   .config(function ( $urlRouterProvider, $locationProvider) {
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/');
 
   });

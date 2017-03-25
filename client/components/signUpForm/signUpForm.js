@@ -1,28 +1,23 @@
-'use strict';
-
-(function(){
-
-
-  var signUpFormCtrl = function($mdDialog){
-    var ctrl = this;
+(function () {
+  'use strict';
 
 
-    ctrl.closeDialog = function(){
-      console.log('close');
-      $mdDialog.cancel();
-    };
-
-
-  };
-
-angular.module('app')
-  .component("signUpForm",{
-    templateUrl: 'components/signUpForm/signUpForm.html',
-    controller: signUpFormCtrl
-  });
+  angular.module('app')
+    .component("signUpForm", {
+      templateUrl: 'components/signUpForm/signUpForm.html',
+      controller: signUpFormCtrl
+    });
 
   signUpFormCtrl.$inject = ['$mdDialog'];
 
+  function signUpFormCtrl($mdDialog) {
+    var ctrl = this;
+
+    ctrl.closeDialog = function () {
+      console.log('close');
+      $mdDialog.cancel();
+    };
+  }
 
 
 })();

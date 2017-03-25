@@ -2,7 +2,19 @@
 
 (function () {
 
-  var toolbarCtrl = function ($mdDialog,$mdMedia) {
+
+
+
+  angular.module('app')
+    .component("toolbar", {
+      templateUrl: 'components/toolbar/toolbar.html',
+      controller: toolbarCtrl
+    });
+
+  toolbarCtrl.$inject = ['$mdDialog','$mdMedia'];
+
+  /** @ngInject */
+  function toolbarCtrl($mdDialog,$mdMedia) {
     var ctrl = this;
 
     ctrl.openSignInDialog = function (newSignIn, ev) {
@@ -17,21 +29,7 @@
         }
       );
     };
-
-
-
-
-
   };
-
-  toolbarCtrl.$inject = ['$mdDialog','$mdMedia'];
-
-  angular.module('app')
-    .component("toolbar", {
-      templateUrl: 'components/toolbar/toolbar.html',
-      controller: toolbarCtrl
-    });
-
 
 
 })();
