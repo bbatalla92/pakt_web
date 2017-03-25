@@ -24,7 +24,9 @@ angular
   ])
   .config(function ( $urlRouterProvider, $locationProvider) {
 
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    //TODO - Enable this when going live
+    //$locationProvider.html5Mode(true).hashPrefix('!');
+
     $urlRouterProvider.otherwise('/');
 
   });

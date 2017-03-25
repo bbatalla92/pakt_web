@@ -4,7 +4,6 @@
 </div>
 
 
-
 <div id="mainSecondHeaderContainer" style="">
   <div id="imageCaptionContainer">
     <h3 id="imageCaptionText">Just borrow from your neighbor</h3>
@@ -14,16 +13,11 @@
     <img id="mainImage" src='assets/images/sharingTomatoes.jpg' style="">
   </div>
 
-<!--
-  <sign-up-form id="signupComponent" hide-xs hide-sm></sign-up-form>
--->
-
   <home-item-search-bar id="mainSearchComponent"></home-item-search-bar>
 
 </div>
 
-<div style="width: 100%;">
-  <carousel-container></carousel-container>
-  <carousel-container></carousel-container>
+<div style="width: 100%;" ng-repeat="item in $ctrl.itemsArray">
   <carousel-container></carousel-container>
 </div>
+

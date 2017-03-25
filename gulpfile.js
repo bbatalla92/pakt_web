@@ -99,6 +99,7 @@ gulp.task('start:server:test', function() {
       return [['/bower_components', connect["static"]('./bower_components')]
       ]}
   });
+
 });
 
 gulp.task('watch', function () {

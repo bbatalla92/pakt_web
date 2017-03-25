@@ -1,28 +1,27 @@
 'use strict';
 
-(function(){
+(function () {
 
 
-angular.module('app')
-  .component("main",{
-    templateUrl: 'app/main/main.html',
-    controller: mainCtrl
-  })
-  .config(['$stateProvider',function ($stateProvider) {
-    $stateProvider
-      .state('main', {
-        url: '/',
-        template: '<main></main>'
-      });
-  }]);
+  angular.module('app')
+    .component("main", {
+      templateUrl: 'app/main/main.html',
+      controller: mainCtrl
+    })
+    .config(['$stateProvider', function ($stateProvider) {
+      $stateProvider
+        .state('main', {
+          url: '/',
+          template: '<main></main>'
+        });
+    }]);
 
 
 
-  function mainCtrl(){
+  function mainCtrl() {
     var ctrl = this;
 
-
-
+    ctrl.itemsArray = [{name: "Sports"}, {name: "Sports"}, {name: "Sports"}]
 
 
   }
