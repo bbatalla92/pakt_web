@@ -8,7 +8,7 @@
       templateUrl: 'components/carouselContainer/carouselContainer.html',
       controller: carouselContainerCtrl,
       bindings:{
-        name : '@'
+        carouselData: "<"
       }
     });
 

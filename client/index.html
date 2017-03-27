@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="/app/main/main.css">
   <link rel="stylesheet" href="/app/searchResultsPage/searchResultsPage.css">
+  <link rel="stylesheet" href="/app/itemPage/itemPage.css">
   <link rel="stylesheet" href="/app/app.css">
   <link rel="stylesheet" href="/app/components/itemCarouselTemplate/itemCarouselTemplate.css">
   <link rel="stylesheet" href="/app/components/signUpForm/signUpForm.css">
@@ -61,7 +62,9 @@
 <!-- build:js({.tmp,client}) scripts/scripts.js -->
 <script src="/app/app.js"></script>
 <script src="/app/main/main.js"></script>
+<script src="/app/main/mainSvc.js"></script>
 <script src="/app/searchResultsPage/searchResultsPage.js"></script>
+<script src="/app/itemPage/itemPage.js"></script>
 <script src="/components/toolbar/toolbar.js"></script>
 <script src="/components/itemCarouselTemplate/itemCarouselTemplate.js"></script>
 <script src="/components/signUpForm/signUpForm.js"></script>
@@ -69,10 +72,7 @@
 <script src="/components/carouselContainer/carouselContainer.js"></script>
 <script src="/components/footer/footer.js"></script>
 <!-- endbuild -->
-<!-- Firebase -->
 
-<!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 <script>
   // Initialize Firebase
   var config = {

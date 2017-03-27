@@ -1,5 +1,6 @@
 #itemCarouselContainer{
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 #imageHeight {

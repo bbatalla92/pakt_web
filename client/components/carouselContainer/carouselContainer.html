@@ -1,24 +1,10 @@
 <div id="carouselOuterContainer" style="">
-  <h3 id="carouselTitle" style="">Title goes here</h3>
+  <h3 id="carouselTitle" style="">{{$ctrl.carouselData.title}}</h3>
   <div id="carouselCoreContainer" layout="row" layout-align="space-between center">
-    <!--<div class="carouselLeftRightButtons" style="">
-      <ng-md-icon icon="keyboard_arrow_left" size="44"></ng-md-icon>
-    </div>-->
 
-
-    <div id="carouselItemsContainer" layout="row" layout-align="space-between">
-      <item-carousel-template image-path="assets/images/lawnmower.jpg" ng-click="" ui-sref="results"></item-carousel-template>
-      <item-carousel-template image-path="assets/images/firepit.jpeg"></item-carousel-template>
-      <item-carousel-template image-path="assets/images/surboard.jpeg"></item-carousel-template>
-      <item-carousel-template image-path="assets/images/surboard.jpeg"></item-carousel-template>
+    <div id="carouselItemsContainer" layout="row" layout-align="space-between" >
+      <item-carousel-template ng-repeat="item in $ctrl.carouselData.items" item="item"></item-carousel-template>
     </div>
-
-
-    <!--
-    <div class="carouselLeftRightButtons">
-      <ng-md-icon icon="keyboard_arrow_right" size="44"></ng-md-icon>
-    </div>
-    -->
 
   </div>
 </div>

@@ -16,15 +16,28 @@
         });
     }]);
 
+  mainCtrl.$inject = ["mainSvc"];
 
-
-  function mainCtrl() {
+  function mainCtrl(mainSvc) {
     var ctrl = this;
 
-    ctrl.itemsArray = [{name: "Sports"}, {name: "Sports"}, {name: "Sports"}]
+    ctrl.carouselData = [];
+
+    function bootstrap() {
+      getCarouselData();
+    }
 
 
+    function getCarouselData() {
+      mainSvc.getCarouselItems()
+        .then(function (res) {
+          ctrl.carouselData = res.data;
+        });
+    }
+
+
+
+    // End of the controller
+    bootstrap();
   }
-
-
 })();

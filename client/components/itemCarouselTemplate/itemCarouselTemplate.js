@@ -8,7 +8,7 @@ angular.module('app')
     templateUrl: 'components/itemCarouselTemplate/itemCarouselTemplate.html',
     controller: itemCarouselTemplateCtrl,
     bindings:{
-      imagePath: "@"
+      item: "<"
     }
   });
 

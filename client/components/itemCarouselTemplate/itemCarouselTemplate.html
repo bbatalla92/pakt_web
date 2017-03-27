@@ -1,5 +1,5 @@
-<div layout="column" id="itemCarouselContainer">
-  <img id="imageHeight" style="" src="{{$ctrl.imagePath}}">
-  <h3 id="itemCarouselDescription"><b>$15</b>  Lawnmower - Forked River</h3>
+<div layout="column" id="itemCarouselContainer" ui-sref="item">
+  <img id="imageHeight" style="" src="{{$ctrl.item.url}}">
+  <h3 id="itemCarouselDescription"><b>{{"$" + $ctrl.item.price}} &middot;</b>  Lawnmower <b>&middot;</b> Forked River</h3>
 </div>
 
