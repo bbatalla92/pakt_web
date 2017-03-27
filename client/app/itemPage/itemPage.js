@@ -12,7 +12,7 @@ angular.module('app')
   .config(['$stateProvider',function ($stateProvider) {
     $stateProvider
       .state('item', {
-        url: '/item',
+        url: '/item/:id',
         template: '<item-page></item-page>'
       });
   }]);

@@ -1,4 +1,4 @@
-<div layout="column" id="itemCarouselContainer" ui-sref="item">
+<div layout="column" id="itemCarouselContainer" ui-sref="item({id:$ctrl.item.id})">
   <img id="imageHeight" style="" src="{{$ctrl.item.url}}">
   <h3 id="itemCarouselDescription"><b>{{"$" + $ctrl.item.price}} &middot;</b>  Lawnmower <b>&middot;</b> Forked River</h3>
 </div>
