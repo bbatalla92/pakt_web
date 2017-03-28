@@ -5,14 +5,14 @@
     <div id="footerColumnContainer" layout="row" layout-align="space-between" >
 
       <div id="footerColumnContainerDropDowns" layout="column" layout-xs="row" layout-align-xs="space-around" flex>
-        <md-input-container class="footerDropdownFields">
-          <md-select ng-model="$ctrl.language">
+        <md-input-container class="footerDropdownFields" aria-label="Dropdown">
+          <md-select ng-model="$ctrl.language"  aria-label="Dropdown">
             <md-option value="eng">English</md-option>
           </md-select>
         </md-input-container>
 
-        <md-input-container class="footerDropdownFields">
-          <md-select ng-model="$ctrl.currency">
+        <md-input-container class="footerDropdownFields"  aria-label="Dropdown">
+          <md-select ng-model="$ctrl.currency"  aria-label="Dropdown">
             <md-option value="usd">USD</md-option>
           </md-select>
         </md-input-container>
