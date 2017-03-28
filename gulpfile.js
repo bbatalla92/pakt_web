@@ -53,7 +53,7 @@ var lintScripts = lazypipe()
 
 var styles = lazypipe()
   .pipe($.autoprefixer, 'last 1 version')
-  .pipe(gulp.dest, '.tmp/app');
+  .pipe(gulp.dest, '.tmp');
 
 
 ///////////
