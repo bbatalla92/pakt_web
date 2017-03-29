@@ -1,0 +1,197 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@2.15.9
+3 info using node@v4.5.0
+4 verbose readDependencies loading dependencies from /Users/bbatal200/Documents/Proj/pakt_web/package.json
+5 verbose install where, deps [ '/Users/bbatal200/Documents/Proj/pakt_web',
+5 verbose install   [ 'gulp',
+5 verbose install     'gulp-autoprefixer',
+5 verbose install     'gulp-cache',
+5 verbose install     'gulp-connect',
+5 verbose install     'gulp-filter',
+5 verbose install     'gulp-imagemin',
+5 verbose install     'gulp-jshint',
+5 verbose install     'gulp-karma',
+5 verbose install     'gulp-load-plugins',
+5 verbose install     'gulp-minify-css',
+5 verbose install     'gulp-ng-annotate',
+5 verbose install     'gulp-plumber',
+5 verbose install     'gulp-rev',
+5 verbose install     'gulp-rev-replace',
+5 verbose install     'gulp-uglify',
+5 verbose install     'gulp-useref',
+5 verbose install     'gulp-util',
+5 verbose install     'gulp-watch',
+5 verbose install     'jasmine-core',
+5 verbose install     'jshint-stylish',
+5 verbose install     'karma',
+5 verbose install     'karma-jasmine',
+5 verbose install     'karma-phantomjs-launcher',
+5 verbose install     'lazypipe',
+5 verbose install     'open',
+5 verbose install     'phantomjs-prebuilt',
+5 verbose install     'rimraf',
+5 verbose install     'run-sequence',
+5 verbose install     'wiredep' ] ]
+6 verbose install where, peers [ '/Users/bbatal200/Documents/Proj/pakt_web', [] ]
+7 verbose installManyTop reading for lifecycle /Users/bbatal200/Documents/Proj/pakt_web/package.json
+8 info preinstall MyWebsite@
+9 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp/package.json
+10 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-autoprefixer/package.json
+11 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-cache/package.json
+12 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-connect/package.json
+13 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-filter/package.json
+14 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-imagemin/package.json
+15 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-jshint/package.json
+16 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-karma/package.json
+17 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-load-plugins/package.json
+18 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-minify-css/package.json
+19 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-ng-annotate/package.json
+20 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-plumber/package.json
+21 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-rev/package.json
+22 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-rev-replace/package.json
+23 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-uglify/package.json
+24 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-useref/package.json
+25 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-util/package.json
+26 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-watch/package.json
+27 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/jasmine-core/package.json
+28 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/jshint-stylish/package.json
+29 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/karma/package.json
+30 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/karma-jasmine/package.json
+31 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/karma-phantomjs-launcher/package.json
+32 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/lazypipe/package.json
+33 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/open/package.json
+34 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/phantomjs-prebuilt/package.json
+35 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/rimraf/package.json
+36 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/run-sequence/package.json
+37 verbose installManyTop reading scoped package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/wiredep/package.json
+38 info package.json wiredep@2.2.2 No license field.
+39 info package.json gulp-minify-css@1.2.4 No repository field.
+40 info package.json lazypipe@0.2.4 No license field.
+41 verbose readDependencies loading dependencies from /Users/bbatal200/Documents/Proj/pakt_web/package.json
+42 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp/package.json
+43 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-autoprefixer/package.json
+44 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-cache/package.json
+45 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-connect/package.json
+46 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-filter/package.json
+47 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-imagemin/package.json
+48 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-jshint/package.json
+49 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-karma/package.json
+50 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-load-plugins/package.json
+51 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-minify-css/package.json
+52 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-ng-annotate/package.json
+53 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-plumber/package.json
+54 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-rev/package.json
+55 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-rev-replace/package.json
+56 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-uglify/package.json
+57 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-useref/package.json
+58 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-util/package.json
+59 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/gulp-watch/package.json
+60 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/jasmine-core/package.json
+61 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/jshint-stylish/package.json
+62 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/karma/package.json
+63 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/karma-jasmine/package.json
+64 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/karma-phantomjs-launcher/package.json
+65 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/lazypipe/package.json
+66 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/open/package.json
+67 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/phantomjs-prebuilt/package.json
+68 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/rimraf/package.json
+69 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/run-sequence/package.json
+70 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/wiredep/package.json
+71 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/.bin/gulp/package.json
+72 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/.bin/karma/package.json
+73 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/.bin/phantomjs/package.json
+74 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/.bin/rimraf/package.json
+75 verbose targetResolver reading package data from /Users/bbatal200/Documents/Proj/pakt_web/node_modules/.bin/wiredep/package.json
+76 verbose already installed skipping gulp-filter@^2.0.2 /Users/bbatal200/Documents/Proj/pakt_web
+77 verbose already installed skipping gulp-imagemin@^2.3.0 /Users/bbatal200/Documents/Proj/pakt_web
+78 verbose already installed skipping gulp-jshint@^1.11.1 /Users/bbatal200/Documents/Proj/pakt_web
+79 verbose already installed skipping gulp-karma@0.0.4 /Users/bbatal200/Documents/Proj/pakt_web
+80 verbose already installed skipping gulp-load-plugins@^0.10.0 /Users/bbatal200/Documents/Proj/pakt_web
+81 verbose already installed skipping gulp-minify-css@^1.2.0 /Users/bbatal200/Documents/Proj/pakt_web
+82 verbose already installed skipping gulp-ng-annotate@^1.0.0 /Users/bbatal200/Documents/Proj/pakt_web
+83 verbose already installed skipping gulp-plumber@^1.0.1 /Users/bbatal200/Documents/Proj/pakt_web
+84 verbose already installed skipping gulp-rev@^5.0.1 /Users/bbatal200/Documents/Proj/pakt_web
+85 verbose already installed skipping gulp-rev-replace@^0.4.2 /Users/bbatal200/Documents/Proj/pakt_web
+86 verbose already installed skipping gulp-uglify@^1.2.0 /Users/bbatal200/Documents/Proj/pakt_web
+87 verbose already installed skipping gulp-useref@^3.0.0 /Users/bbatal200/Documents/Proj/pakt_web
+88 verbose already installed skipping gulp-util@^3.0.6 /Users/bbatal200/Documents/Proj/pakt_web
+89 verbose already installed skipping gulp-watch@^4.2.4 /Users/bbatal200/Documents/Proj/pakt_web
+90 verbose already installed skipping jasmine-core@^2.5.2 /Users/bbatal200/Documents/Proj/pakt_web
+91 verbose already installed skipping jshint-stylish@^1.0.0 /Users/bbatal200/Documents/Proj/pakt_web
+92 verbose already installed skipping karma@^1.3.0 /Users/bbatal200/Documents/Proj/pakt_web
+93 verbose already installed skipping karma-jasmine@^1.0.2 /Users/bbatal200/Documents/Proj/pakt_web
+94 verbose already installed skipping karma-phantomjs-launcher@^1.0.2 /Users/bbatal200/Documents/Proj/pakt_web
+95 verbose already installed skipping lazypipe@^0.2.4 /Users/bbatal200/Documents/Proj/pakt_web
+96 verbose already installed skipping open@0.0.5 /Users/bbatal200/Documents/Proj/pakt_web
+97 verbose already installed skipping phantomjs-prebuilt@^2.1.12 /Users/bbatal200/Documents/Proj/pakt_web
+98 verbose already installed skipping rimraf@^2.4.0 /Users/bbatal200/Documents/Proj/pakt_web
+99 verbose already installed skipping run-sequence@^1.1.1 /Users/bbatal200/Documents/Proj/pakt_web
+100 verbose already installed skipping wiredep@^2.2.2 /Users/bbatal200/Documents/Proj/pakt_web
+101 verbose already installed skipping gulp@^3.9.0 /Users/bbatal200/Documents/Proj/pakt_web
+102 verbose already installed skipping gulp-autoprefixer@2.3.1 /Users/bbatal200/Documents/Proj/pakt_web
+103 verbose already installed skipping gulp-cache@^0.2.10 /Users/bbatal200/Documents/Proj/pakt_web
+104 verbose already installed skipping gulp-connect@^2.2.0 /Users/bbatal200/Documents/Proj/pakt_web
+105 silly install resolved []
+106 info build /Users/bbatal200/Documents/Proj/pakt_web
+107 info linkStuff MyWebsite@
+108 silly linkStuff MyWebsite@ has /Users/bbatal200/Documents/Proj as its parent node_modules
+109 verbose linkBins MyWebsite@
+110 verbose linkMans MyWebsite@
+111 verbose rebuildBundles MyWebsite@
+112 verbose rebuildBundles [ '.bin',
+112 verbose rebuildBundles   'gulp',
+112 verbose rebuildBundles   'gulp-autoprefixer',
+112 verbose rebuildBundles   'gulp-cache',
+112 verbose rebuildBundles   'gulp-connect',
+112 verbose rebuildBundles   'gulp-filter',
+112 verbose rebuildBundles   'gulp-imagemin',
+112 verbose rebuildBundles   'gulp-jshint',
+112 verbose rebuildBundles   'gulp-karma',
+112 verbose rebuildBundles   'gulp-load-plugins',
+112 verbose rebuildBundles   'gulp-minify-css',
+112 verbose rebuildBundles   'gulp-ng-annotate',
+112 verbose rebuildBundles   'gulp-plumber',
+112 verbose rebuildBundles   'gulp-rev',
+112 verbose rebuildBundles   'gulp-rev-replace',
+112 verbose rebuildBundles   'gulp-uglify',
+112 verbose rebuildBundles   'gulp-useref',
+112 verbose rebuildBundles   'gulp-util',
+112 verbose rebuildBundles   'gulp-watch',
+112 verbose rebuildBundles   'jasmine-core',
+112 verbose rebuildBundles   'jshint-stylish',
+112 verbose rebuildBundles   'karma',
+112 verbose rebuildBundles   'karma-jasmine',
+112 verbose rebuildBundles   'karma-phantomjs-launcher',
+112 verbose rebuildBundles   'lazypipe',
+112 verbose rebuildBundles   'open',
+112 verbose rebuildBundles   'phantomjs-prebuilt',
+112 verbose rebuildBundles   'rimraf',
+112 verbose rebuildBundles   'run-sequence',
+112 verbose rebuildBundles   'wiredep' ]
+113 info install MyWebsite@
+114 info postinstall MyWebsite@
+115 info prepublish MyWebsite@
+116 verbose validateInstall loading /Users/bbatal200/Documents/Proj/pakt_web/package.json for validation
+117 verbose stack Error: The package karma@1.5.0 does not satisfy its siblings' peerDependencies requirements!
+117 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+117 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:268:7
+117 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+117 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+117 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+117 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+117 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+117 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+117 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+117 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+118 verbose cwd /Users/bbatal200/Documents/Proj/pakt_web
+119 error Darwin 15.6.0
+120 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+121 error node v4.5.0
+122 error npm  v2.15.9
+123 error code EPEERINVALID
+124 error peerinvalid The package karma@1.5.0 does not satisfy its siblings' peerDependencies requirements!
+124 error peerinvalid Peer karma-jasmine@1.1.0 wants karma@*
+124 error peerinvalid Peer karma-phantomjs-launcher@1.0.2 wants karma@>=0.9
+124 error peerinvalid Peer gulp-karma@0.0.4 wants karma@>=0.10 <=0.13
+125 verbose exit [ 1, true ]
