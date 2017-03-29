@@ -1,12 +1,14 @@
-<div style="background-color: white;" class="md-padding" ng-cloak>
+<div style="background-color: white;" ng-cloak>
+  <item-page-image-gallery></item-page-image-gallery>
   <div layout="row">
     <div flex="50">
-      <div layout="column" layout-align="center center">
+      <div layout="column" layout-align="center center" class="md-padding">
         <h1
           style="font-size: 40px !important; text-align: center;margin:0; line-height: 42px !important;font-weight: 700; opacity: .54;">
           Lawnmower
         </h1>
-        <star-rating rating="'4.5'" read-only="true" size="'lg'" style="    margin-top: -10px;margin-bottom: 30px;"></star-rating>
+        <star-rating rating="'1'" read-only="true" size="'md'"
+                     style="margin-top: -10px;margin-bottom: 30px;"></star-rating>
       </div>
       <div style="text-align: left" class="md-padding">
         <p style="opacity: .87">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
@@ -14,22 +16,45 @@
           dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
           consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
           ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-          labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam
+          labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem
+          ullam
           corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
           qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
           nulla pariatur.</p>
       </div>
     </div>
     <div flex="45">
-      <img style=" height: 22%;border-radius: 7px;" src="assets/images/lawnmower.jpg"/>
+
+
+
+
+      <div md-whiteframe="3" class="md-padding"
+           style="width: 300px;text-align: center;margin: -50px auto;   border-radius: 30px;background-color: white;">
+        <div layout="row" layout-align="center end" style="margin-bottom: 10px;">
+          <h1 style="margin: 0;">$30</h1>
+          <span style="margin-left: 5px;"><em> per Day</em></span>
+        </div>
+        <md-divider></md-divider>
+        <form layout="column">
+          <md-input-container style="margin-bottom: 0">
+            <label style="">Start Date</label>
+            <md-datepicker ng-model="$ctrl.searchParams.startDate" md-open-on-focus flex></md-datepicker>
+          </md-input-container>
+          <md-input-container style="margin: 0">
+            <label style="">End Date</label>
+            <md-datepicker ng-model="$ctrl.searchParams.endDate" md-open-on-focus flex></md-datepicker>
+          </md-input-container>
+        </form>
+        <md-button class="md-raised" style="background: rgba(91, 191, 73, 0.63); color: rgba(0, 0, 0, 0.58);width: 80%;">Rent this item</md-button>
+
+      </div>
     </div>
-</div>
+  </div>
 
 
-
-<div flex="50" layout="row" layout-align="end center">
-  <img style=" border-radius: 31px;  height: 62px;margin-right: 15px;" src="assets/images/defaultPerson.png"/>
-  <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">Brennan Batalla</h2>
-</div>
+  <div flex="50" layout="row" layout-align="end center">
+    <img style=" border-radius: 31px;  height: 62px;margin-right: 15px;" src="assets/images/defaultPerson.png"/>
+    <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">Brennan Batalla</h2>
+  </div>
 </div>
 <md-toolbar></md-toolbar>
