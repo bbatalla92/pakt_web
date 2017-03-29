@@ -13,7 +13,7 @@
         <ng-md-icon icon="pan_tool"></ng-md-icon>
       </md-icon>
       <label style="">Keyword for Item</label>
-      <input type="text" />
+      <input type="text" ng-model="$ctrl.searchParams.keyword" />
     </md-input-container>
 
     <md-input-container style="margin: 15px 0 0;width: 90%;height: 35px;">
@@ -21,20 +21,20 @@
         <ng-md-icon icon="home"></ng-md-icon>
       </md-icon>
       <label style="">Where to...</label>
-      <input type="text"/>
+      <input type="text" ng-model="$ctrl.searchParams.location"/>
     </md-input-container>
 
     <div layout="row" layout-xs="column">
       <md-input-container class="datePickerContainers">
         <label style="">Start Date</label>
-        <md-datepicker ng-model="ctrl.myDate" md-open-on-focus flex></md-datepicker>
+        <md-datepicker ng-model="$ctrl.searchParams.startDate" md-open-on-focus flex></md-datepicker>
       </md-input-container>
       <md-input-container class="datePickerContainers">
-        <label style="">Start Date</label>
-        <md-datepicker ng-model="ctrl.myDate" md-open-on-focus flex></md-datepicker>
+        <label style="">End Date</label>
+        <md-datepicker ng-model="$ctrl.searchParams.endDate" md-open-on-focus flex></md-datepicker>
       </md-input-container>
 
-      <md-button id="searchBarGoButton" class="md-primary" ng-click="$ctrl.showSearchForm = false">Go
+      <md-button id="searchBarGoButton" class="md-primary" ng-click="$ctrl.showSearchForm = false" ui-sref="results({searchParams: $ctrl.searchParams})">Go
       </md-button>
     </div>
 

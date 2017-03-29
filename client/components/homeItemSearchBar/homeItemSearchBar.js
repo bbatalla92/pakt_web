@@ -13,6 +13,12 @@ angular.module('app')
   function homeItemSearchBarCtrl(){
     var ctrl = this;
 
+    ctrl.searchParams = {
+      keyword: "test",
+      location: "1",
+      startDate: new Date(),
+      endDate: new Date()
+    }
 
   }
 

@@ -12,19 +12,18 @@ angular.module('app')
     $stateProvider
       .state('results', {
         url: '/results',
-        template: '<search-results-page></search-results-page>'
+        template: '<search-results-page></search-results-page>',
+        params: {
+          searchParams: null
+        }
       });
   }]);
 
+  searchResultsPageCtrl.$injector = ['$stateParams'];
 
-
-  function searchResultsPageCtrl(){
+  function searchResultsPageCtrl($stateParams){
     var ctrl = this;
-
-
-
-
-
+    ctrl.searchParams = $stateParams.searchParams;
   }
 
 
