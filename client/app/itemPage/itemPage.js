@@ -18,9 +18,9 @@
         );
     }]);
 
-    itemPageCtrl.$inject = ["$stateParams"];
+    itemPageCtrl.$inject = ["$stateParams",'$element','$scope','$window','$document'];
 
-  function itemPageCtrl($stateParams) {
+  function itemPageCtrl($stateParams, $element, $scope,$window,$document) {
     var ctrl = this;
     ctrl.item = $stateParams.item;
 

@@ -16,7 +16,8 @@
       bindings: {
         rating: "<",
         readOnly: "<",
-        size: "<"
+        size: "<",
+        reviews: "@"
       }
     });
 
