@@ -9,20 +9,39 @@
       $stateProvider
         .state('item',
           {
-          url: '/item/:id',
-          template: '<item-page></item-page>',
-          params:{
-            item: null
+            url: '/item/:id',
+            template: '<item-page></item-page>',
+            params: {
+              item: null
+            }
           }
-        }
         );
     }]);
 
-    itemPageCtrl.$inject = ["$stateParams",'$element','$scope','$window','$document'];
+  itemPageCtrl.$inject = ["$stateParams", '$scope','$window'];
 
-  function itemPageCtrl($stateParams, $element, $scope,$window,$document) {
+  function itemPageCtrl($stateParams, $scope, $window) {
     var ctrl = this;
     ctrl.item = $stateParams.item;
+    ctrl.dynamicStyleClass = {stickyForm: false};
+
+    ctrl.button = function () {
+      console.log(document.scrollingElement.scrollTop);
+      console.log($window.scrollY);
+
+    };
+
+    angular.element($window).bind("scroll", function() {
+      ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 530;
+
+      if(ctrl.dynamicStyleClass.stickyForm)
+        console.log('TRUE');
+      $scope.$apply();
+    });
+
+
+
+
 
 
   }

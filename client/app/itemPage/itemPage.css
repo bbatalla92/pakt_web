@@ -1,0 +1,14 @@
+.stickyForm {
+  position: fixed;
+  top: 10%;
+  margin-top: -50px;
+
+}
+
+.stuckForm {
+  width: 300px;
+  text-align: center;
+  margin-top: -50px;
+  border-radius: 30px;
+  background-color: white;
+}
