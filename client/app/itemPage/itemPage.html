@@ -1,7 +1,7 @@
 <div style="background-color: white;position: relative;" ng-cloak scroll>
-  <item-page-image-gallery ></item-page-image-gallery>
+  <item-page-image-gallery></item-page-image-gallery>
   <div layout="row" style="margin: 0 80px;">
-    <div flex="60" >
+    <div flex="70">
       <!--Heading-->
       <div layout="column" layout-align="center center" class="md-padding"
            style="    border-bottom: rgba(0, 0, 0, 0.2) 1px solid;">
@@ -20,10 +20,12 @@
           <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">Description</h4>
         </div>
         <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80">
-          <p style="opacity: .87; font-size: 17px;font-weight: 100;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+          <p style="opacity: .87; font-size: 17px;font-weight: 100;">Sed ut perspiciatis unde omnis iste natus error sit
+            voluptatem accusantium doloremque
             laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
             dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-            consequuntur magni dolores<br><br>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            consequuntur magni dolores<br><br>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+            doloremque
             laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
             dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
             consequuntur magni dolores<br><br>
@@ -36,7 +38,7 @@
         <div flex>
           <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">Features</h4>
         </div>
-        <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80" >
+        <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80">
           <ul style="opacity: .87; font-size: 17px;font-weight: 100;">
             <li>Feature 1</li>
             <li>Feature 2</li>
@@ -48,14 +50,39 @@
       <!-- Pricing -->
       <div layout="row" class="md-padding">
         <div flex>
-          <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">Features</h4>
+          <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">Pricing</h4>
         </div>
-        <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80" >
+        <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80">
           <ul style="opacity: .87; font-size: 17px;font-weight: 100;">
             <li>$10 per Hour</li>
             <li>$30 per Day</li>
             <li>$100 per Week</li>
           </ul>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div layout="row" class="md-padding">
+        <div flex>
+          <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">Reviews</h4>
+        </div>
+        <div flex="80" >
+          <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" ng-repeat="r in [0,1,2]" class="md-padding">
+            <div flex layout="row" layout-align="" style="">
+              <img style=" border-radius: 24px;  height: 48px;margin-right: 15px;"
+                   src="assets/images/defaultPerson.png"/>
+              <div>
+                <h2 style="font-size: 17px !important;margin-top:0; margin-bottom: -15px;">Patricia Reeves</h2>
+                <star-rating rating="'4.0'" read-only="true" size="'sm'"
+                             style=""></star-rating>
+              </div>
+              <span flex></span>
+              <span>March 2017</span>
+            </div>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+              rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+              explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia</p>
+          </div>
         </div>
       </div>
 
@@ -68,51 +95,64 @@
         </div>
         <div style="border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80">
           <div layout="column" layout-align="center center">
-          <div flex layout="row" layout-align="center center" style="margin-top: 50px;">
-            <img style=" border-radius: 31px;  height: 62px;margin-right: 15px;" src="assets/images/defaultPerson.png"/>
-            <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">Brennan Batalla</h2>
-          </div>
-          <star-rating rating="'4.5'" read-only="true" size="'lg'" reviews="9"
-                       style="margin-top: -10px;margin-bottom: 10px;"></star-rating>
+            <div flex layout="row" layout-align="center center" style="margin-top: 50px;">
+              <img style=" border-radius: 31px;  height: 62px;margin-right: 15px;"
+                   src="assets/images/defaultPerson.png"/>
+              <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">Brennan
+                Batalla</h2>
+            </div>
+            <star-rating rating="'4.5'" read-only="true" size="'lg'" reviews="9"
+                         style="margin-top: -10px;margin-bottom: 10px;"></star-rating>
           </div>
           <br>
-          <p style="opacity: .87; font-size: 17px;font-weight: 100;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+          <p style="opacity: .87; font-size: 17px;font-weight: 100;">Sed ut perspiciatis unde omnis iste natus error sit
+            voluptatem accusantium doloremque
             laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia</p>
+            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
+            quia</p>
+
+          <md-button class="md-raised"> Contact Owner </md-button>
+          <br>
+          <label>Response Rate: 98%</label>
+          <br>
+          <label>Response Time: 3 Hours</label>
         </div>
       </div>
-
 
 
 
     </div>
     <!-- Rent Form below -->
-    <div id=""  flex="40">
-      <div md-whiteframe="2" class="md-padding stuckForm" ng-class="{'stickyForm': $ctrl.dynamicStyleClass.stickyForm}"
-           style="">
-        <div layout="row" layout-align="center end" style="margin-bottom: 10px;">
-          <h1 style="margin: 0;">$30</h1>
-          <span style="margin-left: 5px;"><em> per Day</em></span>
+    <div id="" flex="40">
+      <div class="md-padding stuckForm" ng-class="{'stickyForm': $ctrl.dynamicStyleClass.stickyForm}">
+        <div md-whiteframe="2" class="mainRentalForm md-padding"
+             style="">
+          <div layout="row" layout-align="center end" style="margin-bottom: 10px;">
+            <h1 style="margin: 0;">$30</h1>
+            <span style="margin-left: 5px;"><em> per Day</em></span>
+          </div>
+          <md-divider></md-divider>
+          <form layout="column">
+            <md-input-container style="margin-bottom: 0">
+              <label style="">Start Date</label>
+              <md-datepicker ng-model="$ctrl.searchParams.startDate" md-open-on-focus flex></md-datepicker>
+            </md-input-container>
+            <md-input-container style="margin: 0">
+              <label style="">End Date</label>
+              <md-datepicker ng-model="$ctrl.searchParams.endDate" md-open-on-focus flex></md-datepicker>
+            </md-input-container>
+          </form>
+          <md-button class="md-raised" ng-click="$ctrl.button()"
+                     style="background: rgba(91, 191, 73, 0.63); color: rgba(0, 0, 0, 0.58);width: 80%;">Rent this item
+          </md-button>
+          <div style="color: rgba(93, 93, 93, 0.74); margin-top: 8px;font-size: 13px;">You won't be charged yet</div>
         </div>
-        <md-divider></md-divider>
-        <form layout="column">
-          <md-input-container style="margin-bottom: 0">
-            <label style="">Start Date</label>
-            <md-datepicker ng-model="$ctrl.searchParams.startDate" md-open-on-focus flex></md-datepicker>
-          </md-input-container>
-          <md-input-container style="margin: 0">
-            <label style="">End Date</label>
-            <md-datepicker ng-model="$ctrl.searchParams.endDate" md-open-on-focus flex></md-datepicker>
-          </md-input-container>
-        </form>
-        <md-button class="md-raised" ng-click="$ctrl.button()"
-                   style="background: rgba(91, 191, 73, 0.63); color: rgba(0, 0, 0, 0.58);width: 80%;">Rent this item
-        </md-button>
-        <div style="color: rgba(93, 93, 93, 0.74); margin-top: 8px;font-size: 13px;">You won't be charged yet</div>
+        <span style="" id="rentalFormFlagButton">
+        <ng-md-icon icon="flag"></ng-md-icon>
+        Flag this Rental
+        </span>
       </div>
     </div>
-    {{'dsfad:' + $ctrl.dynamicStyleClass.stickyForm}}
   </div>
-
 
 </div>

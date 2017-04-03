@@ -6,9 +6,25 @@
 }
 
 .stuckForm {
-  width: 300px;
   text-align: center;
   margin-top: -50px;
+  width: 300px;
+
+}
+
+.mainRentalForm {
+  margin-bottom: 15px;
+  text-align: center;
   border-radius: 30px;
   background-color: white;
+}
+
+#rentalFormFlagButton {
+  opacity: .6;
+  font-size: smaller;
+  cursor: pointer;
+}
+
+#rentalFormFlagButton:hover {
+  color: rgb(255, 0, 0);
 }
