@@ -16,7 +16,8 @@
     "bower": "*",
     "install": "^1.0.4",
     "angular-material-icons": "^0.7.1",
-    "angularfire": "^2.3.0"
+    "angularfire": "^2.3.0",
+    "ngmap": "^1.18.4"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

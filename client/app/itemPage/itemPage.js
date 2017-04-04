@@ -35,7 +35,7 @@
       ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 530;
 
       if(ctrl.dynamicStyleClass.stickyForm)
-        console.log('TRUE');
+        console.log('TRUE', this.pageYOffset);
       $scope.$apply();
     });
 
