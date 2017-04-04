@@ -33,7 +33,10 @@
 
     ctrl.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 39.9525839, lng: -75.16522150000003},
-      zoom: 12
+      zoom: 12,
+      disableDefaultUI: true,
+      scrollwheel:  false
+
     });
 
 
@@ -41,10 +44,9 @@
 
 
     angular.element($window).bind("scroll", function() {
-      ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 530;
+      ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 530 && this.pageYOffset < 2000;
+      ctrl.dynamicStyleClass.stuckFormBottom = this.pageYOffset >=  2000;
 
-      if(ctrl.dynamicStyleClass.stickyForm)
-        console.log('TRUE', this.pageYOffset);
       $scope.$apply();
     });
 

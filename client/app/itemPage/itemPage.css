@@ -5,7 +5,14 @@
 
 }
 
-.stuckForm {
+.stuckFormBottom {
+  position: relative;
+  top: 77%;
+  margin-top: -50px;
+
+}
+
+.stuckFormTop {
   text-align: center;
   margin-top: -50px;
   width: 300px;
