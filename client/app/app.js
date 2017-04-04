@@ -20,8 +20,7 @@ angular
     'ngTouch',
     'ngMaterial',
     'ngMdIcons',
-    'firebase',
-    'ngMap'
+    'firebase'
   ])
   .config(function ( $urlRouterProvider, $locationProvider) {
 

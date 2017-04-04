@@ -31,6 +31,15 @@
 
     };
 
+    ctrl.map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 39.9525839, lng: -75.16522150000003},
+      zoom: 12
+    });
+
+
+    //google.maps.event.trigger(map, "resize");
+
+
     angular.element($window).bind("scroll", function() {
       ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 530;
 
