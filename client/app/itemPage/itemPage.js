@@ -36,15 +36,10 @@
       zoom: 12,
       disableDefaultUI: true,
       scrollwheel:  false
-
     });
 
-
-    //google.maps.event.trigger(map, "resize");
-
-
     angular.element($window).bind("scroll", function() {
-      ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 530 && this.pageYOffset < 2000;
+      ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 490 && this.pageYOffset < 2000;
       ctrl.dynamicStyleClass.stuckFormBottom = this.pageYOffset >=  2000;
 
       $scope.$apply();

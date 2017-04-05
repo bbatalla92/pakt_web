@@ -17,7 +17,6 @@ angular
     'ngResource',
     "ui.router",
     'ngSanitize',
-    'ngTouch',
     'ngMaterial',
     'ngMdIcons',
     'firebase'
