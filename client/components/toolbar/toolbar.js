@@ -9,11 +9,14 @@
       controller: toolbarCtrl
     });
 
-  toolbarCtrl.$inject = ['$mdDialog', '$mdMedia', '$scope', '$state'];
+  toolbarCtrl.$inject = ['$mdDialog', '$mdMedia', '$scope', '$state', 'APP_NAME'];
 
   /** @ngInject */
-  function toolbarCtrl($mdDialog, $mdMedia, $scope, $state) {
+  function toolbarCtrl($mdDialog, $mdMedia, $scope, $state, APP_NAME) {
     var ctrl = this;
+
+
+    ctrl.appName = APP_NAME;
     ctrl.flags = {
       hideTitle: true
     };

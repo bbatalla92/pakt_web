@@ -3,41 +3,42 @@
     "title": "Sports",
     "items": [
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Lawnmower",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/firepit.jpeg",
+        "imageUrls": ["assets/images/firepit.jpeg", "assets/images/lawnmower.jpg","assets/images/surboard.jpeg"],
         "ownerId": "678987867564576879890-90897867564"
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Lawnmower",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/lawnmower.jpg"
+        "imageUrls": ["assets/images/lawnmower.jpg","assets/images/firepit.jpeg", "assets/images/surboard.jpeg"],
+        "ownerId": "678987867564576879890-90897867564"
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Surfboard",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/surboard.jpeg"
+        "imageUrls": ["assets/images/surboard.jpeg"]
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Firepit",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/lawnmower.jpg"
+        "imageUrls": ["assets/images/lawnmower.jpg"]
       }
     ]
   },
@@ -45,41 +46,42 @@
     "title": "Tools",
     "items": [
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Lawnmower",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/firepit.jpeg",
+        "imageUrls": ["assets/images/firepit.jpeg", "assets/images/lawnmower.jpg","assets/images/surboard.jpeg"],
         "ownerId": "678987867564576879890-90897867564"
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Lawnmower",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/lawnmower.jpg"
+        "imageUrls": ["assets/images/lawnmower.jpg","assets/images/firepit.jpeg", "assets/images/surboard.jpeg"],
+        "ownerId": "678987867564576879890-90897867564"
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Surfboard",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/surboard.jpeg"
+        "imageUrls": ["assets/images/surboard.jpeg"]
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Firepit",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/lawnmower.jpg"
+        "imageUrls": ["assets/images/lawnmower.jpg"]
       }
     ]
   },
@@ -87,41 +89,42 @@
     "title": "Jewelry",
     "items": [
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Lawnmower",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/firepit.jpeg",
+        "imageUrls": ["assets/images/firepit.jpeg", "assets/images/lawnmower.jpg","assets/images/surboard.jpeg"],
         "ownerId": "678987867564576879890-90897867564"
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Lawnmower",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/lawnmower.jpg"
+        "imageUrls": ["assets/images/lawnmower.jpg","assets/images/firepit.jpeg", "assets/images/surboard.jpeg"],
+        "ownerId": "678987867564576879890-90897867564"
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Surfboard",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/surboard.jpeg"
+        "imageUrls": ["assets/images/surboard.jpeg"]
       },
       {
-        "price": 15,
+        "price": {"hour": 10, "day":30, "week": 100 },
         "id": "583021",
         "title": "Firepit",
         "location": "Forked River, NJ",
         "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
         "created": "8461653454",
-        "url": "assets/images/lawnmower.jpg"
+        "imageUrls": ["assets/images/lawnmower.jpg"]
       }
     ]
   }

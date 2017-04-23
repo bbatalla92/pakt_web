@@ -6,3 +6,7 @@ h1,h2,h3{
 div{
   outline:none;
 }
+
+.app-name{
+  font-family: 'Varela Round', sans-serif;
+}

@@ -9,9 +9,11 @@
       controller: footerCtrl
     });
 
-
-  function footerCtrl() {
+  footerCtrl.$inject = ["APP_NAME"]
+  function footerCtrl(APP_NAME) {
     var ctrl = this;
+
+    ctrl.appName = APP_NAME;
 
     ctrl.language = "eng";
     ctrl.currency = "usd";

@@ -21,6 +21,7 @@ angular
     'ngMdIcons',
     'firebase'
   ])
+  .constant("APP_NAME", "lendR")
   .config(function ( $urlRouterProvider, $locationProvider) {
 
     //TODO - Enable this when going live
@@ -28,4 +29,5 @@ angular
 
     $urlRouterProvider.otherwise('/');
 
-  });
+  })
+  ;

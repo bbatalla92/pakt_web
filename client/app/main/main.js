@@ -16,12 +16,13 @@
         });
     }]);
 
-  mainCtrl.$inject = ["mainSvc"];
+  mainCtrl.$inject = ["mainSvc", "APP_NAME"];
 
-  function mainCtrl(mainSvc) {
+  function mainCtrl(mainSvc, APP_NAME) {
     var ctrl = this;
 
     ctrl.carouselData = [];
+    ctrl.appName = APP_NAME;
 
     function bootstrap() {
       getCarouselData();

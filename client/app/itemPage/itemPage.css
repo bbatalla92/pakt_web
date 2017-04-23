@@ -7,7 +7,7 @@
 
 .stuckFormBottom {
   position: relative;
-  top: 77%;
+  top: 78%;
   margin-top: -50px;
 
 }
@@ -62,4 +62,8 @@
   margin-bottom: 5px;
   margin-right: 2px;
   color: rgba(0, 0, 0, 0.57);
+}
+
+.itemsPageSectionContainer{
+
 }

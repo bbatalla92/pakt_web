@@ -1,7 +1,7 @@
 <div style="background-color: white;position: relative;" ng-cloak>
-  <item-page-image-gallery></item-page-image-gallery>
+  <item-page-image-gallery images="$ctrl.item.imageUrls"></item-page-image-gallery>
   <div layout="row" style="margin: 0 80px;">
-    <div flex="70">
+    <div flex="70" flex-xs="100" flex-sm="100">
       <!--Heading-->
       <div layout="column" layout-align="center center" class="md-padding"
            style="    border-bottom: rgba(0, 0, 0, 0.2) 1px solid;">
@@ -50,45 +50,15 @@
         </div>
       </div>
 
-      <!-- Pricing -->
-      <div layout="row" class="md-padding">
-        <div flex>
-          <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">Pricing</h4>
-        </div>
-        <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80">
-          <ul style="opacity: .87; font-size: 17px;font-weight: 100;">
-            <li>$10 per Hour</li>
-            <li>$30 per Day</li>
-            <li>$100 per Week</li>
-          </ul>
-        </div>
-      </div>
-
       <!-- Reviews -->
       <div layout="row" class="md-padding">
         <div flex>
           <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">Reviews</h4>
         </div>
-        <div flex="80" >
-          <div style="text-align: left;border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" ng-repeat="r in [0,1,2]" class="md-padding">
-            <div flex layout="row" layout-align="" style="">
-              <img style=" border-radius: 24px;  height: 48px;margin-right: 15px;"
-                   src="assets/images/defaultPerson.png"/>
-              <div>
-                <h2 style="font-size: 17px !important;margin-top:0; margin-bottom: -15px;">Patricia Reeves</h2>
-                <star-rating rating="'4.0'" read-only="true" size="'sm'"
-                             style=""></star-rating>
-              </div>
-              <span flex></span>
-              <span>March 2017</span>
-            </div>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-              rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-              explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia</p>
-          </div>
+        <div flex="80">
+          <review ng-repeat="r in [0,1,2,3]"></review>
         </div>
       </div>
-
 
 
       <!-- The Owner -->
@@ -98,8 +68,8 @@
         </div>
         <div style="border-bottom: rgba(0, 0, 0, 0.2) 1px solid;" flex="80">
           <div layout="column" layout-align="center center">
-            <div flex layout="row" layout-align="center center" style="margin-top: 50px;">
-              <img style=" border-radius: 31px;  height: 62px;margin-right: 15px;"
+            <div flex layout="row" layout-align="center center" style="">
+              <img style=" border-radius: 40px;  height: 80px;margin-right: 15px;"
                    src="assets/images/defaultPerson.png"/>
               <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">Brennan
                 Batalla</h2>
@@ -112,21 +82,26 @@
             voluptatem accusantium doloremque
             laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
             dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
-            quia</p>
-          <md-button class="md-raised"> Contact Owner </md-button>
-          <br>
-          <label>Response Rate: 98%</label>
-          <br>
-          <label>Response Time: 3 Hours</label>
+            quia<span style="color: rgb(130, 95, 108);">...read more</span></p>
+          <div layout="row">
+            <span flex></span>
+            <md-button class="ng-md-icon md-fab md-primary md-mini">
+              <ng-md-icon icon="message"></ng-md-icon>
+            </md-button>
+            <div layout="column" layout-align="center start">
+              <label>Response Rate: 98%</label>
+              <label>Response Time: 3 Hours</label>
+            </div>
+          </div>
         </div>
       </div>
 
 
-
     </div>
     <!-- Rent Form below -->
-    <div id="" flex="40">
-      <div class="md-padding stuckFormTop" ng-class="{'stickyForm': $ctrl.dynamicStyleClass.stickyForm,'stuckFormBottom': $ctrl.dynamicStyleClass.stuckFormBottom}">
+    <div hide-xs hide-sm id="" flex="40">
+      <div class="md-padding stuckFormTop"
+           ng-class="{'stickyForm': $ctrl.dynamicStyleClass.stickyForm,'stuckFormBottom': $ctrl.dynamicStyleClass.stuckFormBottom}">
         <div md-whiteframe="2" class="mainRentalForm md-padding"
              style="">
           <div layout="row" layout-align="center end" style="margin-bottom: 10px;">
@@ -135,15 +110,35 @@
           </div>
           <md-divider></md-divider>
           <form layout="column">
-            <md-input-container style="margin-bottom: 0">
+            <md-input-container style="margin-bottom: 0; text-align: left">
               <label style="">Start Date</label>
-              <md-datepicker ng-model="$ctrl.searchParams.startDate" md-open-on-focus flex></md-datepicker>
+              <md-datepicker ng-model="$ctrl.rentalForm.startDate" ng-change="$ctrl.calculateTotal()"
+                             md-open-on-focus md-min-date="$ctrl.minDate" flex></md-datepicker>
             </md-input-container>
-            <md-input-container style="margin: 0">
+            <md-input-container style="margin: 0; text-align: left">
               <label style="">End Date</label>
-              <md-datepicker ng-model="$ctrl.searchParams.endDate" md-open-on-focus flex></md-datepicker>
+              <md-datepicker ng-disabled="!$ctrl.rentalForm.startDate" ng-model="$ctrl.rentalForm.endDate"
+                             ng-change="$ctrl.calculateTotal()" md-open-on-focus flex
+                             md-min-date="$ctrl.rentalForm.startDate"></md-datepicker>
+            </md-input-container>
+            <md-input-container style="width:80px; text-align: left; margin: 0 auto" ng-if="$ctrl.rentalForm.startDate === $ctrl.rentalForm.endDate && $ctrl.rentalForm.startDate !== ''">
+              <label>Hours</label>
+              <input type="number" ng-model="$ctrl.rentalForm.hours" ng-change="$ctrl.calculateTotal()" min="1"/>
             </md-input-container>
           </form>
+          <md-divider></md-divider>
+          <div layout="row" style="margin: 10px 0">
+            <ul style="list-style-type: none;padding-left: 15px;margin:0" flex="40">
+              <li ng-repeat="(key, value) in $ctrl.item.price" style="width:130px; text-align: left">${{value+ ' '}}<em
+                style="font-size: smaller">per {{key}}</em>
+              </li>
+            </ul>
+            <div style="text-align: center" layout="column" flex>
+              <label style="font-size: larger;">total</label>
+              <em style="font-size: 2.5em;">${{$ctrl.rentalForm.totalPrice}}</em>
+            </div>
+          </div>
+          <md-divider></md-divider>
           <md-button class="md-raised" ng-click="$ctrl.button()"
                      style="background: rgba(91, 191, 73, 0.63); color: rgba(0, 0, 0, 0.58);width: 80%;">Rent this item
           </md-button>
@@ -157,10 +152,11 @@
     </div>
   </div>
 
-<div>
-  <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">The Where</h4>
-  <div style="height: 400px; width: 100%;" id="map"></div>
-
-</div>
+  <div>
+    <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">The Where</h4>
+    <div style="height: 400px; width: 100%;" id="map"></div>
+    <div
+      style="height: 400px; width: 100%;  background-color: transparent; position: absolute;z-index: 5; bottom: 0%;"></div>
+  </div>
 
 </div>
