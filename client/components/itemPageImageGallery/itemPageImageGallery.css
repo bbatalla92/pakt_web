@@ -5,3 +5,21 @@
   background-size: cover !important;
   background: no-repeat center;
 }
+
+
+
+@media screen and (max-width: 650px) {
+
+  #itemPageGalleryImageContainer {
+    height: 450px;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+  #itemPageGalleryImageContainer {
+    height: 350px;
+  }
+
+}

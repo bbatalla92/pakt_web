@@ -5,7 +5,11 @@
 
 #imageHeight {
   height: 200px;
+  width: 200px;
   margin: 5px;
+  text-align: center;
+  background-size: cover !important;
+  background: no-repeat center;
 }
 
 
@@ -19,11 +23,13 @@
 @media screen and (max-width: 700px) {
   #imageHeight {
     height: 160px;
+    width: 160px;
   }
 }
 
 @media screen and (max-width: 550px) {
   #imageHeight {
     height: 120px;
+    width: 120px;
   }
 }

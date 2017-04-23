@@ -1,5 +1,5 @@
 <div layout="column" id="itemCarouselContainer" ui-sref="item({id:$ctrl.item.id, item: $ctrl.item})">
-  <img id="imageHeight" style="" src="{{$ctrl.item.imageUrls[0]}}">
-  <h3 id="itemCarouselDescription"><b>{{"$" + $ctrl.item.price}} &middot;</b> Lawnmower <b>&middot;</b> Forked River
+  <div id="imageHeight" ng-style="$ctrl.image"></div>
+  <h3 id="itemCarouselDescription"><b>{{"$" + $ctrl.item.price['day']}} &middot;</b> Lawnmower <b>&middot;</b> Forked River
   </h3>
 </div>

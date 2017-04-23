@@ -9,7 +9,7 @@
   position: relative;
   top: 78%;
   margin-top: -50px;
-
+  height: 430px;
 }
 
 .stuckFormTop {
@@ -27,13 +27,13 @@
 
 }
 
-#rentalFormFlagButton {
+.rentalFormFlagButton {
   opacity: .6;
   font-size: smaller;
   cursor: pointer;
 }
 
-#rentalFormFlagButton:hover {
+.rentalFormFlagButton:hover {
   color: rgb(255, 0, 0);
 }
 
@@ -64,6 +64,120 @@
   color: rgba(0, 0, 0, 0.57);
 }
 
-.itemsPageSectionContainer{
+.itemsPageContentContainer{
+  margin: 0 80px;
+}
+
+.itemsPageSectionsContainer{
+
+}
+
+.itemPageFormContainerWideScreen{
+  display: inherit;
+}
+
+.itemPageFormContainerMobileScreen{
+  display: none;
+}
+
+.itemPageFormInnerContainerMobileScreen{
+  width: 80%; margin: 0 auto;
+}
+
+item-page .sectionTitle{
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+item-page .sectionContent{
+  text-align: left;
+  border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
+}
+
+item-page .sectionContentText{
+  opacity: .87;
+  font-size: 17px;
+  font-weight: 100;
+}
+
+
+
+
+
+@media screen and (max-width: 1000px) {
+  .itemsPageContentContainer{
+    margin: 0 20px;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .itemPageFormContainerWideScreen{
+    display: none;
+  }
+
+
+  .itemPageFormContainerMobileScreen{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .itemPageFormInnerContainerMobileScreen{
+    width: 100%;
+    margin: 0 auto;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+
+  item-page .sectionTitle{
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  item-page .sectionContentText{
+    opacity: .87;
+    font-size: 15px;
+    font-weight: 100;
+  }
+
+}
+
+@media screen and (max-width: 451px) {
+
+  .itemsPageContentContainer {
+    margin: 0 0;
+    font-size: small;
+  }
+
+  item-page .sectionContentText{
+    opacity: .87;
+    font-size: 13px;
+    font-weight: 100;
+  }
+
+  item-page .sectionTitle{
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+}
+
+
+@media screen and (max-width: 350px) {
+
+  item-page .sectionContentText{
+    opacity: .87;
+    font-size: 10px;
+    font-weight: 100;
+  }
+
+  item-page .sectionTitle{
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.54);
+  }
 
 }
