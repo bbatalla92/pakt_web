@@ -71,7 +71,7 @@
 
     ctrl.calculateTotal = function () {
       if (ctrl.rentalForm.startDate && ctrl.rentalForm.endDate) {
-        let diffDates = calculateDaysDiff(ctrl.rentalForm.startDate,ctrl.rentalForm.endDate);
+        var diffDates = calculateDaysDiff(ctrl.rentalForm.startDate,ctrl.rentalForm.endDate);
 
         if(diffDates != 0){
           console.log(diffDates);

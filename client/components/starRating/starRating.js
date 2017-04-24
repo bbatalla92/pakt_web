@@ -39,12 +39,12 @@
       xlg: '48'
     };
 
-    $timeout(()=> {
-      for (let i = 0; i < Math.floor(parseFloat(ctrl.rating)); i++) {
+    $timeout(function() {
+      for (var i = 0; i < Math.floor(parseFloat(ctrl.rating)); i++) {
         ctrl.starRatingArray[i] = 'star';
       }
       if (parseFloat(ctrl.rating) - Math.floor(parseFloat(ctrl.rating)) > 0 && parseFloat(ctrl.rating) < 5) {
-        let index = Math.floor(parseFloat(ctrl.rating));
+        var index = Math.floor(parseFloat(ctrl.rating));
         ctrl.starRatingArray[index] = 'star_half';
       }
 

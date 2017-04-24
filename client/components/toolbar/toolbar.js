@@ -22,7 +22,7 @@
     };
 
     // Watching and makes the toolbar title hide when in main page
-    $scope.$watch( () => {
+    $scope.$watch( function() {
       ctrl.flags.hideTitle = $state.current.name == 'main';
     });
 

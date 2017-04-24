@@ -7,6 +7,8 @@ var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
+var gutil = require('gulp-util')
+
 
 //app directory structor
 var yeoman = {
@@ -177,6 +179,7 @@ gulp.task('client:build', ['bower', 'html', 'styles'], function () {
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
     .pipe($.uglify())
+    .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
     .pipe($.minifyCss({cache: true}))
