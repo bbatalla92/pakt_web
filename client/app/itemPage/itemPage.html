@@ -72,11 +72,11 @@
 
 
       <!-- Description-->
-      <div layout="row" class="md-padding">
+      <div layout="row" layout-xs="column" class="md-padding">
         <div flex>
           <h4 class="sectionTitle">Description</h4>
         </div>
-        <div class="sectionContent" style="" flex="80">
+        <div class="sectionContent">
           <p class="sectionContentText" >Sed ut perspiciatis unde omnis iste natus error sit
             voluptatem accusantium doloremque
             laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -91,11 +91,11 @@
       </div>
 
       <!-- Additional Features -->
-      <div layout="row" class="md-padding">
+      <div layout="row" layout-xs="column" class="md-padding">
         <div flex>
           <h4 class="sectionTitle">Features</h4>
         </div>
-        <div class="sectionContent" flex="80">
+        <div class="sectionContent">
           <!--<ul style="opacity: .87; font-size: 17px;font-weight: 100;">-->
           <div class="featuresMenuGrid sectionContentText">
             <span class="featuresMenuCell"><ng-md-icon icon="directions_car"></ng-md-icon>Will drop off/ pick up</span>
@@ -108,22 +108,22 @@
       </div>
 
       <!-- Reviews -->
-      <div layout="row" class="md-padding">
+      <div layout="row" layout-xs="column" class="md-padding">
         <div flex>
           <h4 class="sectionTitle">Reviews</h4>
         </div>
-        <div class="sectionContent" flex="80">
+        <div class="sectionContent">
           <review class="sectionContentText" ng-repeat="r in [0,1,2,3]"></review>
         </div>
       </div>
 
 
       <!-- The Owner -->
-      <div layout="row" class="md-padding">
+      <div layout="row" layout-xs="column" class="md-padding">
         <div flex>
           <h4 class="sectionTitle">The Owner</h4>
         </div>
-        <div class="sectionContent" flex="80">
+        <div class="sectionContent">
           <div layout="column" layout-align="center center">
             <div flex layout="row" layout-align="center center" style="">
               <img style=" border-radius: 40px;  height: 80px;margin-right: 15px;"
@@ -211,7 +211,6 @@
   </div>
 
   <div>
-    <h4 style="font-size: 17px;color: rgba(0, 0, 0, 0.54);">The Where</h4>
     <div style="height: 400px; width: 100%;" id="map"></div>
     <div
       style="height: 400px; width: 100%;  background-color: transparent; position: absolute;z-index: 5; bottom: 0%;"></div>

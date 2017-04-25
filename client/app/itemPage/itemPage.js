@@ -65,7 +65,7 @@
         fillOpacity: 0.35,
         map: ctrl.map,
         center: {lat: 39.944296, lng: -75.169242},
-        radius: 1000
+        radius: 600
       });
     }
 
