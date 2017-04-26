@@ -14,8 +14,8 @@ angular.module('app')
     var ctrl = this;
 
     ctrl.searchParams = {
-      keyword: "test",
-      location: "1",
+      keyword: "",
+      location: "",
       startDate: new Date(),
       endDate: new Date()
     }

@@ -84,6 +84,10 @@
   width: 80%; margin: 0 auto;
 }
 
+#textTotal{
+  font-size: 2.5em;
+}
+
 item-page .sectionTitle{
   font-size: 17px;
   color: rgba(0, 0, 0, 0.54);

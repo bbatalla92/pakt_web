@@ -1,9 +1,8 @@
-<md-toolbar style="background-color: white;height: 60px;min-height: 60px">
+<md-toolbar class="toolbarStyle" ng-class="{'toolbarBoxShadow': !$ctrl.flags.hideTitle}">
   <div class="md-toolbar-tools" style="margin: auto;">
     <h3 ng-if="!$ctrl.flags.hideTitle" ui-sref="main" style="cursor: pointer;font-size: xx-large; color: rgba(197, 141, 161, 0.77);
     font-weight: 800;" class="app-name">{{$ctrl.appName}}</h3>
     <span flex></span>
-
     <md-button style="color: #000;" hide-xs hide-sm>Start Earning</md-button>
     <md-button style="color: #000;" hide-xs hide-sm>Help</md-button>
     <md-button style="color: white;background-color: rgba(197, 141, 161, 0.55)" ng-click="$ctrl.openSignInDialog(false, $event)">Sign up

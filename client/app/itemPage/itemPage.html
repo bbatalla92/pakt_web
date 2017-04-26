@@ -2,6 +2,7 @@
   <item-page-image-gallery images="$ctrl.item.imageUrls"></item-page-image-gallery>
   <div layout="row" class="itemsPageContentContainer">
     <div flex="70" flex-xs="100" flex-sm="100">
+
       <!--Heading-->
       <div layout="column" layout-align="center center" class="md-padding"
            style="border-bottom: rgba(0, 0, 0, 0.2) 1px solid;">
@@ -13,7 +14,6 @@
                      style="margin-top: -10px;margin-bottom: 10px;"></star-rating>
         <label>Forked River, NJ 08731</label>
       </div>
-
 
       <!-- Rent Form below - mobile/tablet screen -->
       <div class="itemPageFormContainerMobileScreen" style="border-bottom: rgba(0, 0, 0, 0.2) 1px solid;">
@@ -42,17 +42,18 @@
               </md-input-container>
             </form>
             <div flex="50" style="text-align: center">
-              <div layout="row" style="margin: 10px 0">
-                <ul style="list-style-type: none;padding-left: 15px;margin:0" flex="40">
-                  <li ng-repeat="(key, value) in $ctrl.item.price" style="width:130px; text-align: left">${{value+ '
-                    '}}<em
-                      style="font-size: smaller">per {{key}}</em>
+              <div layout="column" style="margin: 10px 0">
+                <div style="text-align: center" layout="column" flex>
+                  <label style="font-size: larger;">Total</label>
+                  <em id="textTotal">${{$ctrl.rentalForm.totalPrice}}</em>
+                </div>
+
+                <ul style="list-style-type: none;padding-left: 20px;margin:0" flex="40">
+                  <li ng-repeat="(key, value) in $ctrl.item.price" style="width:130px;font-size: large; text-align: left">
+                    ${{value+''}}<em style="font-size: smaller">per {{key}}</em>
                   </li>
                 </ul>
-                <div style="text-align: center" layout="column" flex>
-                  <label style="font-size: larger;">total</label>
-                  <em style="font-size: 2.5em;">${{$ctrl.rentalForm.totalPrice}}</em>
-                </div>
+
               </div>
               <md-button class="md-raised" ng-click="$ctrl.button()"
                          style="background: rgba(91, 191, 73, 0.63); color: rgba(0, 0, 0, 0.58);max-width: 200px;" flex>Rent this
@@ -69,7 +70,6 @@
           </div>
         </div>
       </div>
-
 
       <!-- Description-->
       <div layout="row" layout-xs="column" class="md-padding">
@@ -116,7 +116,6 @@
           <review class="sectionContentText" ng-repeat="r in [0,1,2,3]"></review>
         </div>
       </div>
-
 
       <!-- The Owner -->
       <div layout="row" layout-xs="column" class="md-padding">

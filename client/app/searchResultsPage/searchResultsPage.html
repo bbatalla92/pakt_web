@@ -1,1 +1,57 @@
-{{$ctrl.searchParams}}
+<div layout="row" style="height: 92vh;">
+  <div flex="60" flex-sm="100" flex-xs="100">
+    <md-toolbar id="searchPageToolbar" class="md-padding">
+      <div layout="row">
+        <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers">
+          <input type="text"/>
+          <label>Keyword</label>
+        </md-input-container>
+        <div style="margin-left: 10px; margin-right: 10px;">
+          <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers" style="width:60px">
+            <input type="number"/>
+            <label>$Min</label>
+          </md-input-container>
+          <b style="color: rgba(0, 0, 0, 0.57);">-</b>
+          <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers" style="width:60px">
+            <input type="number"/>
+            <label>$Max</label>
+          </md-input-container>
+        </div>
+        <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers">
+          <md-select aria-lable="filter" ng-model="$ctrl.option">
+            <md-option value=""></md-option>
+            <md-option value="hour">Hourly</md-option>
+            <md-option value="day">Daily</md-option>
+            <md-option value="week">Weekly</md-option>
+            <md-option value="month">Monthly</md-option>
+          </md-select>
+          <label>Rental Durations</label>
+        </md-input-container>
+        <md-button>More Filters
+          <ng-md-icon icon="expand_more"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div class="md-padding" id="searchPageListContainer">
+
+      <div id="searchPageListItemsGrid">
+        <div id="searchPageListItemsGridCell" ng-repeat="j in [0,1,2,3,4,5,6,7]">
+          <div id="itemPageGalleryImageContainer"
+               style="  height: 230px;;background-image: url('assets/images/firepit.jpeg')"></div>
+          <div style="margin:10px 3px">
+            <h3 id="itemCarouselDescription" style="margin-bottom: -20px;"><b>{{"$" + $ctrl.item.price['day']}} &middot;</b> Lawnmower <b>&middot;</b>
+              Forked River
+            </h3>
+            <star-rating rating="'3.5'" readOnly="true" size="'sm'" reviews="2"></star-rating>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align: center">1 2 3 ... 12</div>
+
+    </div>
+  </div>
+  <div hide-sm hide-xs flex>
+    <div id="searchMap" style="height:100%"></div>
+  </div>
+</div>

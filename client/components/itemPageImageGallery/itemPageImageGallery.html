@@ -1,4 +1,4 @@
-<div id="itemPageGalleryImageContainer" ng-style="$ctrl.activeImage">
+<div id="itemPageGalleryImageContainer" ng-style="$ctrl.activeImage" md-swipe-right="$ctrl.nextImage(true)" md-swipe-left="$ctrl.nextImage(false)">
   <span
     style="color: white;position: absolute;right: 9%;top: 1%;font-size: small; background: rgba(0, 0, 0, 0.43); padding: 10px; border-radius: 20px;">{{$ctrl.imageIndex + 1}} of {{ $ctrl.images.length }}</span>
   <div layout="row" layout-align="space-between center" style="height: 100%;">
