@@ -47,6 +47,18 @@
   color: rgba(0, 0, 0, 0.57);
 }
 
+#listToolbarContainer{
+  width: 60%;
+  max-width: 60%;
+}
+
+@media screen and (max-width: 959px) {
+  #listToolbarContainer{
+    width:100%;
+    max-width:100% !important;
+  }
+
+}
 @media screen and (max-width: 600px) {
   #searchPageListItemsGrid {
     justify-content: center;

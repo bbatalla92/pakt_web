@@ -18,7 +18,7 @@
     };
 
     $scope.$watch(function () {
-      ctrl.flags.hideFooter = $state.current.name == 'results';
+      ctrl.flags.hideFooter = $state.current.name === 'results';
     });
 
     ctrl.appName = APP_NAME;

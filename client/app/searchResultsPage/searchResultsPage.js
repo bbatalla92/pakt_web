@@ -19,12 +19,15 @@ angular.module('app')
       });
   }]);
 
-  searchResultsPageCtrl.$injector = ['$stateParams'];
+  searchResultsPageCtrl.$injector = ['$stateParams', "$timeout", "$mdMedia"];
 
-  function searchResultsPageCtrl($stateParams){
+  function searchResultsPageCtrl($stateParams, $timeout, $mdMedia){
     var ctrl = this;
     ctrl.searchParams = $stateParams.searchParams;
-
+    ctrl.flags = {
+      screenSMoXS: false,
+      showMap: false
+    };
    ctrl.item =  {
       "price": {"hour": 10, "day":30, "week": 100 },
       "id": "583021",
@@ -38,7 +41,7 @@ angular.module('app')
 
     function bootstrap(){
       initMap();
-
+      ctrl.flags.screenSMoXS = $mdMedia('xs') || $mdMedia('sm');
     }
 
 
@@ -82,24 +85,13 @@ angular.module('app')
         center: {lat: 39.951291, lng: -75.159141},
         radius: 150
       });
-
-
-
-      var styles = [
-        {
-          featureType: "poi",
-          stylers: [
-            { visibility: "off" }
-          ]
-        }
-      ];
     }
 
 
 
 
     // End of controller
-    bootstrap();
+    $timeout(function(){bootstrap();},1)
   }
 
 

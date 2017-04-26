@@ -1,7 +1,7 @@
-<div layout="row" style="height: 92vh;">
-  <div flex="60" flex-sm="100" flex-xs="100">
+<div layout="row" layout-xs="column" layout-sm="column" style="height: 92vh;">
+  <div id="listToolbarContainer">
     <md-toolbar id="searchPageToolbar" class="md-padding">
-      <div layout="row">
+      <div hide-xs hide-sm layout="row">
         <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers">
           <input type="text"/>
           <label>Keyword</label>
@@ -31,15 +31,29 @@
           <ng-md-icon icon="expand_more"></ng-md-icon>
         </md-button>
       </div>
+      <div hide show-xs show-sm layout="row">
+        <md-button ng-if="!$ctrl.flags.showMap" ng-click="$ctrl.flags.showMap = true">
+          <ng-md-icon icon="map"></ng-md-icon>
+          Map
+        </md-button>
+        <md-button ng-if="$ctrl.flags.showMap" ng-click="$ctrl.flags.showMap = false">
+          <ng-md-icon icon="list"></ng-md-icon>
+          List
+        </md-button>
+        <md-button>
+          <ng-md-icon icon="filter_list"></ng-md-icon>
+          Filters
+        </md-button>
+      </div>
     </md-toolbar>
-    <div class="md-padding" id="searchPageListContainer">
-
+    <div ng-if="!$ctrl.flags.showMap" class="md-padding" id="searchPageListContainer">
       <div id="searchPageListItemsGrid">
         <div id="searchPageListItemsGridCell" ng-repeat="j in [0,1,2,3,4,5,6,7]">
           <div id="itemPageGalleryImageContainer"
                style="  height: 230px;;background-image: url('assets/images/firepit.jpeg')"></div>
           <div style="margin:10px 3px">
-            <h3 id="itemCarouselDescription" style="margin-bottom: -20px;"><b>{{"$" + $ctrl.item.price['day']}} &middot;</b> Lawnmower <b>&middot;</b>
+            <h3 id="itemCarouselDescription" style="margin-bottom: -20px;"><b>{{"$" +
+              $ctrl.item.price['day']}} &middot;</b> Lawnmower <b>&middot;</b>
               Forked River
             </h3>
             <star-rating rating="'3.5'" readOnly="true" size="'sm'" reviews="2"></star-rating>
@@ -48,10 +62,9 @@
 
       </div>
       <div style="text-align: center">1 2 3 ... 12</div>
-
     </div>
   </div>
-  <div hide-sm hide-xs flex>
+  <div flex ng-hide="$ctrl.flags.screenSMoXS && !$ctrl.flags.showMap" >
     <div id="searchMap" style="height:100%"></div>
   </div>
 </div>
