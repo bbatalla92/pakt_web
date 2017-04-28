@@ -2,12 +2,12 @@
   <span
     style="color: white;position: absolute;right: 9%;top: 1%;font-size: small; background: rgba(0, 0, 0, 0.43); padding: 10px; border-radius: 20px;">{{$ctrl.imageIndex + 1}} of {{ $ctrl.images.length }}</span>
   <div layout="row" layout-align="space-between center" style="height: 100%;">
-    <md-button style="height: 100%; color: white;background-color: transparent" ng-click="$ctrl.nextImage(false)">
-      <ng-md-icon style="margin-left: -66px;" icon="keyboard_arrow_left" size="82"></ng-md-icon>
+    <md-button aria-label="left button" class="itemImageGalleryButtons" ng-click="$ctrl.nextImage(false)">
+      <ng-md-icon class="itemImageGalleryIcons" icon="keyboard_arrow_left" size="64"></ng-md-icon>
     </md-button>
-    <md-button style="height: 100%;color: white; text-align: left;background-color: transparent"
+    <md-button class="itemImageGalleryButtons" aria-label="Right button"
                ng-click="$ctrl.nextImage(true)">
-      <ng-md-icon icon="keyboard_arrow_right" size="82"></ng-md-icon>
+      <ng-md-icon icon="keyboard_arrow_right" size="64" class="itemImageGalleryIcons" style=""></ng-md-icon>
     </md-button>
   </div>
 </div>

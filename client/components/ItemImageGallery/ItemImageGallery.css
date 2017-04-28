@@ -1,0 +1,25 @@
+#itemPageGalleryImageContainer {
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  background-size: cover !important;
+  background: no-repeat center;
+}
+
+.itemImageGalleryButtons {
+  margin: 0;
+  height: 100%;
+  color: white;
+  text-align: left;
+  background-color: transparent
+}
+
+.itemImageGalleryIcons {
+  height: 64px;
+  width: 64px;
+  opacity: .67;
+}
+
+.itemImageGalleryIcons:hover {
+  opacity: 1;
+}

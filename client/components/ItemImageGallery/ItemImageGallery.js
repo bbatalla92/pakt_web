@@ -4,16 +4,16 @@
 
 
   angular.module('app')
-    .component("itemPageImageGallery", {
-      templateUrl: 'components/itemPageImageGallery/itemPageImageGallery.html',
-      controller: itemPageImageGalleryCtrl,
+    .component("itemImageGallery", {
+      templateUrl: 'components/ItemImageGallery/ItemImageGallery.html',
+      controller: itemImageGalleryCtrl,
       bindings: {
         images: "<"
       }
     });
 
-  itemPageImageGalleryCtrl.$inject = ["$timeout"];
-  function itemPageImageGalleryCtrl($timeout) {
+  itemImageGalleryCtrl.$inject = ["$timeout"];
+  function itemImageGalleryCtrl($timeout) {
     var ctrl = this;
 
     ctrl.imageIndex = 0;
@@ -31,9 +31,6 @@
         (ctrl.imageIndex - 1 < 0) ? ctrl.imageIndex = ctrl.images.length - 1 : ctrl.imageIndex--;
       }
       ctrl.activeImage.backgroundImage = "url(" + ctrl.images[ctrl.imageIndex] + ")";
-      console.log('index', ctrl.imageIndex);
-      console.log('image', ctrl.imageIndex);
-
     };
 
 

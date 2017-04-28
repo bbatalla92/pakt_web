@@ -5,6 +5,10 @@
 
 }
 
+#galleryContainer {
+  height: 550px;
+}
+
 .stuckFormBottom {
   position: relative;
   top: 78%;
@@ -47,7 +51,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   padding-bottom: 16px;
-  width:100%;
+  width: 100%;
   margin-left: 40px;
 }
 
@@ -64,93 +68,95 @@
   color: rgba(0, 0, 0, 0.57);
 }
 
-.itemsPageContentContainer{
+.itemsPageContentContainer {
   margin: 0 80px;
 }
 
-.itemsPageSectionsContainer{
+.itemsPageSectionsContainer {
 
 }
 
-.itemPageFormContainerWideScreen{
+.itemPageFormContainerWideScreen {
   display: inherit;
 }
 
-.itemPageFormContainerMobileScreen{
+.itemPageFormContainerMobileScreen {
   display: none;
 }
 
-.itemPageFormInnerContainerMobileScreen{
-  width: 80%; margin: 0 auto;
+.itemPageFormInnerContainerMobileScreen {
+  width: 80%;
+  margin: 0 auto;
 }
 
-#textTotal{
+#textTotal {
   font-size: 2.5em;
 }
 
-item-page .sectionTitle{
+item-page .sectionTitle {
   font-size: 17px;
   color: rgba(0, 0, 0, 0.54);
 }
 
-item-page .sectionContent{
+item-page .sectionContent {
   text-align: left;
   border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
-  max-width:80%;
+  max-width: 80%;
 }
 
-item-page .sectionContentText{
+item-page .sectionContentText {
   opacity: .87;
   font-size: 17px;
   font-weight: 100;
 }
 
-
-
-
-
 @media screen and (max-width: 1000px) {
-  .itemsPageContentContainer{
+  .itemsPageContentContainer {
     margin: 0 20px;
   }
 }
 
 @media screen and (max-width: 830px) {
-  .itemPageFormContainerWideScreen{
+  .itemPageFormContainerWideScreen {
     display: none;
   }
 
-
-  .itemPageFormContainerMobileScreen{
+  .itemPageFormContainerMobileScreen {
     display: block;
   }
 }
 
+@media screen and (max-width: 650px) {
+
+  #galleryContainer {
+    height: 450px;
+  }
+
+}
+
 @media screen and (max-width: 600px) {
 
-  .itemPageFormInnerContainerMobileScreen{
+  .itemPageFormInnerContainerMobileScreen {
     width: 100%;
     margin: 0 auto;
   }
 
-  item-page .sectionContent{
-    max-width:100%;
+  item-page .sectionContent {
+    max-width: 100%;
   }
 
-  item-page .sectionTitle{
+  item-page .sectionTitle {
     text-align: center;
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 13px;
   }
 
-
 }
 
 @media screen and (max-width: 500px) {
 
-
-  item-page .sectionContentText{
+  item-page .sectionContentText {
     font-size: 15px;
     font-weight: 100;
   }
@@ -164,23 +170,26 @@ item-page .sectionContentText{
     font-size: small;
   }
 
-  item-page .sectionContentText{
+  item-page .sectionContentText {
     font-size: 13px;
   }
 
-  item-page .sectionTitle{
+  item-page .sectionTitle {
     font-size: 17px;
+  }
+
+  #galleryContainer {
+    height: 350px;
   }
 }
 
-
 @media screen and (max-width: 350px) {
 
-  item-page .sectionContentText{
+  item-page .sectionContentText {
     font-size: 10px;
   }
 
-  item-page .sectionTitle{
+  item-page .sectionTitle {
     font-size: 10px;
   }
 

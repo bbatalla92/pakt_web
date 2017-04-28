@@ -2,37 +2,42 @@
   <div id="listToolbarContainer">
     <md-toolbar id="searchPageToolbar" class="md-padding">
       <div hide-xs hide-sm layout="row">
-        <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers">
-          <input type="text"/>
-          <label>Keyword</label>
-        </md-input-container>
-        <div style="margin-left: 10px; margin-right: 10px;">
-          <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers" style="width:60px">
-            <input type="number"/>
-            <label>$Min</label>
-          </md-input-container>
-          <b style="color: rgba(0, 0, 0, 0.57);">-</b>
-          <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers" style="width:60px">
-            <input type="number"/>
-            <label>$Max</label>
-          </md-input-container>
+
+        <div class="searchPageToolbarItems" ng-class="{activePanel : $ctrl.flags.whatPanelActive}" style="cursor: pointer" ng-click="$ctrl.openWhatPanel($event)" flex>
+          <div style="margin: 7px auto;">
+          <span ng-if="!ctrl.searchParams.what" class="searchPageToolbarItemsSpan" flex>Anything</span>
+          <span ng-if="ctrl.searchParams.what" class="searchPageToolbarItemsSpan" flex>{{ctrl.searchParams.what}}</span>
+          <ng-md-icon icon="expand_more"></ng-md-icon>
+          </div>
         </div>
-        <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers">
-          <md-select aria-lable="filter" ng-model="$ctrl.option">
-            <md-option value=""></md-option>
-            <md-option value="hour">Hourly</md-option>
-            <md-option value="day">Daily</md-option>
-            <md-option value="week">Weekly</md-option>
-            <md-option value="month">Monthly</md-option>
-          </md-select>
-          <label>Rental Durations</label>
-        </md-input-container>
+
+        <md-button class="searchPageToolbarItems" flex>
+          <span class="searchPageToolbarItemsSpan">Anywhere</span>
+          <ng-md-icon icon="expand_more"></ng-md-icon>
+        </md-button>
+        <md-button class="searchPageToolbarItems" flex>
+          <span class="searchPageToolbarItemsSpan">Anytime</span>
+          <ng-md-icon icon="expand_more"></ng-md-icon>
+        </md-button>
+
+        <!--
+                <md-input-container aria-lable="filter" class="innerToolbarContainerInputContainers">
+                  <md-select aria-lable="filter" ng-model="$ctrl.option">
+                    <md-option value=""></md-option>
+                    <md-option value="hour">Hourly</md-option>
+                    <md-option value="day">Daily</md-option>
+                    <md-option value="week">Weekly</md-option>
+                    <md-option value="month">Monthly</md-option>
+                  </md-select>
+                  <label>Rental Durations</label>
+                </md-input-container>
+        -->
         <md-button>More Filters
           <ng-md-icon icon="expand_more"></ng-md-icon>
         </md-button>
       </div>
       <div hide show-xs show-sm layout="row">
-        <md-button ng-if="!$ctrl.flags.showMap" ng-click="$ctrl.flags.showMap = true">
+        <md-button ng-if="!$ctrl.flags.showMap" ng-click="$ctrl.flags.showMap = true; ">
           <ng-md-icon icon="map"></ng-md-icon>
           Map
         </md-button>
@@ -49,8 +54,9 @@
     <div ng-if="!$ctrl.flags.showMap" class="md-padding" id="searchPageListContainer">
       <div id="searchPageListItemsGrid">
         <div id="searchPageListItemsGridCell" ng-repeat="j in [0,1,2,3,4,5,6,7]">
-          <div id="itemPageGalleryImageContainer"
-               style="  height: 230px;;background-image: url('assets/images/firepit.jpeg')"></div>
+          <div style="height: 230px;">
+            <item-image-gallery images="$ctrl.item.imageUrls"></item-image-gallery>
+          </div>
           <div style="margin:10px 3px">
             <h3 id="itemCarouselDescription" style="margin-bottom: -20px;"><b>{{"$" +
               $ctrl.item.price['day']}} &middot;</b> Lawnmower <b>&middot;</b>
@@ -59,12 +65,11 @@
             <star-rating rating="'3.5'" readOnly="true" size="'sm'" reviews="2"></star-rating>
           </div>
         </div>
-
       </div>
       <div style="text-align: center">1 2 3 ... 12</div>
     </div>
   </div>
-  <div flex ng-hide="$ctrl.flags.screenSMoXS && !$ctrl.flags.showMap" >
+  <div flex ng-hide="$ctrl.flags.screenSMoXS && !$ctrl.flags.showMap">
     <div id="searchMap" style="height:100%"></div>
   </div>
 </div>
