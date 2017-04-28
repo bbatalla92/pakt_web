@@ -1,0 +1,171 @@
+main {
+  #mainHeaderTextContainer {
+    width: 50%;
+    padding-left: 15% !important;
+  }
+
+  #imageCaptionContainer {
+    position: absolute;
+    padding: 9px;
+    background: rgba(0, 0, 0, 0.65);
+    color: white;
+    right: 10%;
+    top: 4%;
+    width: 216px;
+  }
+
+  #imageCaptionText {
+    margin: 0;
+    font-size: 41px;
+    font-weight: 900;
+  }
+
+  #mainSearchComponent {
+    display: block;
+    margin-top: -2%;
+    position: absolute;
+    width: 100%;
+  }
+
+  .mainHeaderSubHeader {
+    opacity: .7;
+    margin-top: 0;
+    font-size: 45px !important;
+    letter-spacing: -0.8px !important;
+    line-height: 56px;
+    margin-bottom: 20px;
+  }
+
+  #mainImage {
+    width: 95%;
+  }
+
+  #mainHeaderText {
+    margin-bottom: 0;
+    font-size: 48px !important;
+    letter-spacing: -0.8px !important;
+    line-height: 56px;
+  }
+
+  #signupComponent {
+    position: absolute;
+    top: -19%;
+    right: 8%;
+  }
+
+  #mainSecondHeaderContainer {
+    position: relative;
+  }
+
+  /* -------------Media Queries Below Ascending order----------------------------*/
+
+  @media screen and (max-width: 1200px) {
+
+    #signupComponent {
+      right: 3%;
+    }
+
+    .mainHeaderSubHeader {
+      font-size: 40px !important;
+      line-height: 40px;
+    }
+
+    #mainHeaderTextContainer {
+      width: 60%;
+      padding-left: 7% !important;
+    }
+
+  }
+
+  @media screen and (max-width: 1040px) {
+
+    #signupComponent {
+      top: -30%;
+    }
+
+  }
+
+  @media screen and (max-width: 900px) {
+
+    #mainHeaderTextContainer {
+      width: 100%;
+    }
+
+    #mainHeaderText {
+      font-size: 36px !important;
+    }
+
+    .mainHeaderSubHeader {
+      font-size: 33px !important;
+    }
+
+    #mainImage {
+      width: 90%;
+    }
+
+    #imageCaptionContainer {
+      top: 3%;
+      width: 191px;
+    }
+
+    #imageCaptionText {
+      font-size: 41px;
+    }
+
+  }
+
+  @media screen and (max-width: 700px) {
+
+    #mainHeaderText {
+      font-size: 26px !important;
+    }
+
+    .mainHeaderSubHeader {
+      font-size: 24px !important;
+      line-height: 20px;
+    }
+
+    #mainHeaderTextContainer {
+      width: 100%;
+    }
+
+    #mainImage {
+      width: 100%;
+      max-height: 600px;
+    }
+
+    #mainSearchComponent {
+      display: block;
+      margin-top: -3%;
+    }
+
+    #mainSecondHeaderContainer {
+      margin-bottom: 50px;
+    }
+
+    #imageCaptionContainer {
+      top: 6%;
+      width: 138px;
+      right: 3%;
+    }
+
+    #imageCaptionText {
+      font-size: 30px;
+    }
+
+  }
+
+  @media screen and (max-width: 450px) {
+
+    #imageCaptionContainer {
+      width: 114px;
+      right: 2%;
+      top: 4%;
+    }
+
+    #imageCaptionText {
+      font-size: 22px;
+    }
+
+  }
+}

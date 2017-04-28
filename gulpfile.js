@@ -7,7 +7,9 @@ var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
-var gutil = require('gulp-util')
+var gutil = require('gulp-util');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 
 
 //app directory structor
@@ -22,6 +24,7 @@ var yeoman = {
 var paths = {
   scripts: [yeoman.app + '/**/*.js'],
   styles: [yeoman.app + '/**/*.css'],
+  sass: [yeoman.app + '/**/*.scss'],
   test: ['test/spec/**/*.js'],
   testRequire: [
     'bower_components/angular/angular.js',
@@ -57,6 +60,10 @@ var styles = lazypipe()
   .pipe($.autoprefixer, 'last 1 version')
   .pipe(gulp.dest, '.tmp');
 
+/*var sass = lazypipe()
+  .pipe($.autoprefixer, 'last 1 version')
+  .pipe(gulp.dest, '.tmp');*/
+
 
 ///////////
 // Tasks //
@@ -66,6 +73,15 @@ gulp.task('styles', function () {
   return gulp.src(paths.styles)
     .pipe(styles());
 });
+
+gulp.task('sass', function(){
+  return gulp.src(paths.sass)
+    .pipe(sourcemaps.init())
+    .pipe(sass({outputStyle: 'expanded'}))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest( '.tmp'));// Converts Sass to CSS with gulp-sass
+});
+
 
 gulp.task('lint:scripts', function () {
   return gulp.src(paths.scripts)
@@ -101,8 +117,8 @@ gulp.task('start:server:test', function() {
       return [['/bower_components', connect["static"]('./bower_components')]
       ]}
   });
-
 });
+
 
 gulp.task('watch', function () {
   $.watch(paths.styles)
@@ -127,6 +143,7 @@ gulp.task('serve', function (cb) {
   runSequence('clean:tmp',
     ['bower'],
     ['lint:scripts'],
+    'sass',
     ['start:client'],
     'watch', cb);
 });
@@ -171,7 +188,7 @@ gulp.task('clean:dist', function (cb) {
   rimraf(yeoman.dist, cb);
 });
 
-gulp.task('client:build', ['bower', 'html', 'styles'], function () {
+gulp.task('client:build', ['bower', 'html','sass', 'styles'], function () {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
   return gulp.src(paths.views.bowermain)
