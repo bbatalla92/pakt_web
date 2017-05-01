@@ -23,11 +23,13 @@
 
   function searchResultsPageCtrl($stateParams, $timeout, $mdMedia, $mdPanel) {
     var ctrl = this;
-    ctrl.searchParams = $stateParams.searchParams;
+    ctrl.searchParams = $stateParams.searchParams || {what:"", startDate:"", endDate:"", where:""};
     ctrl.flags = {
       screenSMoXS: false,
       showMap: false,
-      whatPanelActive:false
+      whenPanelActive: false,
+      whatPanelActive: false,
+      wherePanelActive: false
     };
     ctrl.item = {
       "price": {"hour": 10, "day": 30, "week": 100},
@@ -39,7 +41,6 @@
       "imageUrls": ["assets/images/firepit.jpeg", "assets/images/lawnmower.jpg", "assets/images/surboard.jpeg"],
       "ownerId": "678987867564576879890-90897867564"
     };
-
 
 
     function bootstrap() {
@@ -69,10 +70,8 @@
 
       new google.maps.Circle({
         strokeColor: '#FF0000',
-        //strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: '#FF0000',
-        //fillOpacity: 0.35,
         map: ctrl.map,
         center: {lat: 39.971291, lng: -75.179141},
         radius: 150
@@ -80,23 +79,26 @@
 
       new google.maps.Circle({
         strokeColor: '#FF0000',
-        //strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: '#FF0000',
-        //fillOpacity: 0.35,
         map: ctrl.map,
         center: {lat: 39.951291, lng: -75.159141},
         radius: 150
       });
     };
 
+    ctrl.resizeMap = function () {
+      google.maps.event.trigger(ctrl.map, 'resize');
+      console.log("resize map");
+     // map.setCenter(currCenter);
+    };
+
     ctrl.openWhatPanel = function (ev) {
-      console.log("Panel");
       ctrl.flags.whatPanelActive = true;
 
-      this._mdPanel = $mdPanel;
+      var whatMdPanel = $mdPanel;
 
-      var position = this._mdPanel
+      var position = whatMdPanel
         .newPanelPosition()
         .relativeTo(ev.target)
         .addPanelPosition('align-start', 'below')
@@ -104,12 +106,21 @@
       var config = {
         attachTo: angular.element(document.body),
         controller: whatPanelCtrl,
-        controllerAs:"ctrl",
+        controllerAs: "ctrl",
         disableParentScroll: this.disableParentScroll,
         templateUrl: '/components/panelTemplates/searchResultsWhatPanel.html',
         hasBackdrop: false,
         position: position,
-        locals: {close: function(searchWord){ctrl.searchParams.what = searchWord}},
+        locals: {
+          panel: whatMdPanel,
+          close: function (searchWord) {
+            ctrl.searchParams.what = searchWord;
+            ctrl.flags.whatPanelActive = false;
+          }
+        },
+        onDomRemoved: function () {
+          ctrl.flags.whatPanelActive = false;
+        },
         trapFocus: true,
         zIndex: 150,
         clickOutsideToClose: true,
@@ -117,20 +128,127 @@
         focusOnOpen: true
       };
 
-      this._mdPanel.open(config);
+      whatMdPanel.open(config);
 
     };
 
+    ctrl.openWhenPanel = function (ev) {
+      ctrl.flags.whenPanelActive = true;
 
-    function whatPanelCtrl(close, $mdPanel){
+      var whenMdPanel = $mdPanel;
 
-      ctrl.closePanel = function(){
-        console.log('BLOG');
-        $mdPanel.close();
+      var position = whenMdPanel
+        .newPanelPosition()
+        .relativeTo(ev.target)
+        .addPanelPosition('align-start', 'below')
+
+      var config = {
+        attachTo: angular.element(document.body),
+        controller: whenPanelCtrl,
+        controllerAs: "ctrl",
+        disableParentScroll: this.disableParentScroll,
+        templateUrl: '/components/panelTemplates/searchResultsWhenPanel.html',
+        hasBackdrop: false,
+        position: position,
+        locals: {
+          panel: whenMdPanel,
+          close: function (start, end) {
+            console.log(start);
+            ctrl.searchParams.startDate = start;
+            ctrl.searchParams.endDate = end;
+            ctrl.flags.whenPanelActive = false;
+          }
+        },
+        onDomRemoved: function () {
+          ctrl.flags.whenPanelActive = false;
+        },
+        trapFocus: true,
+        zIndex: 100,
+        clickOutsideToClose: true,
+        escapeToClose: true,
+        focusOnOpen: true
+      };
+
+      whenMdPanel.open(config)
+        .then(function (mdPanelRef) {
+
+        });
+    };
+
+    ctrl.openWherePanel = function (ev) {
+      ctrl.flags.wherePanelActive = true;
+
+      var whenMdPanel = $mdPanel;
+
+      var position = whenMdPanel
+        .newPanelPosition()
+        .relativeTo(ev.target)
+        .addPanelPosition('align-start', 'below')
+
+      var config = {
+        attachTo: angular.element(document.body),
+        controller: wherePanelCtrl,
+        controllerAs: "ctrl",
+        disableParentScroll: this.disableParentScroll,
+        templateUrl: '/components/panelTemplates/searchResultsWherePanel.html',
+        hasBackdrop: false,
+        position: position,
+        locals: {
+          panel: whenMdPanel,
+          close: function (address) {
+            ctrl.searchParams.where = address;
+          }
+        },
+        onDomRemoved: function () {
+          ctrl.flags.wherePanelActive = false;
+        },
+        trapFocus: true,
+        zIndex: 100,
+        clickOutsideToClose: true,
+        escapeToClose: true,
+        focusOnOpen: true
+      };
+
+      whenMdPanel.open(config)
+        .then(function (mdPanelRef) {
+
+        });
+    };
+
+    ctrl.newSearch = function(){
+      console.log("New Search", ctrl.searchParams);
+    };
+
+    function whatPanelCtrl(mdPanelRef, close, $scope) {
+
+      $scope.searchWord = "";
+      $scope.closePanel = function () {
+        close($scope.searchWord);
+        mdPanelRef.hide();
       }
-
     }
 
+    function wherePanelCtrl(mdPanelRef, close, $scope) {
+
+      $scope.address = "";
+      $scope.closePanel = function () {
+        close($scope.address);
+        mdPanelRef.hide();
+      }
+    }
+
+    function whenPanelCtrl(mdPanelRef, close, $scope) {
+
+      $scope.minDate = new Date();
+      $scope.startDate = new Date();
+      $scope.endDate;
+
+      $scope.closePanel = function () {
+        console.log("CLOSE", $scope.startDate);
+        close($scope.startDate, $scope.endDate);
+        mdPanelRef.hide($scope.startDate, $scope.endDate);
+      }
+    }
 
 
     // End of controller

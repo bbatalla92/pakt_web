@@ -1,0 +1,21 @@
+<div md-whiteframe="3" style="background-color: white">
+
+  <form>
+    <md-input-container style="margin-bottom: 0; text-align: left">
+      <label style="">Start Date</label>
+      <md-datepicker ng-model="startDate"
+                     md-open-on-focus md-min-date="minDate" flex></md-datepicker>
+    </md-input-container>
+
+    <md-input-container style="margin-bottom:0; text-align: left">
+      <label style="">End Date</label>
+      <md-datepicker ng-disabled="!startDate" ng-model="endDate"
+                     md-open-on-focus flex md-min-date="startDate"></md-datepicker>
+    </md-input-container>
+
+
+    <md-button type="submit" class="md-icon-button" ng-click="closePanel()">
+      <ng-md-icon icon="arrow_forward"></ng-md-icon>
+    </md-button>
+  </form>
+</div>

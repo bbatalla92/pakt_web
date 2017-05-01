@@ -1,24 +1,28 @@
 <div style="margin-bottom: 75px;">
-  <div id="mainHeaderTextContainer" >
+  <div id="mainHeaderTextContainer">
     <h2 id="mainHeaderText">Borrow with <b style="color: rgba(197, 141, 161, 0.77) !important; font-size: larger" class="app-name">{{$ctrl.appName}}</b></h2>
     <h3 class="mainHeaderSubHeader">Dont' buy, when you can rent</h3>
   </div>
-
 
   <div id="mainSecondHeaderContainer" style="">
     <div id="imageCaptionContainer">
       <h3 id="imageCaptionText">Just borrow from your neighbor</h3>
     </div>
-
     <div style="background: rgba(197, 141, 161, 0.25); overflow: hidden; max-height: 440px">
       <img id="mainImage" src='assets/images/sharingTomatoes.jpg' style="">
     </div>
-
     <home-item-search-bar id="mainSearchComponent"></home-item-search-bar>
-
   </div>
 
   <div style="width: 100%;" ng-repeat="carousel in $ctrl.carouselData">
-    <carousel-container carousel-data="carousel"></carousel-container>
+    <div id="carouselOuterContainer" style="">
+      <h3 id="carouselTitle" style="">{{carousel.title}}</h3>
+      <div id="carouselCoreContainer" layout="row" layout-align="space-between center">
+        <div id="carouselItemsContainer" layout="row" layout-align="space-between">
+          <item-carousel-template ng-repeat="item in carousel.items" item="item"></item-carousel-template>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

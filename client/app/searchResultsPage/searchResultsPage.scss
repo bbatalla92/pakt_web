@@ -1,0 +1,94 @@
+search-results-page {
+
+  #searchPageToolbar {
+    background-color: white;
+    padding-bottom: 0;
+    color: #000;
+    border-bottom: rgba(0, 0, 0, 0.15) 1px solid;
+    cursor: pointer
+  }
+
+  #searchPageListContainer {
+    height: 83%;
+    overflow-y: auto;
+
+  }
+
+  .activePanel {
+    background-color: rgb(199, 199, 199);
+  }
+
+  .searchPageToolbarItems {
+    text-align: center;
+    height: 44px;
+  }
+
+  .searchPageToolbarItems:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .searchPageToolbarItemsSpan {
+    border-bottom: rgba(0, 0, 0, 0.75) 1px solid;
+    opacity: .47;
+    font-size: smaller !important;
+  }
+
+  .innerToolbarContainerInputContainers {
+    margin: 7px 0 0 0;
+    width: 107px;
+    font-size: initial;
+    height: 40px;
+    color: rgb(0, 0, 0);
+  }
+
+  #searchPageListItemsGrid {
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding-bottom: 16px;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: rgba(0, 0, 0, 0.15) 1px solid;
+  }
+
+  #listItemsGridCell {
+    width: 48%;
+    max-width: 48%;
+    text-align: left;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-bottom: 5px;
+    margin-right: 2px;
+    color: rgba(0, 0, 0, 0.57);
+    cursor: pointer;
+  }
+
+  #listToolbarContainer {
+    width: 60%;
+    max-width: 60%;
+  }
+
+  @media screen and (max-width: 959px) {
+    #listToolbarContainer {
+      width: 100%;
+      max-width: 100% !important;
+    }
+
+  }
+  @media screen and (max-width: 600px) {
+    #searchPageListItemsGrid {
+      justify-content: center;
+    }
+
+    #listItemsGridCell {
+      width: 90%;
+      max-width: 90%;
+    }
+  }
+}
