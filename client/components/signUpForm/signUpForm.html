@@ -3,18 +3,19 @@
     <ng-md-icon icon="close"></ng-md-icon>
   </md-button>
   <br>
-  <h3 style="margin: 0 auto; margin-bottom: 15px; font-size: x-large;text-align: center">Sign up Now</h3>
+  <h3 style="margin: 0 auto; margin-bottom: 15px; font-size: x-large;text-align: center">{{$ctrl.isNew ? "Sign up Now": "Login Here"}}</h3>
 
   <div style="width: 100%; margin: 0 auto;" layout="row">
-    <md-button class="md-raised" style="color: #dd4b39; width: 50%;">
+    <md-button class="md-raised" style="color: #dd4b39; width: 50%;" ng-click="$ctrl.googleLogin()">
       <ng-md-icon icon="google-plus"></ng-md-icon>
       Google +
     </md-button>
 
-    <md-button class="md-raised" style="color: #3b5998;width: 50%;">
+    <md-button class="md-raised" style="color: #4267b2; width: 50%;" ng-click="$ctrl.faceBookLogin()">
       <ng-md-icon icon="facebook"></ng-md-icon>
       Facebook
     </md-button>
+
   </div>
 
   <div layout="row" style="margin-top: 15px; margin-bottom: 15px;">
@@ -23,7 +24,7 @@
     <hr style="width: 40%; background: black; opacity: .1">
   </div>
 
-  <form name="signupForm" layout="column" layout-align="center center" flex>
+  <form ng-if="$ctrl.isNew" name="signupForm" layout="column" layout-align="center center" flex>
     <div layout="row" style="width: 87%">
       <md-input-container>
         <label>First Name</label>
@@ -51,12 +52,18 @@
     </md-button>
   </form>
 
-<!--  <div style="width: 87%; margin: 20px auto;text-align: justify;">
-    <label>Have an account? <a href="">Log In</a></label>
-    <p style="font-size: 10px!important;line-height: 1.6!important;letter-spacing: .02em!important;">By proceeding, I
-      agree that jettyRent, its affiliates, and/or representatives may contact me (including by automatic telephone
-      dialing system) at the phone number on file with my account, including for marketing purposes. I understand that
-      this is not a requirement to use jettyRent's services and that I may opt out of these communications by texting
-      "STOP" to 89203. I have also read and understand the Privacy Statement.</p>
-  </div>-->
+  <form ng-if="!$ctrl.isNew" name="loginForm" flex>
+    <md-input-container style="width: 100%">
+      <input type="text" name="username"/>
+      <label>Username</label>
+    </md-input-container>
+    <br>
+    <md-input-container style="width: 100%">
+      <input type="password" name="password"/>
+      <label>Password</label>
+    </md-input-container>
+    <md-button class="md-primary md-raised" style="width: 50%; margin: 0 auto; display: block;">Login
+      <ng-md-icon icon="arrow_forward" style=";"></ng-md-icon>
+    </md-button>
+  </form>
 </div>

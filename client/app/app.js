@@ -22,12 +22,17 @@ angular
     'firebase'
   ])
   .constant("APP_NAME", "Lendr")
-  .config(function ( $urlRouterProvider, $locationProvider) {
+  .config(['$urlRouterProvider', '$locationProvider','$mdAriaProvider',function ($urlRouterProvider, $locationProvider,$mdAriaProvider) {
+
+    $mdAriaProvider.disableWarnings();
 
     //TODO - Enable this when going live
     //$locationProvider.html5Mode(true).hashPrefix('!');
 
     $urlRouterProvider.otherwise('/');
 
-  })
-  ;
+  }])
+  .run(['$rootScope', '$window',
+    function ($rootScope, $window) {
+
+    }]);

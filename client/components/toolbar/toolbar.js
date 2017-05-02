@@ -31,10 +31,16 @@
       console.log(newSignIn);
       $mdDialog.show(
         {
-          template: '<sign-up-form></sign-up-form>',
+          template: '<sign-up-form is-new="new"></sign-up-form>',
+          controller: function(isNew, $scope){
+            $scope.new = isNew;
+          },
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
+          locals:{
+            isNew: newSignIn
+          },
           fullscreen: $mdMedia('xs')
         }
       );
