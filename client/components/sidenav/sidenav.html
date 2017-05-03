@@ -1,0 +1,24 @@
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" layout="column">
+  <div style="height: 5px; width: 100%;background-color: rgba(197, 141, 161, 0.55);"></div>
+  <div style="background-color: rgba(197, 141, 161, 0.33); padding-top: 30px;" layout="column"
+       layout-align="center center">
+    <img style=" border-radius: 50px;  height: 100px;margin-right: 15px;"
+         src="{{$ctrl.user.photoURL || 'assets/images/defaultPerson.png'}}"/>
+
+    <span style="margin-top: 15px;font-size: x-large">{{$ctrl.user.displayName}}</span>
+  </div>
+
+  <md-list style="padding-top: 0;">
+    <md-list-item ng-repeat="item in $ctrl.listItems" ng-click="null" style="text-align: center">
+      <div layout="row">
+        <ng-md-icon icon="{{item.icon}}" size="28" style="margin-right: 20px;"></ng-md-icon>
+        <h2>{{item.label}}</h2>
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <span flex></span>
+  <md-button class="md-raised" ng-click="$ctrl.logout()" style="background-color: rgba(255, 165, 0, 0.74);">Logout
+  </md-button>
+  <div style="height: 13px; width: 100%;background-color: rgba(0, 0, 0, 0.15);"></div>
+</md-sidenav>

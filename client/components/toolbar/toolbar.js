@@ -9,43 +9,51 @@
       controller: toolbarCtrl
     });
 
-  toolbarCtrl.$inject = ['$mdDialog', '$mdMedia', '$scope', '$state', 'APP_NAME'];
+  toolbarCtrl.$inject = ['$mdDialog', '$mdMedia', '$scope', '$state', 'APP_NAME', '$mdSidenav'];
 
   /** @ngInject */
-  function toolbarCtrl($mdDialog, $mdMedia, $scope, $state, APP_NAME) {
+  function toolbarCtrl($mdDialog, $mdMedia, $scope, $state, APP_NAME, $mdSidenav) {
     var ctrl = this;
 
 
     ctrl.appName = APP_NAME;
     ctrl.flags = {
-      hideTitle: true
+      hideTitle: true,
+      loggedIn: false
     };
 
     // Watching and makes the toolbar title hide when in main page
-    $scope.$watch( function() {
+    $scope.$watch(function () {
       ctrl.flags.hideTitle = $state.current.name == 'main';
     });
-
 
     ctrl.openSignInDialog = function (newSignIn, ev) {
       console.log(newSignIn);
       $mdDialog.show(
         {
           template: '<sign-up-form is-new="new"></sign-up-form>',
-          controller: function(isNew, $scope){
+          controller: function (isNew, $scope) {
             $scope.new = isNew;
           },
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
-          locals:{
+          locals: {
             isNew: newSignIn
           },
           fullscreen: $mdMedia('xs')
         }
       );
     };
-  };
 
+    ctrl.toggleSideNav = function () {
+      $mdSidenav('left').toggle();
+    };
 
+    $scope.$on('auth-state-changed', function (event, args) {
+      console.log("Logged in sidenav?", ctrl.flags.loggedIn)
+      ctrl.flags.loggedIn = args.loggedIn;
+    });
+
+  }
 })();

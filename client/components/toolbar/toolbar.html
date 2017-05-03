@@ -1,14 +1,17 @@
-<md-toolbar class="toolbarStyle" ng-class="{'toolbarBoxShadow': !$ctrl.flags.hideTitle}">
+<md-toolbar class="toolbarStyle" ng-class="{'toolbarBoxShadow': !$ctrl.flags.hideTitle}" >
   <div class="md-toolbar-tools" style="margin: auto;">
-    <h3 ng-if="!$ctrl.flags.hideTitle" ui-sref="main" style="cursor: pointer;font-size: xx-large; color: rgba(197, 141, 161, 0.77);
+    <md-button class="md-icon-button" style="color: black;margin-bottom: auto;height: 50px; width: 50px;" ng-click="$ctrl.toggleSideNav()" ng-if="$ctrl.flags.loggedIn">
+      <ng-md-icon icon="menu" style="height: 42px;width: 42px;" size="42"></ng-md-icon>
+    </md-button>
+
+    <h3  ui-sref="main" style="cursor: pointer; margin-left: 4%;font-size: xx-large; color: rgba(197, 141, 161, 0.77);
     font-weight: 800;" class="app-name">{{$ctrl.appName}}</h3>
+
     <span flex></span>
     <md-button style="color: #000;" hide-xs hide-sm>Start Earning</md-button>
     <md-button style="color: #000;" hide-xs hide-sm>Help</md-button>
-    <md-button style="color: white;background-color: rgba(197, 141, 161, 0.55)" ng-click="$ctrl.openSignInDialog(true, $event)">Sign up
-    </md-button>
-    <md-button style="color: #000;margin-right: 1%;" ng-click="$ctrl.openSignInDialog(false, $event)">Log In
-      <ng-md-icon icon="arrow_forward" style="color: #000;"></ng-md-icon>
+    <md-button ng-if="!$ctrl.flags.loggedIn" style="color: white;background-color: rgba(197, 141, 161, 0.55); margin-right: 3%;" ng-click="$ctrl.openSignInDialog(false, $event)">Log In
+      <ng-md-icon icon="arrow_forward" style="color: #fff;"></ng-md-icon>
     </md-button>
   </div>
 </md-toolbar>

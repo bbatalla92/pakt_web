@@ -32,7 +32,10 @@ angular
     $urlRouterProvider.otherwise('/');
 
   }])
-  .run(['$rootScope', '$window',
-    function ($rootScope, $window) {
+  .run(['$rootScope', '$window',"firebaseSvc",
+    function ($rootScope, $window, firebaseSvc) {
+      //var user = firebaseSvc.getCurrentUser();
+
+      //console.log('user',user)
 
     }]);
