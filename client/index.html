@@ -14,6 +14,8 @@
   <!-- build:css(.tmp) styles/main.css -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="/app/main/main.css">
+  <link rel="stylesheet" href="/app/profile/profile.css">
+  <link rel="stylesheet" href="/app/profile/editProfile/profileEdit.css">
   <link rel="stylesheet" href="/app/searchResultsPage/searchResultsPage.css">
   <link rel="stylesheet" href="/app/itemPage/itemPage.css">
   <link rel="stylesheet" href="/app/app.css">
@@ -68,6 +70,9 @@
 <script src="/app/app.js"></script>
 <script src="/app/main/main.js"></script>
 <script src="/app/main/mainSvc.js"></script>
+<script src="/app/profile/profile.js"></script>
+<script src="/app/profile/profileSvc.js"></script>
+<script src="/app/profile/editProfile/profileEdit.js"></script>
 <script src="/app/searchResultsPage/searchResultsPage.js"></script>
 <script src="/app/itemPage/itemPage.js"></script>
 <script src="/app/common/AuthFacebook.service.js"></script>
@@ -86,8 +91,8 @@
 <!-- endbuild -->
 
 
+<!-- Initialize Firebase -->
 <script>
-  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyBBKyZE06uiZlQ2WUXa_1SORl4xgF2CfPg",
     authDomain: "pakt-f51bc.firebaseapp.com",
@@ -124,9 +129,9 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-
 <!-- Google Maps -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8HUJAUIeUDevQGkPwta56Jn21AvhJoqw"
         async defer></script>
+
 </body>
 </html>

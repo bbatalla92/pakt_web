@@ -17,18 +17,25 @@
     ctrl.user = {};
 
     ctrl.listItems = [
-      {
+      /*{
         label: "Overview",
         icon: 'my_library_books',
         sref:""
-      },
+      },*/
       {
+        label: "Profile",
+        icon: 'person',
+        sref:"profile"
+      }, {
+        label: "Messages",
+        icon: 'message',
+        sref:""
+      }, {
         label: "History",
         icon: 'receipt',
         sref:""
       }
     ];
-
 
     function bootstrap() {
       getUserObj();
@@ -43,7 +50,7 @@
 
     // Functions below
     function getUserObj() {
-      ctrl.user = firebaseSvc.getUserObject();
+      ctrl.user = firebaseSvc.getCurrentUser();
     }
 
     ctrl.logout = function () {

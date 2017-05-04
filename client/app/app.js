@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngMaterial',
     'ngMdIcons',
-    'firebase'
+    'firebase',
+    "ui.router.stateHelper"
   ])
   .constant("APP_NAME", "Lendr")
   .config(['$urlRouterProvider', '$locationProvider','$mdAriaProvider',function ($urlRouterProvider, $locationProvider,$mdAriaProvider) {
@@ -34,8 +35,5 @@ angular
   }])
   .run(['$rootScope', '$window',"firebaseSvc",
     function ($rootScope, $window, firebaseSvc) {
-      //var user = firebaseSvc.getCurrentUser();
-
-      //console.log('user',user)
 
     }]);

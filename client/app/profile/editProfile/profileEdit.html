@@ -1,0 +1,94 @@
+<div>
+  <form name="requiredProfileInfo">
+    <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
+      <div style="width:120px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">First Name: </label>
+      </div>
+      <md-input-container md-no-float="true" flex>
+      <input style="height: 35px;padding-left:15px" type="text" required placeholder="ex. Taylor, Daniel, Jill, Justin"
+             flex/>
+      </md-input-container>
+    </div>
+
+    <div layout="row" layout-align="start center" style="height: 76px;">
+      <div style="width:120px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Last Name: </label>
+      </div>
+      <input style="height: 35px;padding-left:15px" type="text" required placeholder="ex. Byarm, Lamar, Cortese" flex/>
+    </div>
+
+    <div layout="row" layout-align="start center" style="height: 76px;">
+      <div style="width:120px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">I Am A: </label>
+      </div>
+      <md-select ng-model="$ctrl.userObj.gender" placeholder="gender">
+        <md-option value="female">Female</md-option>
+        <md-option value="male">Male</md-option>
+      </md-select>
+    </div>
+
+
+    <div layout="row" layout-align="start center" style="height: 76px;">
+      <div style="width:120px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Birth Date is: </label>
+      </div>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container>
+          <md-select ng-model="$ctrl.userObj.birthday.month" placeholder="Month" required style="min-width: 110px">
+            <md-option value="january" active>January</md-option>
+            <md-option value="february">February</md-option>
+            <md-option value="march">March</md-option>
+            <md-option value="april">April</md-option>
+            <md-option value="may">May</md-option>
+            <md-option value="june">June</md-option>
+            <md-option value="july">July</md-option>
+            <md-option value="august">August</md-option>
+            <md-option value="september">September</md-option>
+            <md-option value="october">October</md-option>
+            <md-option value="november">November</md-option>
+            <md-option value="december">December</md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container md-no-float="true" style="height: 34px; width: 50px;">
+          <input type="number" placeholder="day" ng-model="$ctrl.userObj.birthday.day" max="31" required/>
+        </md-input-container>
+        <md-input-container md-no-float="true" style="width: 100px;height: 34px;">
+          <input ng-model="$ctrl.userObj.birthday.year" placeholder="year" type="number" min="1920" max="1999"
+                 required/>
+        </md-input-container>
+      </div>
+    </div>
+
+
+    <div layout="row" layout-align="start center" style="height: 76px;">
+      <div style="width:120px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Email: </label>
+      </div>
+      <input style="height: 35px;padding-left:15px" type="email" required placeholder="xy@domain.com" flex/>
+    </div>
+
+    <div layout="row" layout-align="start center" style="height: 76px;">
+      <div style="width:120px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Phone Number: </label>
+      </div>
+      <input style="height: 35px;padding-left:15px" type="number" required placeholder="xxx-xxx-xxxx" flex/>
+    </div>
+
+    <div layout="row" layout-align="start center" style="height: 76px;">
+      <div style="width:120px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Your City: </label>
+      </div>
+      <input style="height: 35px;padding-left:15px" type="text" required placeholder="e.g.NYC, Barcelona, San Francisco, CA " flex/>
+    </div>
+
+    <div layout="row" layout-align="start start" style="">
+      <div style="width:121px; text-align: right; margin: 0 20px; ">
+        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Describe Yourself: </label>
+      </div>
+      <textarea style="padding-left:15px" flex rows="10"></textarea>
+    </div>
+
+  </form>
+
+
+</div>

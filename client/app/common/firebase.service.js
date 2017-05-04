@@ -25,7 +25,7 @@
       }
     });
 
-    function getUserObject() {
+    function getCurrentUser() {
       return userObj || firebase.auth().currentUser;
     }
 
@@ -38,7 +38,7 @@
 
     return {
       signOutUser: signOutUser,
-      getUserObject: getUserObject
+      getCurrentUser: getCurrentUser
     }
   }
 
