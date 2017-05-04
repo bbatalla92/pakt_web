@@ -25,7 +25,7 @@
       {
         label: "Profile",
         icon: 'person',
-        sref:"profile"
+        sref:"profile.edit"
       }, {
         label: "Messages",
         icon: 'message',
@@ -58,6 +58,9 @@
       $mdSidenav('left').toggle();
     };
 
+    ctrl.close = function(){
+      $mdSidenav('left').close();
+    };
 
 // End of controller
     ctrl.$init = bootstrap();
