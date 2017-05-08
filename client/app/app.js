@@ -20,10 +20,14 @@ angular
     'ngMaterial',
     'ngMdIcons',
     'firebase',
-    "ui.router.stateHelper"
+    "ui.router.stateHelper",
+    'ngImgCrop'
   ])
   .constant("APP_NAME", "Lendr")
-  .config(['$urlRouterProvider', '$locationProvider','$mdAriaProvider',function ($urlRouterProvider, $locationProvider,$mdAriaProvider) {
+  .constant("G", "google")
+  .constant("FB", "facebook")
+  .constant("EMAIL_PASS", "emailpass")
+  .config(['$urlRouterProvider', '$locationProvider', '$mdAriaProvider', function ($urlRouterProvider, $locationProvider, $mdAriaProvider) {
 
     $mdAriaProvider.disableWarnings();
 
@@ -33,7 +37,16 @@ angular
     $urlRouterProvider.otherwise('/');
 
   }])
-  .run(['$rootScope', '$window',"firebaseSvc",
-    function ($rootScope, $window, firebaseSvc) {
+  .run(['$rootScope', '$window', '$state',
+    function ($rootScope, $window, $state) {
 
+      $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+        // We can catch the error thrown when the $requireSignIn promise is rejected
+        // and redirect the user back to the home page
+        if (error === "AUTH_REQUIRED") {
+          $state.go("main");
+        }
+
+
+      });
     }]);

@@ -47,6 +47,7 @@
     <foot></foot>
   </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
@@ -66,6 +67,18 @@
 <!-- endbower -->
 <!-- endbuild -->
 
+<!-- Initialize Firebase -->
+<script>
+  var config = {
+    apiKey: "AIzaSyBBKyZE06uiZlQ2WUXa_1SORl4xgF2CfPg",
+    authDomain: "pakt-f51bc.firebaseapp.com",
+    databaseURL: "https://pakt-f51bc.firebaseio.com",
+    storageBucket: "pakt-f51bc.appspot.com",
+    messagingSenderId: "671420847668"
+  };
+  firebase.initializeApp(config);
+</script>
+
 <!-- build:js({.tmp,client}) scripts/scripts.js -->
 <script src="/app/app.js"></script>
 <script src="/app/main/main.js"></script>
@@ -75,10 +88,10 @@
 <script src="/app/profile/editProfile/profileEdit.js"></script>
 <script src="/app/searchResultsPage/searchResultsPage.js"></script>
 <script src="/app/itemPage/itemPage.js"></script>
-<script src="/app/common/AuthFacebook.service.js"></script>
-<script src="/app/common/AuthGoogle.service.js"></script>
-<script src="/app/common/AuthEmailPass.service.js"></script>
-<script src="/app/common/firebase.service.js"></script>
+<script src="/app/common/fireAuthSvc.js"></script>
+<script src="/app/common/fireUtilsSvc.js"></script>
+<script src="/app/common/User.service.js"></script>
+<script src="/app/common/UtilsSvc.js"></script>
 <script src="/components/toolbar/toolbar.js"></script>
 <script src="/components/itemCarouselTemplate/itemCarouselTemplate.js"></script>
 <script src="/components/signUpForm/signUpForm.js"></script>
@@ -91,17 +104,7 @@
 <!-- endbuild -->
 
 
-<!-- Initialize Firebase -->
-<script>
-  var config = {
-    apiKey: "AIzaSyBBKyZE06uiZlQ2WUXa_1SORl4xgF2CfPg",
-    authDomain: "pakt-f51bc.firebaseapp.com",
-    databaseURL: "https://pakt-f51bc.firebaseio.com",
-    storageBucket: "pakt-f51bc.appspot.com",
-    messagingSenderId: "671420847668"
-  };
-  firebase.initializeApp(config);
-</script>
+
 
 <!--  Facebook -->
 <div id="fb-root"></div>

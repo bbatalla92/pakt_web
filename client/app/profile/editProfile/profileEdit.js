@@ -15,15 +15,19 @@
         });
     }]);
 
-  profileEditCtrl.$inject = ["APP_NAME","firebaseSvc"];
-  function profileEditCtrl( APP_NAME, firebaseSvc) {
+  profileEditCtrl.$inject = ["APP_NAME","UserSvc"];
+  function profileEditCtrl( APP_NAME, UserSvc) {
     var ctrl = this;
-
-    ctrl.userObj = {};
+    ctrl.image = "";
 
     function bootstrap() {
-      ctrl.userObj =  firebaseSvc.getCurrentUser();
+      ctrl.userObj =  UserSvc.getCurrentUser();
+      console.log("User", ctrl.userObj);
     }
+
+    ctrl.imageChanged = function(){
+      console.log("Image changed", ctrl.image);
+    };
 
 
     // End of the controller

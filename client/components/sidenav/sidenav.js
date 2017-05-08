@@ -9,8 +9,8 @@
       controller: sidenavCtrl
     });
 
-  sidenavCtrl.$inject = ["APP_NAME", "$mdSidenav", "firebaseSvc", "$scope"];
-  function sidenavCtrl(APP_NAME, $mdSidenav, firebaseSvc, $scope) {
+  sidenavCtrl.$inject = ["APP_NAME", "$mdSidenav", "UserSvc", "$scope"];
+  function sidenavCtrl(APP_NAME, $mdSidenav, UserSvc, $scope) {
     var ctrl = this;
 
     ctrl.flags = {};
@@ -23,7 +23,7 @@
         sref:""
       },*/
       {
-        label: "Profile",
+        label: "Account",
         icon: 'person',
         sref:"profile.edit"
       }, {
@@ -50,11 +50,11 @@
 
     // Functions below
     function getUserObj() {
-      ctrl.user = firebaseSvc.getCurrentUser();
+      ctrl.user = UserSvc.getCurrentUser();
     }
 
     ctrl.logout = function () {
-      firebaseSvc.signOutUser();
+      UserSvc.signOutUser();
       $mdSidenav('left').toggle();
     };
 

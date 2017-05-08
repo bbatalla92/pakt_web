@@ -1,20 +1,31 @@
 <div>
   <form name="requiredProfileInfo">
+
+    <div style="text-align: center">
+    <img style=" border-radius: 100px;  height: 200px;margin-right: 15px;" src="{{$ctrl.userObj.photoURL || 'assets/images/defaultPerson.png'}}"/>
+      <br>
+    <input type="file" ng-model="$ctrl.image" ng-change="$ctrl.imageChanged()" />
+    </div>
+<md-divider style="margin-bottom: 20px;"></md-divider>
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
       <div style="width:120px; text-align: right; margin: 0 20px; ">
         <label style="font-size: 15px;color: rgba(27,72,72, 1);">First Name: </label>
       </div>
       <md-input-container md-no-float="true" flex>
-      <input style="height: 35px;padding-left:15px" type="text" required placeholder="ex. Taylor, Daniel, Jill, Justin"
-             flex/>
+        <input style="height: 35px;padding-left:15px" type="text" required
+               placeholder="ex. Taylor, Daniel, Jill, Justin"
+               flex ng-model="$ctrl.userObj.firstName"/>
       </md-input-container>
     </div>
 
-    <div layout="row" layout-align="start center" style="height: 76px;">
+    <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
       <div style="width:120px; text-align: right; margin: 0 20px; ">
         <label style="font-size: 15px;color: rgba(27,72,72, 1);">Last Name: </label>
       </div>
-      <input style="height: 35px;padding-left:15px" type="text" required placeholder="ex. Byarm, Lamar, Cortese" flex/>
+      <md-input-container md-no-float="true" flex>
+        <input style="height: 35px;padding-left:15px" type="text" required placeholder="ex. Byarm, Lamar, Cortese"
+               flex ng-model="$ctrl.userObj.lastName"/>
+      </md-input-container>
     </div>
 
     <div layout="row" layout-align="start center" style="height: 76px;">
@@ -60,32 +71,41 @@
     </div>
 
 
-    <div layout="row" layout-align="start center" style="height: 76px;">
+    <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
       <div style="width:120px; text-align: right; margin: 0 20px; ">
         <label style="font-size: 15px;color: rgba(27,72,72, 1);">Email: </label>
       </div>
-      <input style="height: 35px;padding-left:15px" type="email" required placeholder="xy@domain.com" flex/>
+      <md-input-container md-no-float="true" flex>
+        <input style="height: 35px;padding-left:15px" type="email" required placeholder="xy@domain.com" flex
+               ng-model="$ctrl.userObj.email"/>
+      </md-input-container>
     </div>
 
-    <div layout="row" layout-align="start center" style="height: 76px;">
+    <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
       <div style="width:120px; text-align: right; margin: 0 20px; ">
         <label style="font-size: 15px;color: rgba(27,72,72, 1);">Phone Number: </label>
       </div>
-      <input style="height: 35px;padding-left:15px" type="number" required placeholder="xxx-xxx-xxxx" flex/>
+      <md-input-container md-no-float="true" flex>
+        <input style="height: 35px;padding-left:15px" type="number" required placeholder="xxx-xxx-xxxx" flex
+               ng-model="$ctrl.userObj.phoneNumber"/>
+      </md-input-container>
     </div>
 
-    <div layout="row" layout-align="start center" style="height: 76px;">
+    <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
       <div style="width:120px; text-align: right; margin: 0 20px; ">
         <label style="font-size: 15px;color: rgba(27,72,72, 1);">Your City: </label>
       </div>
-      <input style="height: 35px;padding-left:15px" type="text" required placeholder="e.g.NYC, Barcelona, San Francisco, CA " flex/>
+      <md-input-container md-no-float="true" flex>
+        <input style="height: 35px;padding-left:15px" type="text" required
+               placeholder="e.g.NYC, Barcelona, San Francisco, CA" ng-model="$ctrl.userObj.address" flex/>
+      </md-input-container>
     </div>
 
     <div layout="row" layout-align="start start" style="">
       <div style="width:121px; text-align: right; margin: 0 20px; ">
         <label style="font-size: 15px;color: rgba(27,72,72, 1);">Describe Yourself: </label>
       </div>
-      <textarea style="padding-left:15px" flex rows="10"></textarea>
+      <textarea style="padding-left:15px" flex rows="10" ng-model="$ctrl.userObj.bio"></textarea>
     </div>
 
   </form>

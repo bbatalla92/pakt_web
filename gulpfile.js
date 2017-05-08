@@ -60,9 +60,15 @@ var styles = lazypipe()
   .pipe($.autoprefixer, 'last 1 version')
   .pipe(gulp.dest, '.tmp');
 
-/*var sass = lazypipe()
-  .pipe($.autoprefixer, 'last 1 version')
-  .pipe(gulp.dest, '.tmp');*/
+/*
+ var scss = lazypipe()
+ .pipe($.autoprefixer, 'last 1 version')
+
+ .pipe(sourcemaps.init())
+ .pipe(sass({outputStyle: 'expanded'}))
+ .pipe(sourcemaps.write())
+ .pipe(gulp.dest( '.tmp'));
+ */
 
 
 ///////////
@@ -74,12 +80,12 @@ gulp.task('styles', function () {
     .pipe(styles());
 });
 
-gulp.task('sass', function(){
+gulp.task('sass', function () {
   return gulp.src(paths.sass)
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest( '.tmp'));// Converts Sass to CSS with gulp-sass
+    .pipe(gulp.dest('.tmp'));// Converts Sass to CSS with gulp-sass
 });
 
 
@@ -96,26 +102,27 @@ gulp.task('start:client', ['start:server', 'styles', 'lint:scripts'], function (
   openURL('http://localhost:9000');
 });
 
-gulp.task('start:server', function() {
+gulp.task('start:server', function () {
   $.connect.server({
-    root:[yeoman.temp, yeoman.app],
-    livereload:true,
+    root: [yeoman.temp, yeoman.app],
+    livereload: true,
     port: 9000,
-    middleware:function(connect, opt){
+    middleware: function (connect, opt) {
       return [['/bower_components',
         connect["static"]('./bower_components')]]
     }
   });
 });
 
-gulp.task('start:server:test', function() {
+gulp.task('start:server:test', function () {
   $.connect.server({
     root: [yeoman.test, yeoman.app, yeoman.temp],
     livereload: true,
     port: 9001,
-    middleware:function(connect, opt){
+    middleware: function (connect, opt) {
       return [['/bower_components', connect["static"]('./bower_components')]
-      ]}
+      ]
+    }
   });
 });
 
@@ -125,6 +132,14 @@ gulp.task('watch', function () {
     .pipe($.plumber())
     .pipe(styles())
     .pipe($.connect.reload());
+
+  /*
+   $.watch(paths.sass)
+   .pipe($.plumber())
+   //.pipe(scss())
+   .pipe(styles())
+   .pipe($.connect.reload());
+   */
 
   $.watch(paths.views.files)
     .pipe($.plumber())
@@ -148,16 +163,17 @@ gulp.task('serve', function (cb) {
     'watch', cb);
 });
 
-gulp.task('serve:prod', function() {
+gulp.task('serve:prod', function () {
   $.connect.server({
-    root:[yeoman.dist],
-    livereload:{
-      port:81
+    root: [yeoman.dist],
+    livereload: {
+      port: 81
     },
     port: 80,
-    middleware:function(connect, opt){
+    middleware: function (connect, opt) {
       return [['/bower_components', connect["static"]('./bower_components')]
-      ]}
+      ]
+    }
   });
 });
 
@@ -188,7 +204,7 @@ gulp.task('clean:dist', function (cb) {
   rimraf(yeoman.dist, cb);
 });
 
-gulp.task('client:build', ['bower', 'html','sass', 'styles'], function () {
+gulp.task('client:build', ['bower', 'html', 'sass', 'styles'], function () {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
   return gulp.src(paths.views.bowermain)
@@ -196,7 +212,9 @@ gulp.task('client:build', ['bower', 'html','sass', 'styles'], function () {
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
     .pipe($.uglify())
-    .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
+    .on('error', function (err) {
+      gutil.log(gutil.colors.red('[Error]'), err.toString());
+    })
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
     .pipe($.minifyCss({cache: true}))
@@ -220,7 +238,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('copy:extras', function () {
-  return gulp.src(yeoman.app + '/*/.*', { dot: true })
+  return gulp.src(yeoman.app + '/*/.*', {dot: true})
     .pipe(gulp.dest(yeoman.dist));
 });
 

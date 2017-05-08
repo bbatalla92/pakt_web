@@ -28,7 +28,6 @@
     });
 
     ctrl.openSignInDialog = function (newSignIn, ev) {
-      console.log(newSignIn);
       $mdDialog.show(
         {
           template: '<sign-up-form is-new="new"></sign-up-form>',
@@ -51,7 +50,6 @@
     };
 
     $scope.$on('auth-state-changed', function (event, args) {
-      console.log("Logged in sidenav?", ctrl.flags.loggedIn)
       ctrl.flags.loggedIn = args.loggedIn;
     });
 

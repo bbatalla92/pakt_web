@@ -11,8 +11,8 @@
       }
     });
 
-  signUpFormCtrl.$inject = ['$mdDialog', 'AuthFBSvc', 'AuthGoogleSvc', 'AuthEmailPassSvc', '$scope'];
-  function signUpFormCtrl($mdDialog, AuthFBSvc, AuthGoogleSvc, AuthEmailPassSvc, $scope) {
+  signUpFormCtrl.$inject = ['$mdDialog', "UserSvc" ,"G","FB","EMAIL_PASS" ];
+  function signUpFormCtrl($mdDialog, UserSvc ,G,FB,EMAIL_PASS) {
     var ctrl = this;
 
     ctrl.closeDialog = function () {
@@ -30,7 +30,7 @@
     // functions below
 
     ctrl.faceBookLogin = function () {
-      AuthFBSvc.signInUser()
+      UserSvc.login(FB)
         .then(function (res) {
           $mdDialog.hide();
           console.log('FB user', res);
@@ -41,7 +41,7 @@
     };
 
     ctrl.googleLogin = function () {
-      AuthGoogleSvc.signInUser()
+      UserSvc.login(G)
         .then(function (res) {
           $mdDialog.hide();
           console.log(res);
@@ -52,33 +52,27 @@
     };
 
     ctrl.emailPassCreate = function () {
-      AuthEmailPassSvc.createUser(ctrl.userObj)
+      UserSvc.signUpUserEmailPass(ctrl.userObj)
         .then(function(res){
-          console.log("res",res);
-
+          $mdDialog.hide();
         })
         .catch(function(error){
           console.log("Error creating user email + auth",error);
-
           var errorCode = error.code;
           var errorMessage = error.message;
         });
     };
 
     ctrl.emailPassLogin = function () {
-      AuthEmailPassSvc.signInUser(ctrl.signInObj)
+    console.log(ctrl.userObj);
+      UserSvc.login(EMAIL_PASS,ctrl.signInObj)
         .then(function(res){
-          console.log("res",res);
           $mdDialog.hide();
         })
         .catch(function(error){
-          //console.log("form",$scope.loginform);
-          ctrl.flags.signInError = true;
-
-          // Handle Errors here.
+          console.log("Error creating user email + auth",error);
           var errorCode = error.code;
           var errorMessage = error.message;
-          // ...
         });
     };
 
