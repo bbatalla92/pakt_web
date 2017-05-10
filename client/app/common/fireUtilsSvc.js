@@ -19,8 +19,17 @@
       return q.promise;
     }
 
-    function uploadImage(ref, file){
-      return $firebaseStorage(storageRef.child(ref)).$put(file, {created: (new Date()).toUTCString()})
+    function uploadImage(uid, file){
+      var ref = firebase.storage().ref(uid +"/profileImage");
+      var uploadTask = ref.putString(file, 'data_url', { contentType: "image/gif" });
+
+      return uploadTask
+        .then(function(snapshot) {
+        return snapshot.a.downloadURLs[0];
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
     }
 
 

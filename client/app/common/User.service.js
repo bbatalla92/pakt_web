@@ -7,18 +7,17 @@
   angular.module('app')
     .factory("UserSvc", UserSvc);
 
-  UserSvc.$inject = ["$q", "$firebaseObject", "$timeout", "$rootScope", "FireAuth", "fireUtils"];
+  UserSvc.$inject = ["$q", "$firebaseObject", "$firebaseStorage", "$timeout", "$rootScope", "FireAuth", "fireUtils"];
 
-  function UserSvc($q,$firebaseObject, $timeout, $rootScope, FireAuth, fireUtils) {
+  function UserSvc($q, $firebaseObject, $firebaseStorage, $timeout, $rootScope, FireAuth, fireUtils) {
     var ref = firebase.database().ref("users");
     var userObj = {};
 
     firebase.auth().onAuthStateChanged(function (user) {
       var u = JSON.parse(JSON.stringify(user));
       if (user && user.providerData && user.providerData[0]) {
-        userObj = angular.copy(user.providerData[0]);
-        userObj.uid = user.uid;
         getUserData(user.uid);
+        userObj.uid = user.uid;
         $timeout(function () {
           $rootScope.$broadcast('auth-state-changed', {loggedIn: true});
         }, 1)
@@ -37,8 +36,8 @@
 
           return fireUtils.objectExists(ref.child(user.uid));
         })
-        .then(function(boolean){
-          if(!boolean){
+        .then(function (boolean) {
+          if (!boolean) {
             createUserData(user.providerData[0], user.uid);
           }
         })
@@ -79,11 +78,23 @@
     function getUserData(uid) {
       //console.log("UID?",uid);
       var obj = $firebaseObject(ref.child(uid));
-
       return obj.$loaded()
         .then(function (res) {
           userObj = res;
+          getUserImage();
+          return res;
         })
+    }
+
+    function getUserImage() {
+      console.log("Getting image", userObj.$id);
+      var storageRef = firebase.storage().ref(userObj.$id + "/profileImage");
+      storageRef.getDownloadURL()
+        .then(function (url) {
+          userObj.photoURL = url;
+          $rootScope.$broadcast('user-object-updated', {user: userObj});
+
+        });
     }
 
     function getCurrentUser() {
@@ -97,13 +108,23 @@
     function updateUser(user) {
       return user.$save()
         .then(function (res) {
-          console.log("UPDATED", res);
+          $rootScope.$broadcast('user-object-updated', {user: userObj});
           return res;
         })
     }
 
-    function uploadMainImage(){
-      fireUtils.uploadImage();
+    function uploadMainImage(image) {
+       return fireUtils.uploadImage(userObj.$id, image)
+        .then(function (res) {
+          console.log("UPDATED", res);
+          userObj.photoURL = res;
+          $rootScope.$broadcast('user-object-updated', {user: userObj});
+
+          return userObj;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
 
     return {
@@ -112,7 +133,7 @@
       login: login,
       updateUser: updateUser,
       signUpUserEmailPass: signUpUserEmailPass,
-      uploadMainImage:uploadMainImage
+      uploadMainImage: uploadMainImage
     }
   }
 

@@ -1,0 +1,18 @@
+<md-toolbar style="height: 40px; max-height: 40px;">
+  Crop Image
+</md-toolbar>
+<div>
+
+
+  <div class="cropArea" style="height: 500px; width: 500px;">
+    <img-crop image="$ctrl.image" result-image="$ctrl.resultImage"></img-crop>
+  </div>
+
+  <div><img ng-src="{{$ctrl.resultImage}}" /></div>
+
+
+
+  <md-dialog-actions>
+    <md-button ng-click="$ctrl.saveImage()" class="md-raised">Save</md-button>
+  </md-dialog-actions>
+</div>

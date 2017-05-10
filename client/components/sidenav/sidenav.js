@@ -17,23 +17,18 @@
     ctrl.user = {};
 
     ctrl.listItems = [
-      /*{
-        label: "Overview",
-        icon: 'my_library_books',
-        sref:""
-      },*/
       {
         label: "Account",
         icon: 'person',
-        sref:"profile.edit"
+        sref: "profile.edit"
       }, {
         label: "Messages",
         icon: 'message',
-        sref:""
+        sref: ""
       }, {
         label: "History",
         icon: 'receipt',
-        sref:""
+        sref: ""
       }
     ];
 
@@ -41,16 +36,16 @@
       getUserObj();
     }
 
-    $scope.$on('auth-state-changed', function (event, args) {
-      ctrl.flags.loggedIn = args.loggedIn;
-      if (ctrl.flags.loggedIn) {
-        getUserObj();
-      }
+    $scope.$on('user-object-updated', function (event, args) {
+        ctrl.user = args.user;
+        //$scope.$apply();
+      console.log("user",ctrl.user)
     });
 
     // Functions below
     function getUserObj() {
       ctrl.user = UserSvc.getCurrentUser();
+      console.log("side nav", ctrl.user);
     }
 
     ctrl.logout = function () {
@@ -58,7 +53,7 @@
       $mdSidenav('left').toggle();
     };
 
-    ctrl.close = function(){
+    ctrl.close = function () {
       $mdSidenav('left').close();
     };
 
