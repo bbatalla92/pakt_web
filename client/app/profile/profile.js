@@ -31,9 +31,6 @@
         state: "profile.edit",
         label: "Profile Edit"
       }, {
-        state: "profile.listings",
-        label: "Listings"
-      }, {
         state: "profile.reviews",
         label: "Reviews"
       }, {

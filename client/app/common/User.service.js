@@ -10,7 +10,7 @@
   UserSvc.$inject = ["$q", "$firebaseObject", "$firebaseStorage", "$timeout", "$rootScope", "FireAuth", "fireUtils"];
 
   function UserSvc($q, $firebaseObject, $firebaseStorage, $timeout, $rootScope, FireAuth, fireUtils) {
-    var ref = firebase.database().ref("users");
+    var ref = firebase.database().ref("user");
     var userObj = {};
 
     firebase.auth().onAuthStateChanged(function (user) {

@@ -1,15 +1,18 @@
 #itemCarouselContainer{
-  margin-bottom: 30px;
   cursor: pointer;
+  margin: 5px;
+  padding-bottom:30px;
+
 }
 
 #imageHeight {
   height: 200px;
   width: 250px;
-  margin: 5px;
   text-align: center;
   background-size: cover !important;
   background: no-repeat center;
+  border-radius: 15px;
+
 }
 
 

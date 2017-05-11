@@ -9,7 +9,7 @@
   </div>
 
   <md-list style="padding-top: 0;">
-    <md-list-item ng-repeat="item in $ctrl.listItems" ng-click="$ctrl.close()" ui-sref="profile" style="text-align: center">
+    <md-list-item ng-repeat="item in $ctrl.listItems" ng-click="$ctrl.close()" ui-sref="{{item.sref}}" style="text-align: center">
       <div layout="row">
         <ng-md-icon icon="{{item.icon}}" size="28" style="margin-right: 20px;"></ng-md-icon>
         <h2>{{item.label}}</h2>

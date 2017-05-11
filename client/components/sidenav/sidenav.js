@@ -21,14 +21,18 @@
         label: "Account",
         icon: 'person',
         sref: "profile.edit"
+      },{
+        label: "My Listings",
+        icon: 'list',
+        sref: "listings"
       }, {
         label: "Messages",
         icon: 'message',
-        sref: ""
+        sref: "profile.edit"
       }, {
         label: "History",
         icon: 'receipt',
-        sref: ""
+        sref: "profile.edit"
       }
     ];
 
