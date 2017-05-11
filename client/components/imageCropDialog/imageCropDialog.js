@@ -8,7 +8,8 @@ angular.module('app')
     templateUrl: 'components/imageCropDialog/imageCropDialog.html',
     controller: imageCropDialogCtrl,
     bindings:{
-      image: "<"
+      image: "<",
+      options: "<"
     }
   });
 

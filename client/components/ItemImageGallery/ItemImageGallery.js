@@ -8,7 +8,7 @@
       templateUrl: 'components/ItemImageGallery/ItemImageGallery.html',
       controller: itemImageGalleryCtrl,
       bindings: {
-        images: "<"
+        images: "="
       }
     });
 

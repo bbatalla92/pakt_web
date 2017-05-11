@@ -133,13 +133,13 @@ gulp.task('watch', function () {
     .pipe(styles())
     .pipe($.connect.reload());
 
-  /*
    $.watch(paths.sass)
    .pipe($.plumber())
-   //.pipe(scss())
-   .pipe(styles())
-   .pipe($.connect.reload());
-   */
+    .pipe(sourcemaps.init())
+    .pipe(sass({outputStyle: 'expanded'}))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('.tmp'))
+     .pipe($.connect.reload());
 
   $.watch(paths.views.files)
     .pipe($.plumber())

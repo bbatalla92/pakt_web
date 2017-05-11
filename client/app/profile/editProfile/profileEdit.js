@@ -48,13 +48,11 @@
     $scope.$on('user-object-updated', function (event, args) {
       ctrl.user = args.user;
       ctrl.showImage = true;
-      console.log("USER", ctrl.user);
       $scope.$apply();
     });
 
     function bootstrap() {
       ctrl.userObj = UserSvc.getCurrentUser();
-      console.log("User", ctrl.userObj);
     }
 
     ctrl.openImageCropDialog = function (event) {
@@ -78,7 +76,6 @@
          // console.log("Image Resilt", imageResult)
           UserSvc.uploadMainImage(imageResult);
           ctrl.showImage = false;
-
         })
         .catch(function () {
 

@@ -4,12 +4,11 @@
 <div>
 
 
-  <div class="cropArea" style="height: 500px; width: 500px;">
-    <img-crop image="$ctrl.image" result-image="$ctrl.resultImage"></img-crop>
+  <div class="cropArea" style="height: 500px; width: 900px;">
+    <ui-cropper image="$ctrl.image" result-image="$ctrl.resultImage" area-type="{{$ctrl.options.areaType || 'circle'}}" aspect-ratio="3" result-image-size="max"></ui-cropper>
   </div>
 
   <div><img ng-src="{{$ctrl.resultImage}}" /></div>
-
 
 
   <md-dialog-actions>

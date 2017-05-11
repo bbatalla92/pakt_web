@@ -21,7 +21,7 @@ angular
     'ngMdIcons',
     'firebase',
     "ui.router.stateHelper",
-    'ngImgCrop'
+    'uiCropper'
   ])
   .constant("APP_NAME", "Lendr")
   .constant("G", "google")

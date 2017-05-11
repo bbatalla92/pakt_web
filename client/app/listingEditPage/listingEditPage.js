@@ -22,16 +22,30 @@
         );
     }]);
 
-  listingEditPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$timeout"];
+  listingEditPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$mdDialog", "$mdMedia", "$timeout"];
 
-  function listingEditPageCtrl($stateParams, $scope, $window) {
+  function listingEditPageCtrl($stateParams, $scope, $window, $mdDialog, $mdMedia, $timeout) {
     var ctrl = this;
+    ctrl.showImage = true;
+    ctrl.activeImageUrl = "";
+    ctrl.item = {images:[],rates:{hourly:0,daily:0,weekly:0,monthly:0}};
 
     function getItem() {
 
     }
 
 
+
+    ctrl.openImageCropDialog = function (event) {
+      ctrl.activeImageUrl = ctrl.image;
+      ctrl.showImage = false;
+      ctrl.item.images.push(ctrl.image);
+
+      $timeout(function () {
+        ctrl.showImage = true;
+        $scope.$apply();
+      },500);
+    };
     // End of Controller
   }
 })();
