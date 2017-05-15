@@ -15,17 +15,18 @@
   function toolbarCtrl($mdDialog, $mdMedia, $scope, $state, APP_NAME, $mdSidenav) {
     var ctrl = this;
 
+    var requiredSignInStatesMap = {
+      profile: true,
+      listings: true,
+      listingEditPage: true,
+      'profile.edit': true
+    };
 
     ctrl.appName = APP_NAME;
     ctrl.flags = {
       hideTitle: true,
       loggedIn: false
     };
-
-    // Watching and makes the toolbar title hide when in main page
-    $scope.$watch(function () {
-      ctrl.flags.hideTitle = $state.current.name == 'main';
-    });
 
     ctrl.openSignInDialog = function (newSignIn, ev) {
       $mdDialog.show(
@@ -49,8 +50,18 @@
       $mdSidenav('left').toggle();
     };
 
-    $scope.$on('auth-state-changed', function (event, args) {
-      ctrl.flags.loggedIn = args.loggedIn;
+    $scope.$watch(function(){
+      ctrl.flags.hideTitle = $state.current.name === "main";
+    });
+
+    $scope.$on('user-object-updated', function (event, args) {
+      ctrl.flags.loggedIn = !!args.user;
+      if (!ctrl.flags.loggedIn) {
+        if (requiredSignInStatesMap[$state.current.name]) {
+          $state.go("main");
+        }
+      }
+      $scope.$apply();
     });
 
   }

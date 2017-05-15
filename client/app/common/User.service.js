@@ -7,40 +7,34 @@
   angular.module('app')
     .factory("UserSvc", UserSvc);
 
-  UserSvc.$inject = ["$q", "$firebaseObject", "$firebaseStorage", "$timeout", "$rootScope", "FireAuth", "fireUtils"];
+  UserSvc.$inject = ["$firebaseObject", "UtilsSvc", "$rootScope", "FireAuth", "FireUtils", "ST_PATH_PROFILE_IMAGE", "$cookies", "COOKIE_USER"];
 
-  function UserSvc($q, $firebaseObject, $firebaseStorage, $timeout, $rootScope, FireAuth, fireUtils) {
+  function UserSvc($firebaseObject, UtilsSvc, $rootScope, FireAuth, FireUtils, ST_PATH_PROFILE_IMAGE, $cookies, COOKIE_USER) {
     var ref = firebase.database().ref("user");
-    var userObj = {};
+    var userObj = {uid: ''};
 
-    firebase.auth().onAuthStateChanged(function (user) {
-      var u = JSON.parse(JSON.stringify(user));
-      if (user && user.providerData && user.providerData[0]) {
-        getUserData(user.uid);
-        userObj.uid = user.uid;
-        $timeout(function () {
-          $rootScope.$broadcast('auth-state-changed', {loggedIn: true});
-        }, 1)
-      } else {
-        $rootScope.$broadcast('auth-state-changed', {loggedIn: false});
+    firebase.auth().onAuthStateChanged(function (userAuthData) {
+      if (userAuthData) {
+        userObj = $cookies.get(COOKIE_USER) && JSON.parse($cookies.get(COOKIE_USER)) ||  {uid: ''};
+          FireUtils.objectExists(ref.child(userAuthData.uid))
+            .then(function (userExists) {
+              if (!userExists) {
+                userObj.uid = userAuthData.uid;
+                createUserData(userAuthData.providerData[0], userAuthData.uid);
+              } else {
+                getUserData(userAuthData.uid);
+              }
+            })
+        } else {
+          userObj = {};
+          $cookies.put(COOKIE_USER, undefined);
+          $rootScope.$broadcast('user-object-updated', {user: undefined});
+        }
       }
-    });
+    );
 
     function login(type, data) {
-      var user;
-      return FireAuth.login(type, data)
-        .then(function (res) {
-          user = JSON.parse(JSON.stringify(res.user));
-
-          console.log(user);
-
-          return fireUtils.objectExists(ref.child(user.uid));
-        })
-        .then(function (boolean) {
-          if (!boolean) {
-            createUserData(user.providerData[0], user.uid);
-          }
-        })
+      return FireAuth.login(type, data);
     }
 
     // This function allows a user to be created then saves its initial data in the realtime DB.
@@ -56,44 +50,62 @@
         })
     }
 
-    function createUserData(user, uid) {
-      delete user.providerId;
-      delete user.uid;
-      if (user.displayName) {
-        var nameArr = user.displayName.split(" ");
-        user.firstName = nameArr[0];
+    function createUserData(providerData, firebaseAuthUid) {
+      delete providerData.providerId;
+      delete providerData.uid;
+      if (providerData.displayName) {
+        var nameArr = providerData.displayName.split(" ");
+        providerData.firstName = nameArr[0];
         if (nameArr.length > 1) {
-          user.lastName = nameArr[nameArr.length - 1];
+          providerData.lastName = nameArr[nameArr.length - 1];
         }
       } else {
-        user.displayName = user.firstName + " " + user.lastName;
+        providerData.displayName = providerData.firstName + " " + providerData.lastName;
       }
-      var id = uid || user.uid;
-      ref.child(id).set(user)
+      delete providerData.displayName;
+
+      UtilsSvc.downloadImageFromUrl(providerData.photoURL)
+        .then(function (res) {
+          return uploadMainImage(res, 'blob');
+        })
+        .then(function (res) {
+          var u = {photoURL: res,
+                    firstName: providerData.firstName,
+                    lastName: providerData.lastName,
+                    email: providerData.email
+          };
+          userObj = u;
+          userObj.uid = firebaseAuthUid;
+          return ref.child(firebaseAuthUid).set(u);
+        })
         .then(function (snapshot) {
           return snapshot;
+        })
+        .catch(function (error) {
+          console.log("Error creating user", error);
         });
     }
 
     function getUserData(uid) {
       //console.log("UID?",uid);
-      var obj = $firebaseObject(ref.child(uid));
-      return obj.$loaded()
-        .then(function (res) {
-          userObj = res;
-          getUserImage();
-          return res;
-        })
+      var obj = ref.child(uid);
+      return obj.on("value", function (res) {
+        userObj = res.val();
+        userObj.uid = uid;
+        getUserImage();
+        return res.val();
+      })
     }
 
     function getUserImage() {
-      console.log("Getting image", userObj.$id);
-      var storageRef = firebase.storage().ref(userObj.$id + "/profileImage");
+      if (!userObj.uid) return;
+
+      var storageRef = firebase.storage().ref(ST_PATH_PROFILE_IMAGE + "/" + UtilsSvc.hashString(userObj.uid));
       storageRef.getDownloadURL()
         .then(function (url) {
           userObj.photoURL = url;
           $rootScope.$broadcast('user-object-updated', {user: userObj});
-
+          $cookies.put(COOKIE_USER, JSON.stringify(userObj));
         });
     }
 
@@ -113,14 +125,17 @@
         })
     }
 
-    function uploadMainImage(image) {
-       return fireUtils.uploadImage(userObj.$id, image)
-        .then(function (res) {
-          console.log("UPDATED", res);
-          userObj.photoURL = res;
-          $rootScope.$broadcast('user-object-updated', {user: userObj});
+    function saveItemId(item) {
+      ref.child(userObj.uid).child("items/" + item.id).set(item.id);
+    }
 
-          return userObj;
+    function uploadMainImage(image, type) {
+      console.log("UPLOAD", userObj);
+      return FireUtils.uploadImage(image, ST_PATH_PROFILE_IMAGE + "/" + UtilsSvc.hashString(userObj.uid), {}, type)
+        .then(function (res) {
+          userObj.photoURL = res.image;
+          $rootScope.$broadcast('user-object-updated', {user: userObj});
+          return res.image;
         })
         .catch(function (error) {
           console.log(error);
@@ -133,7 +148,8 @@
       login: login,
       updateUser: updateUser,
       signUpUserEmailPass: signUpUserEmailPass,
-      uploadMainImage: uploadMainImage
+      uploadMainImage: uploadMainImage,
+      saveItemId: saveItemId
     }
   }
 

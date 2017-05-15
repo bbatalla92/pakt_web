@@ -45,12 +45,6 @@
     ctrl.image = "";
     ctrl.showImage = true;
 
-    $scope.$on('user-object-updated', function (event, args) {
-      ctrl.user = args.user;
-      ctrl.showImage = true;
-      $scope.$apply();
-    });
-
     function bootstrap() {
       ctrl.userObj = UserSvc.getCurrentUser();
     }
@@ -73,12 +67,14 @@
         }
       )
         .then(function (imageResult) {
-         // console.log("Image Resilt", imageResult)
-          UserSvc.uploadMainImage(imageResult);
           ctrl.showImage = false;
+          UserSvc.uploadMainImage(imageResult)
+            .then(function(res){
+              console.log("Image Resilt", res);
+            });
         })
-        .catch(function () {
-
+        .catch(function (error) {
+          console.log("Error", error);
         });
     };
 
@@ -86,5 +82,11 @@
     // End of the controller
     bootstrap();
     ctrl.$onDestroy = function(){$mdDialog.cancel()};
+    $scope.$on('user-object-updated', function (event, args) {
+      ctrl.userObj = args.user;
+      ctrl.showImage = true;
+      $scope.$apply();
+    });
+
   }
 })();

@@ -8,7 +8,9 @@
       templateUrl: 'components/ItemImageGallery/ItemImageGallery.html',
       controller: itemImageGalleryCtrl,
       bindings: {
-        images: "="
+        images: "=",
+//        activeImage: '=',
+        editMode: '<'
       }
     });
 
@@ -17,7 +19,7 @@
     var ctrl = this;
 
     ctrl.imageIndex = 0;
-    ctrl.activeImage = {backgroundImage: ""};
+    ctrl.activeImage = {};
 
     // ___________ Functions below ____________
     function bootstrap() {
@@ -33,6 +35,14 @@
       ctrl.activeImage.backgroundImage = "url(" + ctrl.images[ctrl.imageIndex] + ")";
     };
 
+    ctrl.setMainImage = function(){
+      if(ctrl.imageIndex === 0) return;
+      var temp = ctrl.images[ctrl.imageIndex];
+      ctrl.images[ctrl.imageIndex] = ctrl.images[0];
+      ctrl.images[0] = temp;
+      ctrl.imageIndex = 0;
+      ctrl.activeImage.backgroundImage = "url(" + ctrl.images[ctrl.imageIndex] + ")";
+    };
 
 // End of Controller
     $timeout(function () {

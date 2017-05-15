@@ -11,7 +11,11 @@
 
     <div class="itemsGrid">
 
-      <div class="itemsCell" id="newItemCell" ng-click="null" ui-sref="listingEditPage({id:'new'})" >
+      <div md-whiteframe="1" ng-repeat="item in $ctrl.items" ui-sref="listingEditPage({id:item.id, item: item})" class="itemsCell" ng-click="null"  >
+        <ng-md-icon icon="add" size="128"></ng-md-icon>
+      </div>
+
+      <div class="itemsCell" id="newItemCell" ng-click="null" ui-sref="listingEditPage({id:'add'})" >
         <ng-md-icon icon="add" size="128"></ng-md-icon>
       </div>
     </div>

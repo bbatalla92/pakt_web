@@ -14,7 +14,7 @@
           url: '/profile',
           template: '<profile></profile>',
           resolve: {
-            "currentAuth": ["$firebaseAuth", function ($firebaseAuth) {
+            "currentAuth": ["$firebaseAuth", "$state", function ($firebaseAuth, $state) {
               // $requireSignIn returns a promise so the resolve waits for it to complete
               // If the promise is rejected, it will throw a $stateChangeError (see above)
               return $firebaseAuth().$requireSignIn();
@@ -57,10 +57,6 @@
       //console.log("USER", ctrl.userObj);
     };
 
-
-    $scope.$on('auth-state-changed', function (event, args) {
-      $state.go("main");
-    });
     // End of the controller
     bootstrap();
   }

@@ -22,30 +22,66 @@
         );
     }]);
 
-  listingEditPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$mdDialog", "$mdMedia", "$timeout"];
+  listingEditPageCtrl.$inject = ["$stateParams", "UtilsSvc", '$scope', '$window', "$mdDialog", "$mdMedia", "$timeout", "ItemSvc"];
 
-  function listingEditPageCtrl($stateParams, $scope, $window, $mdDialog, $mdMedia, $timeout) {
+  function listingEditPageCtrl($stateParams, UtilsSvc, $scope, $window, $mdDialog, $mdMedia, $timeout, ItemSvc) {
     var ctrl = this;
     ctrl.showImage = true;
-    ctrl.activeImageUrl = "";
-    ctrl.item = {images:[],rates:{hourly:0,daily:0,weekly:0,monthly:0}};
+    ctrl.activeImage = {};
+    ctrl.item = {
+      isRented: false,
+      rates: {hourly: 0, daily: 0, weekly: 0, monthly: 0, currency: "dollar"},
+      imageData: []
+    };
+    ctrl.images = [];
 
-    function getItem() {
-
+    function bootstrap() {
+      if ($stateParams.id != "add") {
+        getItem($stateParams.id);
+      }
     }
 
-
-
-    ctrl.openImageCropDialog = function (event) {
-      ctrl.activeImageUrl = ctrl.image;
+    function getItem(key) {
       ctrl.showImage = false;
-      ctrl.item.images.push(ctrl.image);
+      ItemSvc.getItem(key)
+        .then(function (res) {
+          ctrl.item = res;
+          ctrl.images = UtilsSvc.sortImages(ctrl.item.imageData);
+          ctrl.showImage = true;
+          $scope.$apply();
+        })
+        .catch(function (error) {
+          console.log("Error retrieving item", error);
+        });
+    }
 
+    ctrl.save = function () {
+      console.log("Starting save");
+      ItemSvc.saveItem(ctrl.item)
+        .then(function (res) {
+          console.log("Success", res)
+
+        })
+        .catch(function (error) {
+          console.log("Error", error);
+        })
+    };
+
+    ctrl.addImage = function () {
+      ctrl.activeImage = ctrl.image;
+      ctrl.showImage = false;
+      ctrl.images.push(ctrl.image);
+      ctrl.item.imageData.push({
+        image: ctrl.image,
+        metaData: {customMetadata: {order: ctrl.images.length - 1}}
+      });
+      console.log(ctrl.item.imageData);
       $timeout(function () {
         ctrl.showImage = true;
         $scope.$apply();
-      },500);
+      }, 500);
     };
     // End of Controller
+    bootstrap();
   }
 })();

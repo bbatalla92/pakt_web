@@ -1,15 +1,16 @@
 <md-sidenav style="position: fixed" class="md-sidenav-left" md-component-id="left" md-whiteframe="4" layout="column">
-  <div style="height: 5px; width: 100%;background-color: rgba(197, 141, 161, 0.55);"></div>
-  <div style="background-color: rgba(197, 141, 161, 0.33); padding-top: 5px;" layout="column"
+  <div style="height: 5px; width: 100%;"  md-colors="{backgroundColor: 'primary-700'}"></div>
+  <div md-colors="{backgroundColor: 'primary-100'}" style=" padding-top: 5px;" layout="column"
        layout-align="center center">
     <img style=" border-radius: 75px;  height: 150px;margin-right: 15px;"
          ng-src="{{$ctrl.user.photoURL || 'assets/images/defaultPerson.png'}}"/>
 
-    <span style="margin-top: 15px;font-size: x-large">{{$ctrl.user.displayName}}</span>
+    <span style="margin-top: 15px;font-size: x-large">{{$ctrl.user.firstName + ' ' + $ctrl.user.lastName}}</span>
   </div>
 
   <md-list style="padding-top: 0;">
-    <md-list-item ng-repeat="item in $ctrl.listItems" ng-click="$ctrl.close()" ui-sref="{{item.sref}}" style="text-align: center">
+    <md-list-item ng-repeat="item in $ctrl.listItems" ng-click="$ctrl.close()" ui-sref="{{item.sref}}"
+                  style="text-align: center">
       <div layout="row">
         <ng-md-icon icon="{{item.icon}}" size="28" style="margin-right: 20px;"></ng-md-icon>
         <h2>{{item.label}}</h2>

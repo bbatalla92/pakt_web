@@ -1,18 +1,14 @@
-<div>
-  <div style="text-align: center;">
-    <div style="height: 500px;">
-      <!--<img style=" height: 100%; width: 100%;margin-right: 15px;" ng-if="$ctrl.showImage"
-           ng-src="{{$ctrl.activeImageUrl || 'assets/images/defaultPerson.png'}}"/>-->
-      <div style="height: 100%;">
-      <item-image-gallery images="$ctrl.item.images" ng-if="$ctrl.showImage"></item-image-gallery>
-      </div>
 
+  <div style="text-align: center; position: relative" >
+    <div style="height: 550px;  background-color: rgba(0, 0, 0, 0.14)">
+        <item-image-gallery ng-if="$ctrl.images.length && $ctrl.showImage" images="$ctrl.images" active-image="$ctrl.activeImage" edit-mode="true"></item-image-gallery>
       <md-progress-circular style="position: absolute;left: 57%;top: 25%;" ng-if="!$ctrl.showImage"
                             md-mode="indeterminate"></md-progress-circular>
+      <div ng-if="!$ctrl.item.imageData.length" style="font-size: larger"> Upload your first photo!</div>
     </div>
     <br>
     <input type="file" file-input="$ctrl.image"/>
-    <md-button ng-click="$ctrl.openImageCropDialog($event)" class="md-raised md-primary">Change</md-button>
+    <md-button ng-click="$ctrl.addImage($event)" class="md-raised md-primary">Add</md-button>
   </div>
   <md-divider style="margin-bottom: 20px;"></md-divider>
   <form name="newItemForm" class="md-padding">
@@ -130,9 +126,14 @@
     </div>
 
   </form>
+<!--
+  <md-button ng-disabled="newItemForm.$invalid || newItemForm.$pristine || $ctrl.item.images.length === 0"
+             class="md-raised" md-colors="{backgroundColor: 'green'}" style=" display: block; left: 90%;"
+              ng-click="$ctrl.save()">-->
 
-  <md-button ng-disabled="newItemForm.$invalid || newItemForm.$pristine || $ctrl.item.images.length === 0" class="md-raised" style="background-color: #00cc00; display: block; left: 90%;">
+  <md-button
+             class="md-raised" md-colors="{backgroundColor: 'green'}" style=" display: block; left: 90%;"
+             ng-click="$ctrl.save()">
     Save
   </md-button>
 
-</div>

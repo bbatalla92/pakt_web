@@ -4,14 +4,16 @@
       <ng-md-icon icon="menu" style="height: 42px;width: 42px;" size="42"></ng-md-icon>
     </md-button>
 
-    <h3  ui-sref="main" style="cursor: pointer; margin-left: 4%;font-size: xx-large; color: rgba(197, 141, 161, 0.77);
-    font-weight: 800;" class="app-name">{{$ctrl.appName}}</h3>
+    <h3  ui-sref="main" md-colors="{color: 'primary'}" style="cursor: pointer; margin-left: 4%;font-size: xx-large; font-weight: 800;" class="app-name">{{$ctrl.appName}}</h3>
 
     <span flex></span>
     <md-button style="color: #000;" hide-xs hide-sm>Start Earning</md-button>
     <md-button style="color: #000;" hide-xs hide-sm>Help</md-button>
-    <md-button ng-if="!$ctrl.flags.loggedIn" style="color: white;background-color: rgba(197, 141, 161, 0.55); margin-right: 3%;" ng-click="$ctrl.openSignInDialog(false, $event)">Log In
-      <ng-md-icon icon="arrow_forward" style="color: #fff;"></ng-md-icon>
+    <md-button ng-if="!$ctrl.flags.loggedIn"
+                md-colors="{backgroundColor: 'primary-600'}" style="margin-right: 3%;"
+               ng-click="$ctrl.openSignInDialog(false, $event)">
+      <span style="color: #ffffff">Log In</span>
+      <ng-md-icon icon="arrow_forward" style="color: white;"></ng-md-icon>
     </md-button>
   </div>
 </md-toolbar>

@@ -1,8 +1,7 @@
 
 #footerContainer {
   width: 100%;
-  background-color: rgb(199, 165, 177);
-  color: white;
+  color: white !important;
   padding: 32px 0;
 }
 

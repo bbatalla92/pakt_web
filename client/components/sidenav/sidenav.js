@@ -15,7 +15,6 @@
 
     ctrl.flags = {};
     ctrl.user = {};
-
     ctrl.listItems = [
       {
         label: "Account",
@@ -36,21 +35,13 @@
       }
     ];
 
-    function bootstrap() {
-      getUserObj();
-    }
+
 
     $scope.$on('user-object-updated', function (event, args) {
         ctrl.user = args.user;
-        //$scope.$apply();
-      console.log("user",ctrl.user)
     });
 
     // Functions below
-    function getUserObj() {
-      ctrl.user = UserSvc.getCurrentUser();
-      console.log("side nav", ctrl.user);
-    }
 
     ctrl.logout = function () {
       UserSvc.signOutUser();
@@ -61,7 +52,10 @@
       $mdSidenav('left').close();
     };
 
+
+
+
+
 // End of controller
-    ctrl.$init = bootstrap();
   }
 })();
