@@ -11,33 +11,7 @@
         .state('profile.edit', {
           template: '<profile-edit></profile-edit>'
         });
-    }])
-    .directive('fileInput', function ($parse) {
-      return {
-        restrict: 'A',
-        link: function (scope, element, attrs, ctrl) {
-          var model = $parse(attrs.fileInput);
-          var onChange = $parse(attrs.onChange);
-          var reader = new FileReader();
-          var image;
-          var listener = function () {
-            scope.$apply(function () {
-              reader.addEventListener("load", function () {
-                image = reader.result;
-                model.assign(scope, image);
-              }, false);
-
-              if (element[0].files[0]) {
-                reader.readAsDataURL(element[0].files[0]);
-              }
-
-              onChange(scope);
-            });
-          };
-          element.on('change', listener);
-        }
-      }
-    });
+    }]);
 
   profileEditCtrl.$inject = ["APP_NAME", "UserSvc", "$mdDialog", "$mdMedia","$scope"];
   function profileEditCtrl(APP_NAME, UserSvc, $mdDialog, $mdMedia, $scope) {
@@ -49,7 +23,7 @@
       ctrl.userObj = UserSvc.getCurrentUser();
     }
 
-    ctrl.openImageCropDialog = function (event) {
+    ctrl.onImageLoaded = function (img) {
 
       $mdDialog.show(
         {
@@ -58,10 +32,9 @@
             $scope.img = image;
           }],
           parent: angular.element(document.body),
-          targetEvent: event,
           clickOutsideToClose: true,
           locals: {
-            image: ctrl.image
+            image: img
           },
           fullscreen: $mdMedia('xs')
         }

@@ -8,8 +8,7 @@
         <md-progress-circular style="position: absolute;left: 57%;top: 25%;" ng-if="!$ctrl.showImage" md-mode="indeterminate"></md-progress-circular>
       </div>
       <br>
-      <input type="file" file-input="$ctrl.image"/>
-      <md-button ng-click="$ctrl.openImageCropDialog($event)">Change</md-button>
+      <input style="margin-left: 100px;" type="file" file-input="$ctrl.onImageLoaded"/>
     </div>
     <md-divider style="margin-bottom: 20px;"></md-divider>
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">

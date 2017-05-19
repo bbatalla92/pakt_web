@@ -7,18 +7,25 @@
   </div>
   <md-divider></md-divider>
   <div class="md-padding">
+    <div layout="row" layout-align="start center">
     <h2>My Items</h2>
-
+      <md-button hide show-xs class="md-icon-button" ui-sref="listingEditPage({id:'add'})">
+        <ng-md-icon icon="add_circle" md-colors="{color: 'green'}"></ng-md-icon>
+        <md-tooltip>Add New Item</md-tooltip>
+      </md-button>
+</div>
     <div class="itemsGrid">
 
-      <div md-whiteframe="1" ng-repeat="item in $ctrl.items" ui-sref="listingEditPage({id:item.id, item: item})" class="itemsCell" ng-click="null"  >
-        <ng-md-icon icon="add" size="128"></ng-md-icon>
+      <div layout="column" md-whiteframe="1" ng-repeat="item in $ctrl.items" ui-sref="listingEditPage({id:item.id, item: item})" class="itemsCell" ng-click="null"  >
+        <image ng-src="{{item.imageData[0].image}}"/>
+        {{item.name}}
       </div>
 
-      <div class="itemsCell" id="newItemCell" ng-click="null" ui-sref="listingEditPage({id:'add'})" >
+      <div class="itemsCell" hide-xs id="newItemCell" ng-click="null" ui-sref="listingEditPage({id:'add'})" >
         <ng-md-icon icon="add" size="128"></ng-md-icon>
       </div>
     </div>
 
   </div>
 </div>
+

@@ -31,6 +31,9 @@
         state: "profile.edit",
         label: "Profile Edit"
       }, {
+        state: "profile.paymentInfo",
+        label: "Payment Info"
+      }, {
         state: "profile.reviews",
         label: "Reviews"
       }, {

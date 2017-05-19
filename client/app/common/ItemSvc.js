@@ -42,7 +42,6 @@
       return $q.all(promises);
     }
 
-
     function createItem(item) {
       var tempImageData = {};
       tempImageData.imageData = item.imageData;
@@ -68,12 +67,12 @@
 
     function updateItem(item) {
       var copyItem = angular.copy(item);
-      console.log(copyItem);
       return ref.child(copyItem.id).update(copyItem)
         .then(function (res) {
           return saveImages(item);
         })
         .then(function (res) {
+          console.log("Save Images", res);
           return "success";
         })
         .catch(function (error) {
@@ -93,7 +92,7 @@
         if (!item.imageData[i].metaData.key) {
           b = FireUtils.uploadImage(item.imageData[i].image, path, item.imageData[i].metaData);
         } else {
-          b = FireUtils.updateImage(item.imageData[i].image, path, item.imageData[i].metaData);
+          b = FireUtils.updateImage(item.imageData[i].image, ST_PATH_ITEM_IMAGES + "/"+item.imageData[i].metaData.key, item.imageData[i].metaData);
         }
         promises.push(b);
       }

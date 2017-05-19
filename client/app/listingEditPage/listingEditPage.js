@@ -55,6 +55,21 @@
         });
     }
 
+    ctrl.onImageLoaded = function (image) {
+      ctrl.activeImage = ctrl.image;
+      ctrl.showImage = false;
+      ctrl.images.push(image);
+      ctrl.item.imageData.push({
+        image: image,
+        metaData: {customMetadata: {order: (ctrl.images.length - 1) + ""}}
+      });
+
+      $timeout(function () {
+        ctrl.showImage = true;
+        $scope.$apply();
+      }, 500);
+    };
+
     ctrl.save = function () {
       console.log("Starting save");
       ItemSvc.saveItem(ctrl.item)
@@ -65,21 +80,6 @@
         .catch(function (error) {
           console.log("Error", error);
         })
-    };
-
-    ctrl.addImage = function () {
-      ctrl.activeImage = ctrl.image;
-      ctrl.showImage = false;
-      ctrl.images.push(ctrl.image);
-      ctrl.item.imageData.push({
-        image: ctrl.image,
-        metaData: {customMetadata: {order: ctrl.images.length - 1}}
-      });
-      console.log(ctrl.item.imageData);
-      $timeout(function () {
-        ctrl.showImage = true;
-        $scope.$apply();
-      }, 500);
     };
     // End of Controller
     bootstrap();

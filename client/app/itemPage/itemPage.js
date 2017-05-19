@@ -27,6 +27,8 @@
       mapInitialized: false
     };
     ctrl.item = $stateParams.item;
+    console.log(ctrl.item);
+
     ctrl.dynamicStyleClass = {stickyForm: false};
     ctrl.rentalDuration = "hour";
     ctrl.totalPrice = "";

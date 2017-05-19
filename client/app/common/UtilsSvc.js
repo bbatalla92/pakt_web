@@ -6,7 +6,35 @@
   "use strict";
 
   angular.module('app')
-    .factory("UtilsSvc", UtilsSvc);
+    .factory("UtilsSvc", UtilsSvc)
+    .directive('fileInput', function ($parse) {
+      return {
+        restrict: 'A',
+        link: function (scope, element, attrs, ctrl) {
+          var model = $parse(attrs.fileInput);
+          var onChange = $parse(attrs.onChange);
+          var reader = new FileReader();
+          var image;
+          var listener = function () {
+            scope.$apply(function () {
+              reader.addEventListener("load", function () {
+                image = reader.result;
+                //model.assign(scope, image);
+               // attrs.fileInput()
+                scope.$ctrl.onImageLoaded(image);
+              }, false);
+
+              if (element[0].files[0]) {
+                reader.readAsDataURL(element[0].files[0]);
+              }
+
+              onChange(scope);
+            });
+          };
+          element.on('change', listener);
+        }
+      }
+    });
 
     UtilsSvc.$inject = ["$q"];
 
@@ -16,6 +44,7 @@
 
       function sortImages(imageData){
         var images = [];
+        if(!imageData.length) return [];
 
         var map = {};
         var i;
