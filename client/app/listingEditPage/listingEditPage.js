@@ -22,9 +22,9 @@
         );
     }]);
 
-  listingEditPageCtrl.$inject = ["$stateParams", "UtilsSvc", '$scope', '$window', "$mdDialog", "$mdMedia", "$timeout", "ItemSvc"];
+  listingEditPageCtrl.$inject = ["$stateParams", "UtilsSvc", '$scope', "$timeout", "ItemSvc"];
 
-  function listingEditPageCtrl($stateParams, UtilsSvc, $scope, $window, $mdDialog, $mdMedia, $timeout, ItemSvc) {
+  function listingEditPageCtrl($stateParams, UtilsSvc, $scope, $timeout, ItemSvc) {
     var ctrl = this;
     ctrl.showImage = true;
     ctrl.activeImage = {};

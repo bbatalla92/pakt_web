@@ -30,11 +30,12 @@
 
     }
 
-    function getUserItems(items) {
+    function getUserItems(items, itemsArr) {
       var promises = [];
       for (var key in items) {
         var p = getItem(key)
           .then(function (res) {
+            itemsArr.push(res);
             return res;
           });
         promises.push(p);

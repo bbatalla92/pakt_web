@@ -33,7 +33,7 @@
     function getItems(items) {
       ItemSvc.getUserItems(items, ctrl.items)
         .then(function (res) {
-          ctrl.items = res;
+          //ctrl.items = res;
           console.log("Listings page", res);
         });
     }

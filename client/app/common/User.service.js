@@ -118,7 +118,8 @@
     }
 
     function updateUser(user) {
-      return user.$save()
+      console.log(user);
+      return ref.child(user.uid).set(user)
         .then(function (res) {
           $rootScope.$broadcast('user-object-updated', {user: userObj});
           return res;

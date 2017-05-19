@@ -22,6 +22,7 @@
                 //model.assign(scope, image);
                // attrs.fileInput()
                 scope.$ctrl.onImageLoaded(image);
+                reader = new FileReader();
               }, false);
 
               if (element[0].files[0]) {

@@ -23,7 +23,7 @@
 
   function searchResultsPageCtrl($stateParams, $timeout, $mdMedia, $mdPanel) {
     var ctrl = this;
-    ctrl.searchParams = $stateParams.searchParams || {what:"", startDate:"", endDate:"", where:""};
+    ctrl.searchParams = $stateParams.searchParams || {what: "", startDate: "", endDate: "", where: ""};
     ctrl.flags = {
       screenSMoXS: false,
       showMap: false,
@@ -32,14 +32,51 @@
       wherePanelActive: false
     };
     ctrl.item = {
-      "price": {"hour": 10, "day": 30, "week": 100},
+      "price": {
+        "hour": 10,
+        "day": 30,
+        "week": 100
+      },
       "id": "583021",
       "title": "Lawnmower",
       "location": "Forked River, NJ",
       "description": "This is a lawnmower.  It works perfectly fine and takes normal gas.",
       "created": "8461653454",
-      "imageUrls": ["assets/images/firepit.jpeg", "assets/images/lawnmower.jpg", "assets/images/surboard.jpeg"],
-      "ownerId": "678987867564576879890-90897867564"
+      "imageData": [
+        {
+          "image": "assets/images/lawnmower.jpg",
+          "metaData": {
+            "customMetadata": {
+              "order": 1
+            }
+          }
+        },
+        {
+          "image": "assets/images/firepit.jpeg",
+          "metaData": {
+            "customMetadata": {
+              "order": 0
+            }
+          }
+        },
+        {
+          "image": "assets/images/surboard.jpeg",
+          "metaData": {
+            "customMetadata": {
+              "order": 2
+            }
+          }
+        },
+        {
+          "image": "assets/images/firepit.jpeg",
+          "metaData": {
+            "customMetadata": {
+              "order": 3
+            }
+          }
+        }
+      ],
+      "ownerUid": "678987867564576879890-90897867564"
     };
 
 
@@ -90,7 +127,7 @@
     ctrl.resizeMap = function () {
       google.maps.event.trigger(ctrl.map, 'resize');
       console.log("resize map");
-     // map.setCenter(currCenter);
+      // map.setCenter(currCenter);
     };
 
     ctrl.openWhatPanel = function (ev) {
@@ -215,7 +252,7 @@
         });
     };
 
-    ctrl.newSearch = function(){
+    ctrl.newSearch = function () {
       console.log("New Search", ctrl.searchParams);
     };
 

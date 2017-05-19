@@ -76,7 +76,7 @@
       <div id="searchPageListItemsGrid">
         <div id="listItemsGridCell" ng-repeat="j in [0,1,2,3,4,5,6,7]" ui-sref="item({id: j.id, item:$ctrl.item })">
           <div style="height: 230px;">
-            <item-image-gallery images="$ctrl.item.imageUrls"></item-image-gallery>
+            <item-image-gallery image-data="$ctrl.item.imageData"></item-image-gallery>
           </div>
           <div style="margin:10px 3px">
             <h3 id="itemCarouselDescription" style="margin-bottom: -20px;"><b>{{"$" +

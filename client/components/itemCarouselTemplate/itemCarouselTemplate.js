@@ -12,14 +12,15 @@
       }
     });
 
-  itemCarouselTemplateCtrl.$inject = ["$timeout"];
+  itemCarouselTemplateCtrl.$inject = ["$timeout", "UtilsSvc"];
 
-  function itemCarouselTemplateCtrl($timeout) {
+  function itemCarouselTemplateCtrl($timeout, UtilsSvc) {
     var ctrl = this;
 
 
     function bootstrap() {
-      ctrl.image = {backgroundImage: "url(" + ctrl.item.imageUrls[0] + ")"};
+      var images = UtilsSvc.sortImages(ctrl.item.imageData);
+      ctrl.image = {backgroundImage: "url(" + images[0] + ")"};
     }
 
 

@@ -19,16 +19,18 @@
 
     ctrl.imageIndex = 0;
     ctrl.activeImage = {};
+    var imageLength;
+    var blah = [];
 
     // ___________ Functions below ____________
     function bootstrap() {
-
+      imageLength =  ctrl.imageData.length;
       ctrl.images = UtilsSvc.sortImages(ctrl.imageData);
-      console.log(""+ctrl.images.length);
       ctrl.activeImage.backgroundImage = "url(" + ctrl.images[ctrl.imageIndex] + ")";
     }
 
     ctrl.nextImage = function (next) {
+      blah.push("a");
       if(ctrl.images.length !== ctrl.imageData.length) ctrl.images = UtilsSvc.sortImages(ctrl.imageData);
 
       if (next) {
@@ -50,12 +52,15 @@
       ctrl.activeImage.backgroundImage = "url(" + ctrl.images[ctrl.imageIndex] + ")";
     };
 
-    $scope.$watch(ctrl.imageData, function (newValue, oldValue) {
-      console.log("Image added");
-      //do some stuff
-      //only enters here once
-      //newValue and oldValue are equal at that point
-    }, true);
+    $scope.$watch(function (newValue, oldValue, scope) {
+      console.log("Image", imageLength);
+
+      if(imageLength && imageLength !== ctrl.imageData.length){
+        imageLength = ctrl.imageData.length;
+        ctrl.imageIndex = ctrl.imageData.length - 1;
+
+      }
+    });
 
 // End of Controller
     $timeout(function () {
