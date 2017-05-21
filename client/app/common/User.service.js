@@ -130,6 +130,10 @@
       ref.child(userObj.uid).child("items/" + item.id).set(item.id);
     }
 
+    function deleteItemId(item) {
+      return ref.child(userObj.uid).child("items/" + item.id).set(null);
+    }
+
     function uploadMainImage(image, type) {
       console.log("UPLOAD", userObj);
       return FireUtils.uploadImage(image, ST_PATH_PROFILE_IMAGE + "/" + UtilsSvc.hashString(userObj.uid), {}, type)
@@ -150,7 +154,8 @@
       updateUser: updateUser,
       signUpUserEmailPass: signUpUserEmailPass,
       uploadMainImage: uploadMainImage,
-      saveItemId: saveItemId
+      saveItemId: saveItemId,
+      deleteItemId:deleteItemId
     }
   }
 

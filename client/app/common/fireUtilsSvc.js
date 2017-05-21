@@ -67,7 +67,6 @@
     function deleteImage(path) {
       return storageRef.child(path).delete()
         .then(function (snapshot) {
-          console.log("Deleting IMAGE", snapshot);
           return snapshot;
         })
     }

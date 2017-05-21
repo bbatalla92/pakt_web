@@ -22,7 +22,7 @@
         );
     }]);
 
-  listingEditPageCtrl.$inject = ["$stateParams", "UtilsSvc", '$scope', "$timeout", "ItemSvc", "$mdDialog","$state"];
+  listingEditPageCtrl.$inject = ["$stateParams", "UtilsSvc", '$scope', "$timeout", "ItemSvc", "$mdDialog", "$state"];
 
   function listingEditPageCtrl($stateParams, UtilsSvc, $scope, $timeout, ItemSvc, $mdDialog, $state) {
     var ctrl = this;
@@ -85,13 +85,39 @@
     ctrl.save = function () {
       ItemSvc.saveItem(ctrl.item)
         .then(function (res) {
-          console.log("ITEM SAVED", res);
-          $state.go('listings', {id: res.id})
+          $state.go('listingEditPage', {id: res.id}, {notify: false})
         })
         .catch(function (error) {
           console.log("Error", error);
         })
     };
+
+    ctrl.deleteItem = function(ev){
+      $mdDialog.show(
+        $mdDialog.confirm()
+          .title('Are you sure you would like to delete this Item?')
+          .textContent('')
+          .ariaLabel('Delete Image')
+          .targetEvent(ev)
+          .ok('Yes')
+          .cancel('Nevermind')
+      )
+        .then(function () {
+
+          if(ctrl.item.id){
+            ItemSvc.deleteItem(ctrl.item)
+              .then(function(){
+                $state.go("listings");
+              });
+          } else{
+            $state.go("listings");
+          }
+        });
+
+    };
+
+
+
     // End of Controller
     bootstrap();
   }
