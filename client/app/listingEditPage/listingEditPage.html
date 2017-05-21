@@ -1,7 +1,11 @@
 <div style="text-align: center; position: relative">
   <div style="height: 550px;  background-color: rgba(0, 0, 0, 0.14)">
-    <item-image-gallery ng-if="$ctrl.images.length && $ctrl.showImage" image-data="$ctrl.item.imageData"
-                        active-image="$ctrl.activeImage" edit-mode="true"></item-image-gallery>
+    <item-image-gallery ng-if="$ctrl.images.length && $ctrl.showImage"
+                        image-data="$ctrl.item.imageData"
+                        active-image="$ctrl.activeImage"
+                        edit-mode="true">
+    </item-image-gallery>
+
     <md-progress-circular style="position: absolute;left: 57%;top: 25%;" ng-if="!$ctrl.showImage"
                           md-mode="indeterminate"></md-progress-circular>
     <div ng-if="!$ctrl.item.imageData.length" style="font-size: larger"> Upload your first photo!</div>
@@ -35,8 +39,10 @@
       <label style="font-size: 15px;color: rgba(27,72,72, 1);">Address: </label>
     </div>
     <md-input-container md-no-float="true" flex>
-      <input style="height: 35px;padding-left:15px" type="text" required name="address"
-             placeholder="e.g.NYC, Barcelona, San Francisco, CA" ng-model="$ctrl.item.address" flex/>
+      <input style="height: 35px;padding-left:15px" type="text" id="editPageAutoComplete" required name="address"
+             placeholder="e.g.NYC, Barcelona, San Francisco, CA"
+             ng-model="$ctrl.item.location.address" ng-change="$ctrl.getGeocode($ctrl.item.address)"
+             ng-change-options="{debounce: 200}" flex/>
       <div ng-messages="newItemForm.address.$error">
         <div ng-message="required">
           Address is required

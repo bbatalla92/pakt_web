@@ -22,9 +22,9 @@
         );
     }]);
 
-  listingEditPageCtrl.$inject = ["$stateParams", "UtilsSvc", '$scope', "$timeout", "ItemSvc"];
+  listingEditPageCtrl.$inject = ["$stateParams", "UtilsSvc", '$scope', "$timeout", "ItemSvc", "$mdDialog","$state"];
 
-  function listingEditPageCtrl($stateParams, UtilsSvc, $scope, $timeout, ItemSvc) {
+  function listingEditPageCtrl($stateParams, UtilsSvc, $scope, $timeout, ItemSvc, $mdDialog, $state) {
     var ctrl = this;
     ctrl.showImage = true;
     ctrl.activeImage = {};
@@ -34,6 +34,7 @@
       imageData: []
     };
     ctrl.images = [];
+    var addressAutocomplete = new google.maps.places.Autocomplete(document.getElementById("editPageAutoComplete"));
 
     function bootstrap() {
       if ($stateParams.id != "add") {
@@ -55,6 +56,17 @@
         });
     }
 
+    addressAutocomplete.addListener('place_changed', function () {
+      var place = addressAutocomplete.getPlace();
+      ctrl.item.location = {
+        address: place.formatted_address,
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      };
+      console.log("PLACE CHANGED", ctrl.item.location);
+
+    });
+
     ctrl.onImageLoaded = function (image) {
       ctrl.activeImage = ctrl.image;
       ctrl.showImage = false;
@@ -71,11 +83,10 @@
     };
 
     ctrl.save = function () {
-      console.log("Starting save");
       ItemSvc.saveItem(ctrl.item)
         .then(function (res) {
-          console.log("Success", res)
-
+          console.log("ITEM SAVED", res);
+          $state.go('listings', {id: res.id})
         })
         .catch(function (error) {
           console.log("Error", error);

@@ -13,6 +13,8 @@
     var ref = firebase.database().ref("item");
     var userObj = UserSvc.getCurrentUser();
 
+    var userItems = [];
+
     function saveItem(item) {
 
       return item.id ? updateItem(item) : createItem(item);
@@ -32,15 +34,35 @@
 
     function getUserItems(items, itemsArr) {
       var promises = [];
+
+      if(userItems.length){
+        var q = $q.defer();
+        q.resolve(userItems);
+        return q.promise;
+      }
+
       for (var key in items) {
         var p = getItem(key)
           .then(function (res) {
-            itemsArr.push(res);
+            userItems.push(res);
             return res;
           });
         promises.push(p);
       }
       return $q.all(promises);
+    }
+
+    function deleteImage(delImage, imageData){
+      var path = ST_PATH_ITEM_IMAGES +"/"+delImage.metaData.key;
+      FireUtils.deleteImage(path)
+        .then(function(){
+          return ref.child(delImage.metaData.customMetadata.itemId+"/imageData").set(imageData)
+        })
+        .then(function(res){
+          userItems = [];
+          console.log("RES", res);
+
+        });
     }
 
     function createItem(item) {
@@ -67,13 +89,14 @@
     }
 
     function updateItem(item) {
+      userItems = [];
       var copyItem = angular.copy(item);
-      return ref.child(copyItem.id).update(copyItem)
+      return saveImages(copyItem)
         .then(function (res) {
-          return saveImages(item);
+          copyItem.imageData = res;
+          return ref.child(copyItem.id).update(copyItem);
         })
         .then(function (res) {
-          console.log("Save Images", res);
           return "success";
         })
         .catch(function (error) {
@@ -91,6 +114,7 @@
         var b;
         var path = ST_PATH_ITEM_IMAGES + "/" + item.id + (new Date()).getTime();
         if (!item.imageData[i].metaData.key) {
+          item.imageData[i].metaData.customMetadata.itemId = item.id;
           b = FireUtils.uploadImage(item.imageData[i].image, path, item.imageData[i].metaData);
         } else {
           b = FireUtils.updateImage(item.imageData[i].image, ST_PATH_ITEM_IMAGES + "/"+item.imageData[i].metaData.key, item.imageData[i].metaData);
@@ -100,11 +124,11 @@
       return $q.all(promises);
     }
 
-
     return {
       saveItem: saveItem,
       getUserItems: getUserItems,
-      getItem: getItem
+      getItem: getItem,
+      deleteImage:deleteImage
     }
   }
 

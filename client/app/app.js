@@ -23,7 +23,7 @@ angular
     "ui.router.stateHelper",
     'uiCropper'
   ])
-  .config(['$urlRouterProvider', '$locationProvider', '$mdAriaProvider', '$mdThemingProvider', function ($urlRouterProvider, $locationProvider, $mdAriaProvider, $mdThemingProvider) {
+  .config(['$urlRouterProvider', '$locationProvider', '$mdAriaProvider', '$mdThemingProvider', "$httpProvider", function ($urlRouterProvider, $locationProvider, $mdAriaProvider, $mdThemingProvider, $httpProvider) {
 
     $mdAriaProvider.disableWarnings();
 
@@ -75,6 +75,9 @@ angular
     $mdThemingProvider.theme('default')
       .primaryPalette('customPrimary')
       .accentPalette('customAccent');
+
+    $httpProvider.defaults.useXDomain = true;
+
 
   }])
   .run(['$rootScope', '$window', '$state',

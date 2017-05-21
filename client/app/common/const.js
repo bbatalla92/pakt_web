@@ -7,6 +7,7 @@
   angular.module('app')
     .constant("APP_NAME", "Lendit")
     .constant("G", "google")
+    .constant("G_API_KEY", "AIzaSyA8HUJAUIeUDevQGkPwta56Jn21AvhJoqw")
     .constant("FB", "facebook")
     .constant("EMAIL_PASS", "emailpass")
     .constant("ST_PATH_ITEM_IMAGES", "itemImages")

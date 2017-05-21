@@ -1,7 +1,6 @@
 <div id="itemPageGalleryImageContainer" ng-style="$ctrl.activeImage" md-swipe-right="$ctrl.nextImage(true)"
      md-swipe-left="$ctrl.nextImage(false)">
-  <span
-    style="color: white;position: absolute;right: 9%;top: 1%;font-size: small; background: rgba(0, 0, 0, 0.43); padding: 10px; border-radius: 20px;">{{$ctrl.imageIndex + 1}} of {{ $ctrl.imageData.length }}</span>
+  <span style="color: white;position: absolute;right: 9%;top: 1%;font-size: small; background: rgba(0, 0, 0, 0.43); padding: 10px; border-radius: 20px;">{{$ctrl.imageIndex + 1}} of {{ $ctrl.images.length }}</span>
   <div layout="row" layout-align="space-between center" style="height: 100%;">
     <md-button ng-if="$ctrl.imageData.length > 1" aria-label="left button" class="itemImageGalleryButtons"
                ng-click="$ctrl.nextImage(false)">
@@ -14,7 +13,7 @@
   </div>
   <div layout="row" ng-if="$ctrl.editMode"
        style="width: 100%; height: 50px; position: absolute; bottom: 7%; background: rgba(0, 0, 0, 0.81);padding-left: 20px;padding-right: 20px;">
-    <md-button class="md-icon-button">
+    <md-button class="md-icon-button" ng-click="$ctrl.deleteImage()">
       <ng-md-icon icon="delete" md-colors="{color: 'warn'}" size="30"></ng-md-icon>
     </md-button>
     <span flex></span>

@@ -7,8 +7,8 @@
   angular.module('app')
     .factory("FireUtils", firebaseSvc);
 
-  firebaseSvc.$inject = ["$q", "$rootScope", "$timeout", "$firebaseStorage"];
-  function firebaseSvc($q, $rootScope, $timeout, $firebaseStorage) {
+  firebaseSvc.$inject = ["$q", "ST_PATH_ITEM_IMAGES"];
+  function firebaseSvc($q, ST_PATH_ITEM_IMAGES) {
     var storageRef = firebase.storage().ref();
 
     function objectExists(ref) {
@@ -31,6 +31,7 @@
 
       return uploadTask
         .then(function (snapshot) {
+
           return {
             image: snapshot.a.downloadURLs[0],
             metaData: {
@@ -43,7 +44,6 @@
               device: "web"
             }
           };
-
         })
         .catch(function (error) {
           console.error(error);
@@ -52,10 +52,8 @@
 
     function updateImage(file, path, metaData) {
       var ref = firebase.storage().ref(path);
-
       return ref.updateMetadata(metaData)
         .then(function (snapshot) {
-          console.log("UPDATING IMAGE", snapshot);
           return {
             image: file,
             metaData: metaData
@@ -66,10 +64,19 @@
         });
     }
 
+    function deleteImage(path) {
+      return storageRef.child(path).delete()
+        .then(function (snapshot) {
+          console.log("Deleting IMAGE", snapshot);
+          return snapshot;
+        })
+    }
+
     return {
       objectExists: objectExists,
       uploadImage: uploadImage,
-      updateImage:updateImage
+      updateImage: updateImage,
+      deleteImage:deleteImage
     }
   }
 
