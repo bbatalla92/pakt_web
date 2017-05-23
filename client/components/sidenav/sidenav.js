@@ -9,8 +9,8 @@
       controller: sidenavCtrl
     });
 
-  sidenavCtrl.$inject = ["APP_NAME", "$mdSidenav", "UserSvc", "$scope"];
-  function sidenavCtrl(APP_NAME, $mdSidenav, UserSvc, $scope) {
+  sidenavCtrl.$inject = ["APP_NAME", "$mdSidenav", "UserSvc", "$scope","$mdDialog", "$mdMedia"];
+  function sidenavCtrl(APP_NAME, $mdSidenav, UserSvc, $scope, $mdDialog, $mdMedia) {
     var ctrl = this;
 
     ctrl.flags = {};
@@ -39,6 +39,7 @@
 
     $scope.$on('user-object-updated', function (event, args) {
         ctrl.user = args.user;
+
     });
 
     // Functions below
@@ -52,8 +53,31 @@
       $mdSidenav('left').close();
     };
 
+    ctrl.openSignInDialog = ctrl.openSignInDialog = function (newSignIn, ev) {
+      $mdDialog.show(
+        {
+          template: '<sign-up-form is-new="new"></sign-up-form>',
+          controller: function (isNew, $scope) {
+            $scope.new = isNew;
+          },
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          locals: {
+            isNew: newSignIn
+          },
+          fullscreen: $mdMedia('xs')
+        }
+      )
+        .then(function(){
+          console.log("FINSIHED")
+        })
+        .catch(function(){
+        }).finally(function(){
+        $mdSidenav('left').close();
 
-
+      });
+    };
 
 
 // End of controller

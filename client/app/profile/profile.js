@@ -51,13 +51,17 @@
     }
 
     ctrl.goTo = function (state) {
-      //$state.go(state.state);
+      //
       ctrl.activeState = state;
     };
 
     ctrl.save = function(){
       UserSvc.updateUser(ctrl.userObj);
       //console.log("USER", ctrl.userObj);
+    };
+
+    ctrl.menuSelectOptionChanged = function(){
+      $state.go(ctrl.activeState.state);
     };
 
     // End of the controller

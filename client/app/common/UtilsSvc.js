@@ -16,6 +16,8 @@
           var reader = new FileReader();
           var image;
           var listener = function () {
+            console.log("LOADED");
+
             scope.$apply(function () {
               reader.addEventListener("load", function () {
                 image = reader.result;

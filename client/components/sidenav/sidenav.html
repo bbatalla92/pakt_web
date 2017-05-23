@@ -1,25 +1,66 @@
-<md-sidenav style="position: fixed" class="md-sidenav-left" md-component-id="left" md-whiteframe="4" layout="column">
-  <div style="height: 5px; width: 100%;"  md-colors="{backgroundColor: 'primary-700'}"></div>
-  <div md-colors="{backgroundColor: 'primary-100'}" style=" padding-top: 5px;" layout="column"
-       layout-align="center center">
-    <img style=" border-radius: 75px;  height: 150px;margin-right: 15px;"
-         ng-src="{{$ctrl.user.photoURL || 'assets/images/defaultPerson.png'}}"/>
+<md-sidenav style="position: fixed" class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+  <div ng-if="$ctrl.user" style="height: 100%" layout="column">
+    <div style="height: 5px; width: 100%;" md-colors="{backgroundColor: 'primary-700'}"></div>
+    <div md-colors="{backgroundColor: 'primary-100'}" style=" padding-top: 5px;" layout="column"
+         layout-align="center center">
+      <img style=" border-radius: 75px;  height: 150px;margin-right: 15px;"
+           ng-src="{{$ctrl.user.photoURL || 'assets/images/defaultPerson.png'}}"/>
 
-    <span style="margin-top: 15px;font-size: x-large">{{$ctrl.user.firstName + ' ' + $ctrl.user.lastName}}</span>
+      <span style="margin-top: 15px;font-size: x-large">{{$ctrl.user.firstName + ' ' + $ctrl.user.lastName}}</span>
+    </div>
+
+    <md-list style="padding-top: 0;">
+      <md-list-item ng-repeat="item in $ctrl.listItems" ng-click="$ctrl.close()" ui-sref="{{item.sref}}"
+                    style="text-align: center">
+        <div layout="row">
+          <ng-md-icon icon="{{item.icon}}" size="28" style="margin-right: 20px;"></ng-md-icon>
+          <h2>{{item.label}}</h2>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <span flex></span>
+    <md-button class="md-raised" ng-click="$ctrl.logout()" style="background-color: rgba(255, 165, 0, 0.74);">Logout
+    </md-button>
+    <div style="height: 13px; width: 100%;background-color: rgba(0, 0, 0, 0.15);"></div>
   </div>
+  <div ng-if="!$ctrl.user" class="md-padding">
+    <h1 style="text-align: center">Welcome</h1>
 
-  <md-list style="padding-top: 0;">
-    <md-list-item ng-repeat="item in $ctrl.listItems" ng-click="$ctrl.close()" ui-sref="{{item.sref}}"
-                  style="text-align: center">
-      <div layout="row">
-        <ng-md-icon icon="{{item.icon}}" size="28" style="margin-right: 20px;"></ng-md-icon>
-        <h2>{{item.label}}</h2>
-      </div>
-    </md-list-item>
-  </md-list>
+    <md-button md-colors="{backgroundColor: 'primary-600'}"
+               style="margin-right: 3%;width: 90%;margin-top: 10%;"
+               ng-click="$ctrl.openSignInDialog(false, $event)">
+      <span style="color: #ffffff">Log In</span>
+      <ng-md-icon icon="arrow_forward" style="color: white;"></ng-md-icon>
+    </md-button>
 
-  <span flex></span>
-  <md-button class="md-raised" ng-click="$ctrl.logout()" style="background-color: rgba(255, 165, 0, 0.74);">Logout
-  </md-button>
-  <div style="height: 13px; width: 100%;background-color: rgba(0, 0, 0, 0.15);"></div>
+    <md-list style="padding-top: 0;">
+
+      <md-list-item ng-click="$ctrl.close()" style="text-align: center">
+        <div layout="row">
+          <h2 style="font-weight: 400">Download the App</h2>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item ng-click="$ctrl.close()" style="text-align: center">
+        <div layout="row">
+          <h2 style="font-weight: 400">Become a Lender</h2>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item ng-click="$ctrl.close()" style="text-align: center">
+        <div layout="row">
+          <h2 style="font-weight: 400">About</h2>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item ng-click="$ctrl.close()" style="text-align: center">
+        <div layout="row">
+          <h2 style="font-weight: 400">FAQ</h2>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+    </md-list>
+
+  </div>
 </md-sidenav>

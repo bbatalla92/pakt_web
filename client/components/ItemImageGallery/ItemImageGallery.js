@@ -63,7 +63,6 @@
           // YES
           var delImageData;
           for (var i = 0; i < ctrl.imageData.length; i++) {
-            console.log(ctrl.imageData[i].metaData.customMetadata.order);
 
             if (ctrl.imageData[i].metaData.customMetadata.order == ctrl.imageIndex) {
               delImageData = angular.copy(ctrl.imageData[i]);
@@ -103,8 +102,14 @@
       if (imageLength && imageLength !== ctrl.imageData.length) {
         imageLength = ctrl.imageData.length;
         ctrl.imageIndex = ctrl.imageData.length - 1;
+        //debugger;
+        console.log("IMAGES",ctrl.imageData);
+
         ctrl.images = UtilsSvc.sortImages(ctrl.imageData);
+        console.log("IMAGES",ctrl.images);
+
         ctrl.activeImage.backgroundImage = "url(" + ctrl.images[ctrl.imageIndex] + ")";
+
       }
     });
 

@@ -1,6 +1,6 @@
 <div style="text-align: center; position: relative">
-  <div style="height: 550px;  background-color: rgba(0, 0, 0, 0.14)">
-    <item-image-gallery ng-if="$ctrl.images.length && $ctrl.showImage"
+  <div id="editImageGallery">
+    <item-image-gallery ng-if="$ctrl.item.imageData.length > 0 && $ctrl.showImage"
                         image-data="$ctrl.item.imageData"
                         active-image="$ctrl.activeImage"
                         edit-mode="true">
@@ -10,18 +10,18 @@
                           md-mode="indeterminate"></md-progress-circular>
     <div ng-if="!$ctrl.item.imageData.length" style="font-size: larger"> Upload your first photo!</div>
   </div>
-  <div style=" margin: 20px;">
-    <input ng-if="$ctrl.showImage" type="file" file-input="$ctrl.onImageLoaded"/>
-  </div>
+</div>
+<div style=" margin: 20px;width: 100%;text-align: center">
+  <input type="file" file-input="$ctrl.onImageLoaded" accept="image/*"/>
 </div>
 <md-divider style="margin-bottom: 20px;"></md-divider>
 <form name="newItemForm" class="md-padding">
-  <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-    <div style="width:120px; text-align: right; margin: 0 20px; ">
-      <label style="font-size: 15px;color: rgba(27,72,72, 1);">Name: </label>
+  <div layout="row" layout-xs="column"  layout-align="start center" class="sectionContainer">
+    <div class="fieldHeaderContainer">
+      <label class="fieldHeader">Name: </label>
     </div>
-    <md-input-container md-no-float="true" flex>
-      <input style="height: 35px;padding-left:15px"
+    <md-input-container md-no-float="true" class="fieldInputMdContainer" flex>
+      <input class="fieldInputs"
              type="text" required
              placeholder="ex. Surfboard, Firepit, Grill"
              flex name="name"
@@ -34,12 +34,12 @@
     </md-input-container>
   </div>
 
-  <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-    <div style="width:120px; text-align: right; margin: 0 20px; ">
-      <label style="font-size: 15px;color: rgba(27,72,72, 1);">Address: </label>
+  <div layout="row" layout-xs="column" layout-align="start center" class="sectionContainer">
+    <div class="fieldHeaderContainer">
+      <label class="fieldHeader">Address: </label>
     </div>
-    <md-input-container md-no-float="true" flex>
-      <input style="height: 35px;padding-left:15px" type="text" id="editPageAutoComplete" required name="address"
+    <md-input-container md-no-float="true" flex class="fieldInputMdContainer">
+      <input class="fieldInputs" type="text" id="editPageAutoComplete" required name="address"
              placeholder="e.g.NYC, Barcelona, San Francisco, CA"
              ng-model="$ctrl.item.location.address" ng-change="$ctrl.getGeocode($ctrl.item.address)"
              ng-change-options="{debounce: 200}" flex/>
@@ -51,12 +51,12 @@
     </md-input-container>
   </div>
 
-  <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-    <div style="width:120px; text-align: right; margin: 0 20px; ">
-      <label style="font-size: 15px;color: rgba(27,72,72, 1);">Pick up, Drop Off: </label>
+  <div layout="row" layout-xs="column" layout-align="start center" class="sectionContainer">
+    <div class="fieldHeaderContainer">
+      <label class="fieldHeader">Pick up, Drop Off: </label>
     </div>
-    <md-input-container md-no-float="true" flex>
-      <input style="height: 35px;padding-left:15px" type="text" required name="pickupInstructions"
+    <md-input-container md-no-float="true" class="fieldInputMdContainer" flex>
+      <input class="fieldInputs" type="text" required name="pickupInstructions"
              placeholder="Let people know if there are special instructions or if you willing to drop off"
              flex ng-model="$ctrl.item.pickupInstructions"/>
       <div ng-messages="newItemForm.pickupInstructions.$error">
@@ -67,11 +67,11 @@
     </md-input-container>
   </div>
 
-  <div layout="row" layout-align="start start" style="margin-bottom: 20px;">
-    <div style="width:120px; text-align: right; margin: 9px 20px 0;">
-      <label style="font-size: 15px;color: rgba(27,72,72, 1);">Pricing: </label>
+  <div layout="row" layout-xs="column" layout-align="start start" layout-align-xs="center start" >
+    <div class="fieldHeaderContainer">
+      <label class="fieldHeader">Pricing: </label>
     </div>
-    <div layout="column">
+    <div layout="column" id="pricingContainer">
         <span>Daily:  $
         <md-input-container md-no-float="true" style="width: 150px;margin: 0;height: 40px;">
           <input style="height: 35px;padding-left:0" type="number" required
@@ -103,34 +103,34 @@
     </div>
   </div>
 
-  <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-    <div style="width:120px; text-align: right; margin: 0 20px; ">
-      <label style="font-size: 15px;color: rgba(27,72,72, 1);">Tags: </label>
+  <div layout="row" layout-xs="column" layout-align="start center" class="sectionContainer">
+    <div class="fieldHeaderContainer">
+      <label class="fieldHeader">Tags: </label>
     </div>
-    <md-input-container md-no-float="true" flex>
-      <input style="height: 35px;padding-left:15px" type="text" name="address"
+    <md-input-container md-no-float="true" class="fieldInputMdContainer" flex>
+      <input class="fieldInputs" type="text" name="address"
              placeholder="Can you think of any other names your product is known as?"
              ng-model="$ctrl.item.tags" flex/>
     </md-input-container>
   </div>
 
-  <div layout="row" layout-align="start start" style="">
-    <div style="width:121px; text-align: right; margin: 0 20px; ">
-      <label style="font-size: 15px;color: rgba(27,72,72, 1);">Product Description: </label>
+  <div layout="row" layout-xs="column" layout-align="start start" style="">
+    <div class="fieldHeaderContainer">
+      <label class="fieldHeader">Product Description: </label>
     </div>
-    <textarea style="padding-left:15px" flex rows="10" ng-model="$ctrl.userObj.bio"></textarea>
+    <textarea id="itemDescription" flex rows="10" ng-model="$ctrl.userObj.bio"></textarea>
   </div>
 
-  <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-    <div style="width:120px; text-align: right; margin: 0 20px; ">
-      <label style="font-size: 15px;color: rgba(27,72,72, 1);">Availability: </label>
+  <div layout="row" layout-xs="column" layout-align="start center"  class="sectionContainer">
+    <div class="fieldHeaderContainer">
+      <label class="fieldHeader">Availability: </label>
     </div>
     <md-button ng-click="$ctrl.pickDates()">
       <ng-md-icon icon="my_library_books"></ng-md-icon>
     </md-button>
   </div>
-
 </form>
+
 <div layout="row">
   <span flex></span>
 

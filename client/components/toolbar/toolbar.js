@@ -25,7 +25,8 @@
     ctrl.appName = APP_NAME;
     ctrl.flags = {
       hideTitle: true,
-      loggedIn: false
+      loggedIn: false,
+      mediaXS: $mdMedia('xs')
     };
 
     ctrl.openSignInDialog = function (newSignIn, ev) {
@@ -45,6 +46,8 @@
         }
       );
     };
+
+
 
     ctrl.toggleSideNav = function () {
       $mdSidenav('left').toggle();

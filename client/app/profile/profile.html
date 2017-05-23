@@ -1,32 +1,55 @@
-<section class="md-padding">
+<md-toolbar id="searchPageToolbar" class="md-padding" >
+  <div layout="row" layout-align="space-between center" style="height: 40px;">
+    <label style="margin-bottom: 6px;margin-right: 10px;">Menu: </label>
+    <md-select flex ng-model="$ctrl.activeState" md-on-close="$ctrl.menuSelectOptionChanged()">
+      <md-option ng-repeat="state in $ctrl.profileStates" ng-value="state">{{state.label}}</md-option>
+    </md-select>
+  </div>
+</md-toolbar>
 
-  <div layout="row" style="width: 80%; margin: 0 auto;">
-   <div style="width: 25%;">
-    <md-list style="padding:0;border: rgba(0, 0, 0, 0.12) 1px solid; margin-right: 5%;">
-      <md-list-item ng-class="{'activeTab': $ctrl.activeState.state == state.state}"
-                    ng-click="$ctrl.goTo(state)" ng-repeat="state in $ctrl.profileStates">
-        {{state.label}}
-        <md-divider></md-divider>
-      </md-list-item>
-    </md-list>
+<div class="md-padding">
 
-     <md-button class="md-raised" flex style="width: 85%;">
-       View Profile
-     </md-button>
+  <div layout="row" style="width: 100%;">
 
-     <md-button class="md-raised" flex style="width: 85%;" ng-click="$ctrl.save()">
-       Save
-     </md-button>
+    <div style="" id="profileMenu">
+      <div style="position: fixed;width: 25%; left: 4%;">
 
-   </div>
+        <md-list md-whiteframe="1" style="padding:0;border: rgba(0, 0, 0, 0.12) 1px solid; margin-right: 5%;">
+          <md-list-item ng-class="{'activeTab': $ctrl.activeState.state == state.state}"
+                        ng-click="$ctrl.goTo(state)" ng-repeat="state in $ctrl.profileStates">
+            {{state.label}}
+            <md-divider></md-divider>
+          </md-list-item>
+        </md-list>
+
+        <md-button class="md-raised" flex style="width: 85%;">
+          View Profile
+        </md-button>
+        <md-button class="md-raised" flex style="width: 85%;" ng-click="$ctrl.save()">
+          Save
+        </md-button>
+
+      </div>
+
+    </div>
+
     <div flex style="border:rgba(0, 0, 0, 0.12) 1px solid">
-      <md-toolbar style="min-height: 1px; height: 50px;background-color: #edefed; color: #000;border-bottom:rgba(0, 0, 0, 0.12) 1px solid">
-        <span style="margin: auto 5%;color:rgba(0, 0, 0, 0.7); font-weight: 100;">Header</span>
+      <md-toolbar
+        style="min-height: 1px; height: 50px;background-color: #edefed; color: #000;border-bottom:rgba(0, 0, 0, 0.12) 1px solid">
+        <span style="margin: auto 5%;color:rgba(0, 0, 0, 0.7); font-weight: 100;"></span>
       </md-toolbar>
       <div class="md-padding">
-          <div ui-view></div>
+        <div ui-view></div>
       </div>
     </div>
   </div>
 
-</section>
+  <div layout="row">
+    <span flex></span>
+    <md-button class="md-raised">
+      <ng-md-icon icon="save"></ng-md-icon>
+      Save
+    </md-button>
+  </div>
+
+</div>

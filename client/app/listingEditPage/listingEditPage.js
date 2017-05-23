@@ -33,7 +33,7 @@
       rates: {hourly: 0, daily: 0, weekly: 0, monthly: 0, currency: "dollar"},
       imageData: []
     };
-    ctrl.images = [];
+    //ctrl.images = [];
     var addressAutocomplete = new google.maps.places.Autocomplete(document.getElementById("editPageAutoComplete"));
 
     function bootstrap() {
@@ -70,10 +70,10 @@
     ctrl.onImageLoaded = function (image) {
       ctrl.activeImage = ctrl.image;
       ctrl.showImage = false;
-      ctrl.images.push(image);
+      //ctrl.images.push(image);
       ctrl.item.imageData.push({
         image: image,
-        metaData: {customMetadata: {order: (ctrl.images.length - 1) + ""}}
+        metaData: {customMetadata: {order: (ctrl.item.imageData.length) + ""}}
       });
 
       $timeout(function () {
@@ -92,7 +92,7 @@
         })
     };
 
-    ctrl.deleteItem = function(ev){
+    ctrl.deleteItem = function (ev) {
       $mdDialog.show(
         $mdDialog.confirm()
           .title('Are you sure you would like to delete this Item?')
@@ -104,18 +104,17 @@
       )
         .then(function () {
 
-          if(ctrl.item.id){
+          if (ctrl.item.id) {
             ItemSvc.deleteItem(ctrl.item)
-              .then(function(){
+              .then(function () {
                 $state.go("listings");
               });
-          } else{
+          } else {
             $state.go("listings");
           }
         });
 
     };
-
 
 
     // End of Controller
