@@ -23,7 +23,7 @@
         });
     }]);
 
-  profileCtrl.$inject = ["$state", "$scope","UserSvc"];
+  profileCtrl.$inject = ["$state", "$scope", "UserSvc"];
   function profileCtrl($state, $scope, UserSvc) {
     var ctrl = this;
     ctrl.profileStates = [
@@ -46,7 +46,7 @@
 
     function bootstrap() {
       $state.go("profile.edit");
-      ctrl.userObj =  UserSvc.getCurrentUser();
+      ctrl.userObj = UserSvc.getCurrentUser();
 
     }
 
@@ -55,12 +55,12 @@
       ctrl.activeState = state;
     };
 
-    ctrl.save = function(){
+    ctrl.save = function () {
       UserSvc.updateUser(ctrl.userObj);
       //console.log("USER", ctrl.userObj);
     };
 
-    ctrl.menuSelectOptionChanged = function(){
+    ctrl.menuSelectOptionChanged = function () {
       $state.go(ctrl.activeState.state);
     };
 

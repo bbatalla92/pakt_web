@@ -3,17 +3,20 @@
 
     <div style="text-align: center;">
       <div style="height: 200px;">
-        <img style=" border-radius: 100px;  height: 200px;margin-right: 15px;" ng-if="$ctrl.showImage"
+        <img style=" border-radius: 100px; border: solid 1px rgba(0, 0, 0, 0.12);  height: 200px;margin-right: 15px;" ng-if="$ctrl.showImage"
              ng-src="{{$ctrl.userObj.photoURL || 'assets/images/defaultPerson.png'}}"/>
         <md-progress-circular style="position: absolute;left: 57%;top: 25%;" ng-if="!$ctrl.showImage" md-mode="indeterminate"></md-progress-circular>
       </div>
       <br>
-      <input style="margin-left: 100px;" type="file" file-input="$ctrl.onImageLoaded"/>
+      <div style="width: 100%;">
+      <input style="margin: 0 auto;" type="file" file-input="$ctrl.onImageLoaded"/>
+      </div>
     </div>
     <md-divider style="margin-bottom: 20px;"></md-divider>
+
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-      <div style="width:120px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">First Name: </label>
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader" style="">First Name: </label>
       </div>
       <md-input-container md-no-float="true" flex>
         <input style="height: 35px;padding-left:15px" type="text" required
@@ -23,8 +26,8 @@
     </div>
 
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-      <div style="width:120px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Last Name: </label>
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader">Last Name: </label>
       </div>
       <md-input-container md-no-float="true" flex>
         <input style="height: 35px;padding-left:15px" type="text" required placeholder="ex. Byarm, Lamar, Cortese"
@@ -33,19 +36,20 @@
     </div>
 
     <div layout="row" layout-align="start center" style="height: 76px;">
-      <div style="width:120px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">I Am A: </label>
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader">I Am A: </label>
       </div>
       <md-select ng-model="$ctrl.userObj.gender" placeholder="gender">
         <md-option value="female">Female</md-option>
         <md-option value="male">Male</md-option>
+        <md-option value="other">Other</md-option>
       </md-select>
     </div>
 
 
     <div layout="row" layout-align="start center" style="height: 76px;">
-      <div style="width:120px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Birth Date is: </label>
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader">Birth Date is: </label>
       </div>
       <div layout="row" layout-align="space-around center">
         <md-input-container>
@@ -76,8 +80,8 @@
 
 
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-      <div style="width:120px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Email: </label>
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader">Email: </label>
       </div>
       <md-input-container md-no-float="true" flex>
         <input style="height: 35px;padding-left:15px" type="email" required placeholder="xy@domain.com" flex
@@ -86,8 +90,8 @@
     </div>
 
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-      <div style="width:120px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Phone Number: </label>
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader">Phone Number: </label>
       </div>
       <md-input-container md-no-float="true" flex>
         <input style="height: 35px;padding-left:15px" type="number" required placeholder="xxx-xxx-xxxx" flex
@@ -96,8 +100,8 @@
     </div>
 
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
-      <div style="width:120px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Your City: </label>
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader">Your City: </label>
       </div>
       <md-input-container md-no-float="true" flex>
         <input style="height: 35px;padding-left:15px" type="text" required
@@ -105,11 +109,11 @@
       </md-input-container>
     </div>
 
-    <div layout="row" layout-align="start start" style="">
-      <div style="width:121px; text-align: right; margin: 0 20px; ">
-        <label style="font-size: 15px;color: rgba(27,72,72, 1);">Describe Yourself: </label>
+    <div layout="row" layout-xs="column" layout-align="start start" style="">
+      <div class="fieldHeaderContainer">
+        <label class="fieldHeader">Describe Yourself: </label>
       </div>
-      <textarea style="padding-left:15px" flex rows="10" ng-model="$ctrl.userObj.bio"></textarea>
+      <textarea style="padding-left:15px; width: 100%; border: solid rgba(0, 0, 0, 0.13) 1px" flex rows="10" ng-model="$ctrl.userObj.bio"></textarea>
     </div>
 
   </form>

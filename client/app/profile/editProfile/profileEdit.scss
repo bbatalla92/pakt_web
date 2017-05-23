@@ -1,7 +1,37 @@
-profile-edit{
+profile-edit {
 
-  input:focus{
-
+  .fieldHeaderContainer {
+    width: 120px;
+    text-align: right;
+    margin: 0 20px;
   }
 
-}
+  .fieldHeader {
+    font-size: 15px;
+    color: rgba(27, 72, 72, 1);
+  }
+
+  @media screen and (max-width: 600px) {
+    .fieldHeaderContainer {
+      text-align: left;
+      width: 115px;
+      margin: 0 10px 9px 0;
+
+    }
+
+    .fieldHeader {
+      font-size: 14px;
+    }
+  }
+
+
+  @media screen and (max-width: 600px) {
+
+    .fieldHeaderContainer {
+      width: 70px;
+
+    }
+  }
+
+
+  }
