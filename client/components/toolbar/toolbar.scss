@@ -9,4 +9,49 @@ toolbar {
     height: 60px !important;
     min-height: 60px !important;
   }
+
+  #toolbarAppName {
+    cursor: pointer;
+    margin-left: 2%;
+    font-size: xx-large;
+    font-weight: 800;
+  }
+
+  #menuIcon {
+    height: 42px;
+    width: 42px;
+  }
+
+  #menuIconButton {
+    color: black;
+    margin-bottom: auto;
+    height: 50px;
+    width: 50px;
+  }
+
+  // Media Queries Below -----------------------
+
+  @media screen and (max-width: 600px) {
+
+    #toolbarAppName {
+      font-size: larger;
+      margin-left: 0%;
+
+    }
+
+    #menuIcon {
+      //height: 32px;
+      //width: 32px;
+    }
+
+    #menuIconButton {
+      margin-top: 5px;
+      height: -1;
+      width: -1;
+
+    }
+
+
+  }
+
 }

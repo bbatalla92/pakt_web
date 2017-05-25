@@ -1,4 +1,5 @@
 main {
+
   #mainHeaderTextContainer {
     width: 50%;
     padding-left: 15% !important;
@@ -20,11 +21,18 @@ main {
     font-weight: 900;
   }
 
-  #mainSearchComponent {
+  .searchBarClosed {
     display: block;
     margin-top: -2%;
     position: absolute;
     width: 100%;
+  }
+
+  .searchBarOpen{
+    display: block;
+    position: absolute;
+    width: 100%;
+    margin-top: -2%;
   }
 
   .mainHeaderSubHeader {
@@ -55,6 +63,35 @@ main {
 
   #mainSecondHeaderContainer {
     position: relative;
+  }
+
+  #carouselOuterContainer {
+    margin-top: 30px;
+    margin-right: 10%;
+    margin-left: 10%;
+    overflow-y: hidden;
+  }
+
+  #carouselTitle {
+    margin-left: 4%;
+    font-size: 19px;
+    font-weight: 500;
+  }
+
+  #carouselCoreContainer {
+  }
+
+  .carouselLeftRightButtons {
+    height: 100%;
+    margin-right: 10px;
+  }
+
+  #carouselItemsContainer {
+    overflow-x: auto !important;
+    display: inline-flex !important;
+    width: 100%;
+    margin-bottom: -25px;
+    padding-bottom: -25px;
   }
 
   /* -------------Media Queries Below Ascending order----------------------------*/
@@ -134,7 +171,7 @@ main {
       max-height: 600px;
     }
 
-    #mainSearchComponent {
+    .searchBarClosed {
       display: block;
       margin-top: -3%;
     }
@@ -153,6 +190,35 @@ main {
       font-size: 30px;
     }
 
+    #carouselOuterContainer {
+      margin-top: 10px;
+      margin-right: 8%;
+      margin-left: 8%;
+    }
+
+  }
+
+  @media screen and (max-width: 600px) {
+
+    .searchBarOpen{
+      display: block;
+      margin-top: -40%;
+      position: absolute;
+      width: 100%;
+      -webkit-transition: margin-top .3s 0s;
+      -moz-transition: margin-top .3s 0s;
+      -o-transition: margin-top .3s 0s;
+      transition: margin-top .3s 0s;
+    }
+
+    #carouselOuterContainer {
+      margin: 30px 0 0 0;
+    }
+
+    .itemCarouselTemplate:first-child {
+      margin-left: 20px;
+    }
+
   }
 
   @media screen and (max-width: 450px) {
@@ -168,4 +234,5 @@ main {
     }
 
   }
+
 }

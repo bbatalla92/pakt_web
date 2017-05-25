@@ -1,0 +1,66 @@
+home-item-search-bar {
+
+  div.md-datepicker-input-container {
+    width: 75%;
+    margin-left: 0 !important;
+  }
+
+  button.md-button.md-icon-button {
+    margin-left: -7px;
+  }
+
+  #mainSearchBar {
+    width: 60%;
+    margin: 0 auto !important;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+  }
+
+  #searchBarText {
+    opacity: 07;
+  }
+
+  .datePickerContainers {
+    margin: 10px 0 0;
+    width: 45%;
+    height: 35px;
+  }
+
+  #searchBarGoButton {
+    min-width: 1%;
+    width: 50px;
+  }
+
+  /*-------------------------------------------*/
+
+  @media screen and (max-width: 900px) {
+    #mainSearchBar {
+      width: 70%;
+    }
+
+  }
+
+  @media screen and (max-width: 600px) {
+
+    .datePickerContainers {
+      width: 100%;
+    }
+
+    #mainSearchBar {
+      width: 90%;
+
+    }
+
+    #searchBarText {
+      font-size: 14px;
+
+    }
+
+    #searchBarGoButton {
+      left: 85%;
+      margin-top: -42px;
+    }
+
+  }
+}

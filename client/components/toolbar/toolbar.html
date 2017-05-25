@@ -1,13 +1,13 @@
 <md-toolbar class="toolbarStyle" ng-class="{'toolbarBoxShadow': !$ctrl.flags.hideTitle}">
   <div class="md-toolbar-tools" style="margin: auto;">
-    <md-button class="md-icon-button" style="color: black;margin-bottom: auto;height: 50px; width: 50px;"
+    <md-button class="md-icon-button" id="menuIconButton" style=""
                ng-click="$ctrl.toggleSideNav()" ng-if="$ctrl.flags.loggedIn || $ctrl.flags.mediaXS">
-      <ng-md-icon icon="menu" style="height: 42px;width: 42px;" size="42"></ng-md-icon>
+      <ng-md-icon icon="menu" id="menuIcon" size="{{$ctrl.flags.mediaXS ? '32':'42'}}"></ng-md-icon>
     </md-button>
 
-    <h3 ui-sref="main" md-colors="{color: 'primary'}"
-        style="cursor: pointer; margin-left: 4%;font-size: xx-large; font-weight: 800;" class="app-name">
-      {{$ctrl.appName}}</h3>
+    <h3 ui-sref="main" md-colors="{color: 'primary'}" id="toolbarAppName" class="app-name">
+      {{$ctrl.appName}}
+    </h3>
 
     <span flex></span>
     <md-button style="color: #000;" hide-xs hide-sm>Start Earning</md-button>

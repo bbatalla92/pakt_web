@@ -8,38 +8,34 @@
   </div>
 
   <div style="border-top: 1px solid rgba(0, 0, 0, 0.42);margin-top: 5px;" ng-if="$ctrl.showSearchForm">
-    <md-input-container style="margin: 18px 0 0;width: 90%;height: 35px;">
+    <md-input-container md-no-float style="margin: 10px 0 0;width: 90%;height: 35px;">
       <md-icon>
-        <ng-md-icon icon="pan_tool"></ng-md-icon>
+        <ng-md-icon icon="date_range"></ng-md-icon>
       </md-icon>
-      <label style="">Keyword for Item</label>
-      <input type="text" ng-model="$ctrl.searchParams.keyword" autofocus/>
+      <input type="text" ng-model="$ctrl.searchParams.keyword" autofocus placeholder="Searching for ..."/>
     </md-input-container>
 
-    <md-input-container style="margin: 15px 0 0;width: 90%;height: 35px;">
+    <md-input-container style="margin:0 0;width: 90%;height: 35px;" md-no-float>
       <md-icon>
-        <ng-md-icon icon="home"></ng-md-icon>
+        <ng-md-icon icon="location_on"></ng-md-icon>
       </md-icon>
-      <label style="">Where to...</label>
-      <input type="text" ng-model="$ctrl.searchParams.location"/>
+      <input type="text" ng-model="$ctrl.searchParams.location" placeholder="Anywhere"/>
     </md-input-container>
 
-    <div layout="row" layout-xs="column">
-      <md-input-container class="datePickerContainers">
-        <label style="">Start Date</label>
-        <md-datepicker ng-model="$ctrl.searchParams.startDate" md-open-on-focus flex></md-datepicker>
-      </md-input-container>
-      <md-input-container class="datePickerContainers">
-        <label style="">End Date</label>
-        <md-datepicker ng-model="$ctrl.searchParams.endDate" md-open-on-focus flex></md-datepicker>
-      </md-input-container>
-
-      <md-button id="searchBarGoButton" class="md-primary" ng-click="$ctrl.showSearchForm = false" ui-sref="results({searchParams: $ctrl.searchParams})">Go
-      </md-button>
-    </div>
+    <md-input-container md-no-float style="margin: 10px 0 0;width: 90%;height: 35px;">
+      <md-icon>
+        <ng-md-icon icon="date_range"></ng-md-icon>
+      </md-icon>
+      <input type="text" ng-model="$ctrl.searchParams.when" placeholder="Anytime"/>
+    </md-input-container>
+    <br>
+    <md-button md-colors="{backgroundColor:'primary'}" style="width: 100%; margin:10px 0 0;color: white;" ng-click="$ctrl.showSearchForm = false"
+               ui-sref="results({searchParams: $ctrl.searchParams})">Search
+    </md-button>
 
   </div>
 </div>
-<!--
-<div ng-if="$ctrl.showSearchForm" ng-click="$ctrl.showSearchForm = false" style="background-color: black; min-width: 20px; min-height: 20px;"></div>
--->
+
+<div ng-if="$ctrl.showSearchForm" ng-click="$ctrl.showSearchForm = false"
+     style="background-color: transparent; min-width: 100vw; min-height: 100vh; position: fixed; top: 0; z-index: 0;"></div>
+

@@ -6,7 +6,10 @@
 angular.module('app')
   .component("homeItemSearchBar",{
     templateUrl: 'components/homeItemSearchBar/homeItemSearchBar.html',
-    controller: homeItemSearchBarCtrl
+    controller: homeItemSearchBarCtrl,
+    bindings:{
+      showSearchForm: '<'
+    }
   });
 
 

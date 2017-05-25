@@ -16,13 +16,14 @@
         });
     }]);
 
-  mainCtrl.$inject = ["mainSvc", "APP_NAME"];
+  mainCtrl.$inject = ["mainSvc", "APP_NAME", "$mdMedia", "$timeout"];
 
-  function mainCtrl(mainSvc, APP_NAME) {
+  function mainCtrl(mainSvc, APP_NAME, $mdMedia, $timeout) {
     var ctrl = this;
 
     ctrl.carouselData = [];
     ctrl.appName = APP_NAME;
+    ctrl.searchBarOpenFlag = false;
 
     function bootstrap() {
       getCarouselData();
@@ -36,6 +37,26 @@
         });
     }
 
+    ctrl.searchBarOpen = function () {
+      if ($mdMedia('xs')) {
+        ctrl.searchBarOpenFlag = true;
+      } else {
+        console.log(window.pageYOffset);
+        window.scrollTo(0, 350);
+      }
+    };
+
+    function scrollWindow(scrollTo) {
+      // console.log(window.pageYOffset);
+      /*      window.scrollTo(0, window.pageYOffset + 1);
+       if (window.pageYOffset < scrollTo) {
+       $timeout(function () {
+       scrollWindow(scrollTo);
+       }, .01)
+       } else {
+       return;
+       }*/
+    }
 
 
     // End of the controller
