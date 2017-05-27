@@ -1,0 +1,26 @@
+<div md-whiteframe="3" style="background-color: white" class="md-padding">
+
+  <div layout="row" layout-align="center center" style="margin: 10px;" >
+    <label class="dateLabel" ng-class="{'activeDate': $ctrl.activeDate === 'start'}" ng-click="$ctrl.activeDate = 'start'">
+      <span ng-if="!$ctrl.startDate" style="font-weight: 100; color: rgba(0, 0, 0, 0.57);" ng-class="{'activeDate': $ctrl.activeDate === 'start'}">
+        Start Date
+      </span> {{$ctrl.startDate | date}}
+    </label>
+
+    To
+
+    <label class="dateLabel" style="margin-left: 15px;" ng-class="{'activeDate': $ctrl.activeDate === 'end'}" >
+      <span ng-if="!$ctrl.endDate" style="font-weight: 100; color: rgba(0, 0, 0, 0.57);" ng-class="{'activeDate': $ctrl.activeDate === 'end'}">
+        End Date</span> {{$ctrl.endDate | date}}
+    </label>
+
+  </div>
+
+  <md-divider></md-divider>
+
+  <div style="width: 350px; border: rgba(0, 0, 0, 0.12) solid 1px; margin: 0 auto; margin-top: 15px;">
+    <md-calendar md-max-date="$ctrl.maxDate" md-min-date="$ctrl.minDate" ng-model="$ctrl.date"
+                 ng-change="$ctrl.onDateSelect()"></md-calendar>
+  </div>
+
+</div>

@@ -7,7 +7,7 @@
     <h3 id="searchBarText">Rent anything, anywhere</h3>
   </div>
 
-  <div style="border-top: 1px solid rgba(0, 0, 0, 0.42);margin-top: 5px;" ng-if="$ctrl.showSearchForm">
+  <div style="border-top: 1px solid rgba(0, 0, 0, 0.42);margin-top: 5px;" ng-show="$ctrl.showSearchForm">
     <md-input-container md-no-float style="margin: 10px 0 0;width: 90%;height: 35px;">
       <md-icon>
         <ng-md-icon icon="date_range"></ng-md-icon>
@@ -15,22 +15,28 @@
       <input type="text" ng-model="$ctrl.searchParams.keyword" autofocus placeholder="Searching for ..."/>
     </md-input-container>
 
-    <md-input-container style="margin:0 0;width: 90%;height: 35px;" md-no-float>
+    <md-input-container style="margin:10px 0 0 0;width: 90%;height: 35px;" md-no-float>
       <md-icon>
         <ng-md-icon icon="location_on"></ng-md-icon>
       </md-icon>
-      <input type="text" ng-model="$ctrl.searchParams.location" placeholder="Anywhere"/>
+      <input id="locationSearchBar" ng-value="$ctrl.searchParams.location.address" type="text" placeholder="Anywhere"/>
     </md-input-container>
 
     <md-input-container md-no-float style="margin: 10px 0 0;width: 90%;height: 35px;">
       <md-icon>
         <ng-md-icon icon="date_range"></ng-md-icon>
       </md-icon>
-      <input type="text" ng-model="$ctrl.searchParams.when" placeholder="Anytime"/>
+      <input ng-click="$ctrl.showDatePanel($event)" type="text"
+             ng-value="$ctrl.searchParams.startDate ? ($ctrl.searchParams.startDate | date) + ' To ' + ($ctrl.searchParams.endDate | date) : ''"
+             placeholder="Anytime"/>
     </md-input-container>
+
     <br>
-    <md-button md-colors="{backgroundColor:'primary'}" style="width: 100%; margin:10px 0 0;color: white;" ng-click="$ctrl.showSearchForm = false"
-               ui-sref="results({searchParams: $ctrl.searchParams})">Search
+
+    <md-button md-colors="{backgroundColor:'primary'}" style="width: 100%; margin:10px 0 0;color: white;"
+               ng-click="$ctrl.showSearchForm = false"
+               ui-sref="results({searchParams: $ctrl.searchParams})">
+      <span style="color:white">Search</span>
     </md-button>
 
   </div>

@@ -39,11 +39,43 @@
           element.on('change', listener);
         }
       }
-    });
+    })
+    .directive('disabletap', function($timeout) {
+    return {
+      link: function() {
+        $timeout(function() {
+          var container = document.getElementsByClassName('pac-container');
+          // disable ionic data tab
+          angular.element(container).attr('data-tap-disabled', 'true');
+          // leave input field if google-address-entry is selected
+          angular.element(container).on("click", function(){
+            document.getElementById('type-selector').blur();
+          });
 
+        },500);
+
+      }
+    };
+  });
   UtilsSvc.$inject = ["$q", "$http", "G_API_KEY", "$sce"];
 
   function UtilsSvc($q, $http, G_API_KEY, $sce) {
+    var userLocation = {};
+    setLocation();
+    var geocoder = new google.maps.Geocoder();
+
+    function getPosition(position) {
+      if (position.coords.latitude) {
+        userLocation.lat = position.coords.latitude;
+        userLocation.lng = position.coords.longitude;
+        geocoder.geocode({'location': userLocation}, function (results, status) {
+          if (status === 'OK') {
+            userLocation.address = results[0]["formatted_address"]
+            console.log(userLocation);
+          }
+        });
+      }
+    }
 
     function sortImages(imageData) {
       var images = [];
@@ -100,12 +132,24 @@
       return q.promise;
     }
 
+    function getUserLocation() {
+      if (!Object.keys(userLocation).length) {
+        setLocation();
+      }
+
+      return userLocation
+    }
+
+    function setLocation() {
+      navigator.geolocation.getCurrentPosition(getPosition);
+    }
 
     return {
       sortImages: sortImages,
       hashString: hashString,
       hashStringWithTimeStamp: hashStringWithTimeStamp,
       downloadImageFromUrl: downloadImageFromUrl,
+      getUserLocation:getUserLocation
     }
   }
 

@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="/components/starRating/starRating.css">
   <link rel="stylesheet" href="/components/review/review.css">
   <link rel="stylesheet" href="/components/ItemImageGallery/ItemImageGallery.css">
+  <link rel="stylesheet" href="/components/datePicker/datePicker.css">
   <!-- endbuild -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
@@ -42,7 +43,7 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div layout="column" style="">
+<div layout="column" disabletap>
   <toolbar style="position: fixed; z-index: 50; width: 100%; "></toolbar>
   <div style=" background-color: white; overflow-x: hidden; margin-top: 60px;" flex>
     <sidenav></sidenav>
@@ -50,8 +51,10 @@
     <foot></foot>
   </div>
 </div>
-<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8HUJAUIeUDevQGkPwta56Jn21AvhJoqw&libraries=places" async defer></script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
   !function (A, n, g, u, l, a, r) {
@@ -65,10 +68,41 @@
   ga('send', 'pageview');
 </script>
 
+
+
+<!--  Facebook -->
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '1548908075142868',
+      xfbml: true,
+      status: true,
+      cookie: true,
+      version: 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <!-- endbower -->
 <!-- endbuild -->
+
+
 
 <!-- Initialize Firebase -->
 <script>
@@ -109,41 +143,9 @@
 <script src="/components/review/review.js"></script>
 <script src="/components/starRating/starRating.js"></script>
 <script src="/components/ItemImageGallery/ItemImageGallery.js"></script>
+<script src="/components/datePicker/datePicker.js"></script>
 <!-- endbuild -->
 
-
-
-
-<!--  Facebook -->
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function () {
-    FB.init({
-      appId: '1548908075142868',
-      xfbml: true,
-      status: true,
-      cookie: true,
-      version: 'v2.9'
-    });
-    FB.AppEvents.logPageView();
-  };
-
-  (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {
-      return;
-    }
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<!-- Google Maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8HUJAUIeUDevQGkPwta56Jn21AvhJoqw&libraries=places"
-        async defer></script>
 
 </body>
 </html>

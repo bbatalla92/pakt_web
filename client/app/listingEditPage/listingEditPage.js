@@ -58,19 +58,18 @@
 
     addressAutocomplete.addListener('place_changed', function () {
       var place = addressAutocomplete.getPlace();
-      ctrl.item.location = {
+      ctrl.search.location = {
         address: place.formatted_address,
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng()
       };
-      console.log("PLACE CHANGED", ctrl.item.location);
 
     });
 
     ctrl.onImageLoaded = function (image) {
       ctrl.activeImage = ctrl.image;
       ctrl.showImage = false;
-      //ctrl.images.push(image);
+
       ctrl.item.imageData.push({
         image: image,
         metaData: {customMetadata: {order: (ctrl.item.imageData.length) + ""}}

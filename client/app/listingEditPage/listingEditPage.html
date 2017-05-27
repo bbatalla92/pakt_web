@@ -41,8 +41,7 @@
     <md-input-container md-no-float="true" flex class="fieldInputMdContainer">
       <input class="fieldInputs" type="text" id="editPageAutoComplete" required name="address"
              placeholder="e.g.NYC, Barcelona, San Francisco, CA"
-             ng-model="$ctrl.item.location.address" ng-change="$ctrl.getGeocode($ctrl.item.address)"
-             ng-change-options="{debounce: 200}" flex/>
+             ng-model="$ctrl.item.location.address" flex/>
       <div ng-messages="newItemForm.address.$error">
         <div ng-message="required">
           Address is required

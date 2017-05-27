@@ -1,0 +1,21 @@
+date-picker {
+
+  .activeDate {
+    color: rgb(83, 182, 140) !important;
+    padding-bottom: 5px;
+    border-bottom: 2px rgb(83, 182, 140) solid;
+  }
+
+  .dateLabel {
+    margin-right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+  }
+
+  .dateLabel:focus{
+    outline: none;
+  }
+
+}
