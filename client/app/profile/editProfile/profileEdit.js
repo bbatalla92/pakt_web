@@ -19,8 +19,21 @@
     ctrl.image = "";
     ctrl.showImage = true;
 
+    var locationAutocomplete = new google.maps.places.Autocomplete(document.getElementById("address"));
+
+    locationAutocomplete.addListener('place_changed', function () {
+      var place = locationAutocomplete.getPlace();
+      ctrl.userObj.location = {
+        address: place.formatted_address,
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      };
+      $scope.$apply();
+    });
+
+
     function bootstrap() {
-      ctrl.userObj = UserSvc.getCurrentUser();
+    //  ctrl.userObj = UserSvc.getCurrentUser();
     }
 
     ctrl.onImageLoaded = function (img) {
@@ -51,13 +64,20 @@
         });
     };
 
+    ctrl.save = function () {
+      console.log(ctrl.userObj);
+
+      UserSvc.updateUser(ctrl.userObj);
+    };
 
     // End of the controller
     bootstrap();
     ctrl.$onDestroy = function(){$mdDialog.cancel()};
+
     $scope.$on('user-object-updated', function (event, args) {
       ctrl.userObj = args.user;
       ctrl.showImage = true;
+
       $scope.$apply();
     });
 

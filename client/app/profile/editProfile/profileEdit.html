@@ -101,11 +101,11 @@
 
     <div layout="row" layout-align="start center" style="margin-bottom: 20px; height: 70px;">
       <div class="fieldHeaderContainer">
-        <label class="fieldHeader">Your City: </label>
+        <label class="fieldHeader">Your Address: </label>
       </div>
       <md-input-container md-no-float="true" flex>
-        <input style="height: 35px;padding-left:15px" type="text" required
-               placeholder="e.g.NYC, Barcelona, San Francisco, CA" ng-model="$ctrl.userObj.address" flex/>
+        <input style="height: 35px;padding-left:15px" type="text" required id="address" ng-value="$ctrl.userObj.location.address"
+               placeholder="e.g.NYC, Barcelona, San Francisco, CA" flex/>
       </md-input-container>
     </div>
 
@@ -116,6 +116,12 @@
       <textarea style="padding-left:15px; width: 100%; border: solid rgba(0, 0, 0, 0.13) 1px" flex rows="10" ng-model="$ctrl.userObj.bio"></textarea>
     </div>
 
+    <div layout="row" style="margin-top: 20px;">
+      <span flex></span>
+    <md-button class="md-raised" style="min-width: 200px; width:40% " ng-click="$ctrl.save()">
+      Save
+    </md-button>
+    </div>
   </form>
 
 

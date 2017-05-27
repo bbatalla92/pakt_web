@@ -71,7 +71,6 @@
         geocoder.geocode({'location': userLocation}, function (results, status) {
           if (status === 'OK') {
             userLocation.address = results[0]["formatted_address"]
-            console.log(userLocation);
           }
         });
       }

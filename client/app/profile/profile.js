@@ -55,11 +55,6 @@
       ctrl.activeState = state;
     };
 
-    ctrl.save = function () {
-      UserSvc.updateUser(ctrl.userObj);
-      //console.log("USER", ctrl.userObj);
-    };
-
     ctrl.menuSelectOptionChanged = function () {
       $state.go(ctrl.activeState.state);
     };
