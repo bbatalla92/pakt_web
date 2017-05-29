@@ -33,7 +33,7 @@
 
 
     function bootstrap() {
-    //  ctrl.userObj = UserSvc.getCurrentUser();
+      ctrl.userObj = UserSvc.getCurrentUser();
     }
 
     ctrl.onImageLoaded = function (img) {

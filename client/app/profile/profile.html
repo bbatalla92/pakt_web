@@ -7,7 +7,7 @@
   </div>
 </md-toolbar>
 
-<div class="md-padding">
+<div class="md-padding" style="min-height: 400px;">
 
   <div layout="row" style="width: 100%;">
 
@@ -15,8 +15,8 @@
       <div style="position: fixed;width: 25%; left: 4%;">
 
         <md-list md-whiteframe="1" style="padding:0;border: rgba(0, 0, 0, 0.12) 1px solid; margin-right: 5%;">
-          <md-list-item ng-class="{'activeTab': $ctrl.activeState.state == state.state}"
-                        ng-click="$ctrl.goTo(state)" ng-repeat="state in $ctrl.profileStates">
+          <md-list-item ng-repeat="state in $ctrl.profileStates"  ng-class="{'activeTab': $ctrl.activeState.state == state.state}"
+                        ng-click="$ctrl.goTo(state)" ui-sref="{{state.state}}">
             {{state.label}}
             <md-divider></md-divider>
           </md-list-item>

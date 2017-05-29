@@ -27,7 +27,7 @@
       }, {
         label: "Messages",
         icon: 'message',
-        sref: "profile.edit"
+        sref: "messages"
       }, {
         label: "History",
         icon: 'receipt',

@@ -1,0 +1,40 @@
+
+
+<div flex class="md-margin messageContainer" style="border: solid rgba(0, 0, 0, 0.13) 1px" layout="column" layout-align="end">
+  <div flex layout="column" layout-align="end" class="md-padding" style="max-height: 82vh;display: block; overflow-y: auto;">
+    <div ng-repeat="message in [12,11, 13, 10]" style="width: 100%;">
+      <div layout="row" style="width: 60%" ng-if="message % 2 === 0">
+        <div>
+          <img src="assets/images/defaultPerson.png" style=" height: 70px;width: 70px; border-radius: 35px">
+        </div>
+        <div
+          style="margin-top: 40px; margin-left: 15px; padding: 8px; background-color: rgba(255, 83, 14, .23);; width: 100%;;border-radius: 10px;">
+          dsfagsgas gfhfjdkutyirgferjyeoi hwerdsfagsgasgfhfjdkutyig uheargferjyeo ihwerdsfagsgasgfhfj
+          dkutyiguheargferjyeoihwerdsfag
+          sgasgf fjdkuyiguhea rgferjyeoihwerdsfagsg asgfhfjdkutyiguheargferjyeoih werdsfagsgasgfhfjdkutyig
+          uheargferjyeoihwerdsfagsgasgfk
+        </div>
+      </div>
+
+      <div layout="row" style="width: 60%; float: right;" ng-if="message % 2 !== 0">
+        <div
+          style="margin-top: 40px; margin-right: 15px; padding: 8px; background-color: rgba(83,182,140, .23); width: 100%;border-radius: 10px;">
+          dsfagsgas gfhfjdkutyirgferjyeoi hwerdsfagsgasgfhfjdkutyig uheargferjyeo ihwerdsfagsgasgfhfj
+          dkutyiguheargferjyeoihwerdsfag
+          sgasgf fjdkuyiguhea rgferjyeoihwerdsfagsg asgfhfjdkutyiguheargferjyeoih werdsfagsgasgfhfjdkutyig
+          uheargferjyeoihwerdsfagsgasgfk
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form style="border-top: solid rgba(0, 0, 0, 0.12); padding: 0 10px;" layout="row">
+    <md-input-container flex md-no-float style="margin: 0;">
+      <textarea ng-model="$ctrl.textMessage" placeholder="Start typing..." maxlength="250"></textarea>
+    </md-input-container>
+    <md-button type="submit" ng-style="{backgroundColor: 'rgb(83,182,140)'}"
+               style="margin: 0;color: white;padding-right: 0;" ng-click="$ctrl.sendMessage();">
+      Send
+    </md-button>
+  </form>
+</div>

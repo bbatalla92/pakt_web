@@ -36,10 +36,11 @@
       }, {
         state: "profile.reviews",
         label: "Reviews"
-      }, {
+      }
+      /*, {
         state: "profile.references",
         label: "References"
-      }
+      }*/
     ];
     ctrl.activeState = ctrl.profileStates[0];
 
@@ -51,7 +52,6 @@
     }
 
     ctrl.goTo = function (state) {
-      //
       ctrl.activeState = state;
     };
 

@@ -1,0 +1,18 @@
+messaging-container {
+  .messagesContainer {
+    // max-height: 90vh;
+  }
+
+  .messageContainer {
+
+  }
+
+  @media screen and (max-width: 750px) {
+
+    .messageContainer {
+      display: none;
+    }
+
+  }
+
+}

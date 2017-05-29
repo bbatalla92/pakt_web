@@ -9,25 +9,26 @@
       controller: toolbarCtrl
     });
 
-  toolbarCtrl.$inject = ['$mdDialog', '$mdMedia', '$scope', '$state', 'APP_NAME', '$mdSidenav'];
+  toolbarCtrl.$inject = ['$mdDialog', '$mdMedia', '$scope', '$state', 'APP_NAME', '$mdSidenav', "$rootScope"];
 
   /** @ngInject */
-  function toolbarCtrl($mdDialog, $mdMedia, $scope, $state, APP_NAME, $mdSidenav) {
+  function toolbarCtrl($mdDialog, $mdMedia, $scope, $state, APP_NAME, $mdSidenav, $rootScope) {
     var ctrl = this;
-
     var requiredSignInStatesMap = {
       profile: true,
       listings: true,
       listingEditPage: true,
       'profile.edit': true
     };
-
     ctrl.appName = APP_NAME;
     ctrl.flags = {
       hideTitle: true,
       loggedIn: false,
       mediaXS: $mdMedia('xs')
     };
+
+    ctrl.flags.hideTitle = $state.current.name === "main";
+
 
     ctrl.openSignInDialog = function (newSignIn, ev) {
       $mdDialog.show(
@@ -53,8 +54,9 @@
       $mdSidenav('left').toggle();
     };
 
-    $scope.$watch(function(){
-      ctrl.flags.hideTitle = $state.current.name === "main";
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams, options){
+      ctrl.flags.hideTitle = toState.name === "main";
     });
 
     $scope.$on('user-object-updated', function (event, args) {

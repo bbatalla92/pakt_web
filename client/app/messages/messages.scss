@@ -1,0 +1,63 @@
+messages {
+
+
+  #messagesHeader{
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-weight: 100;
+    font-size: xx-large;
+    color: rgba(0, 0, 0, 0.56);
+    padding-bottom:20px;
+  }
+
+  #messageList{
+    min-height: 575px;
+    z-index: 0;
+    min-width:275px;
+    width: 25%;
+    border: solid 1px rgba(0, 0, 0, 0.12);
+  }
+
+  @media screen and (max-width: 1000px) {
+
+  }
+
+  @media screen and (max-width: 900px) {
+
+  }
+
+
+  @media screen and (max-width: 750px) {
+    #messageList {
+      width:100%;
+      min-height: 400px;
+      margin:0 auto;
+    }
+
+    .messageContainer{
+      display: none;
+    }
+
+
+
+  }
+
+
+  @media screen and (max-width: 500px) {
+
+    #messageList {
+      width:100%;
+      min-height: 400px;
+      margin:0 auto;
+    }
+
+
+  }
+
+
+
+
+
+
+  }

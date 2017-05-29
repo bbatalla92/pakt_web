@@ -18,9 +18,9 @@
         );
     }]);
 
-  itemPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$timeout"];
+  itemPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$timeout","G_API_KEY", "$mdMedia"];
 
-  function itemPageCtrl($stateParams, $scope, $window, $timeout) {
+  function itemPageCtrl($stateParams, $scope, $window, $timeout, G_API_KEY, $mdMedia) {
     var ctrl = this;
 
     ctrl.flags = {
@@ -42,7 +42,7 @@
 
     // ___________ Functions below ____________
     function bootstrap() {
-
+      initMap();
     }
 
     ctrl.button = function () {
@@ -51,8 +51,25 @@
 
     };
 
+
+
+    console.log("MAP", ctrl.mapUrl);
+
     function initMap() {
-      ctrl.map = new google.maps.Map(document.getElementById('map'), {
+      var mapBaseUrl = 'https://maps.googleapis.com/maps/api/staticmap?zoom=12&scale=4';
+      var key = "key="+ G_API_KEY;
+      var marker = "markers=icon:https://goo.gl/52bjtg|39.835700,%20-74.187158";
+      var center = "center="+"39.835700,%20-74.187158";
+      var size = "size=1200x200";
+
+      if($mdMedia("xs")){
+        size = "size=1200x300";
+      }
+
+      ctrl.mapUrl = mapBaseUrl+"&"+center+"&"+size+"&"+marker+"&"+key;
+
+
+      /*  ctrl.map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 39.9525839, lng: -75.16522150000003},
         zoom: 12,
         disableDefaultUI: true,
@@ -68,7 +85,7 @@
         map: ctrl.map,
         center: {lat: 39.944296, lng: -75.169242},
         radius: 600
-      });
+      });*/
     }
 
     ctrl.calculateTotal = function () {
