@@ -1,0 +1,17 @@
+messaging-bottom-sheet {
+
+  .bottomSheetContent {
+    display: none;
+  }
+  .bottomSheetContentActive {
+    display: block;
+  }
+  #toolbar {
+    outline: none;
+    cursor: pointer;
+    height: 40px;
+    min-height: 1px;
+    padding: 4px;
+    text-align: left;
+  }
+}

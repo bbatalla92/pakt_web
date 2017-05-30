@@ -15,17 +15,23 @@
         );
     }]);
 
-  messagesCtrl.$inject = [];
+  messagesCtrl.$inject = ["$mdMedia"];
 
-  function messagesCtrl() {
+  function messagesCtrl($mdMedia) {
     var ctrl = this;
+
+    ctrl.bsActive = false;
+
+
 
     ctrl.sendMessage = function(){
       console.log("MESSAGE SENT");
     };
 
-    ctrl.showBottomSheet = function(){
-
+    ctrl.messageItemClicked = function(){
+      if($mdMedia('xs') || $mdMedia('sm')){
+        ctrl.bsActive = true;
+      }
     }
 
 

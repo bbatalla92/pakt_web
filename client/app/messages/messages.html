@@ -1,6 +1,4 @@
 <div layout="row" class="messagesContainer">
-
-
   <div id="messageList" layout="column">
     <md-toolbar class="md-theme-light" style="height: 20px;min-height: 1px;">
     </md-toolbar>
@@ -8,8 +6,9 @@
       <span id="messagesHeader">Messages</span>
       <md-divider></md-divider>
       <md-list flex>
-        <md-list-item ng-click="$ctrl.showBottomSheet()" class="md-2-line" layout-padding >
-          <img src="assets/images/defaultPerson.png" style=" height: 50px;width: 50px; border-radius: 25px; margin-right: 10px;" >
+        <md-list-item ng-click="$ctrl.messageItemClicked()" class="md-2-line" >
+          <img src="assets/images/defaultPerson.png"
+               style=" height: 50px;width: 50px; border-radius: 25px; margin-right: 10px;">
           <div class="md-list-item-text">
             <h3>Name goes here</h3>
             <p>Date goes here</p>
@@ -20,8 +19,11 @@
     </md-content>
   </div>
 
-
-  <messaging-container></messaging-container>
-
-
+  <div style="height:90vh; overflow: hidden; border: rgba(0, 0, 0, 0.12) 1px solid;" id="messageContainer"
+       class="md-margin">
+    <messaging-container ></messaging-container>
+  </div>
 </div>
+
+
+<messaging-bottom-sheet ng-if="$ctrl.bsActive"></messaging-bottom-sheet>
