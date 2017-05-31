@@ -38,7 +38,11 @@ messages {
     #messageList {
       width:100%;
       min-height: 400px;
-      margin:0 auto;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+      flex:1;
     }
 
     .messageContainer{

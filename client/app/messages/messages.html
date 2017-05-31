@@ -1,4 +1,5 @@
-<div layout="row" class="messagesContainer">
+<div layout="row" layout-xs="column" flex style="height: 91vh;">
+
   <div id="messageList" layout="column">
     <md-toolbar class="md-theme-light" style="height: 20px;min-height: 1px;">
     </md-toolbar>
@@ -19,11 +20,12 @@
     </md-content>
   </div>
 
-  <div style="height:90vh; overflow: hidden; border: rgba(0, 0, 0, 0.12) 1px solid;" id="messageContainer"
+  <div style=" overflow: hidden; border: rgba(0, 0, 0, 0.12) 1px solid; margin-bottom: 0;" id="messageContainer"
        class="md-margin">
     <messaging-container ></messaging-container>
   </div>
+
 </div>
 
 
-<messaging-bottom-sheet ng-if="$ctrl.bsActive"></messaging-bottom-sheet>
+<messaging-bottom-sheet active="$ctrl.bsActive" ng-if="$ctrl.bsActive"></messaging-bottom-sheet>

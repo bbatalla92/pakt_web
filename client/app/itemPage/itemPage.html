@@ -146,7 +146,7 @@
             quia<span style="color: rgb(130, 95, 108);">...read more</span></p>
           <div layout="row">
             <span flex></span>
-            <md-button class="ng-md-icon md-fab md-primary md-mini">
+            <md-button class="ng-md-icon md-fab md-primary md-mini" ng-click="$ctrl.bsActive = true">
               <ng-md-icon icon="message"></ng-md-icon>
             </md-button>
             <div layout="column" layout-align="center start">
@@ -214,9 +214,6 @@
     </div>
   </div>
 
-
-
-
   <div>
     <!--<div style="height: 400px; width: 100%;" id="map"></div>
     <div
@@ -227,3 +224,6 @@
   </div>
 
 </div>
+
+
+<messaging-bottom-sheet active="$ctrl.bsActive" ng-if="$ctrl.bsActive"></messaging-bottom-sheet>

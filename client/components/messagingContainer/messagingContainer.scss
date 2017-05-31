@@ -1,4 +1,72 @@
 messaging-container {
 
+  .messagesContainer {
+    width: 60%;
+  }
+
+  .messageImage {
+    height: 70px;
+    width: 70px;
+    border-radius: 35px;
+  }
+
+  .messageText {
+    margin-top: 40px;
+    word-break: break-all;
+    padding: 8px;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  #receiver{
+    background-color: rgba(255, 83, 14, .23);
+    margin-right: 15px;
+
+  }
+
+  #sender{
+    background-color: rgba(83,182,140, .23);
+    margin-left: 15px;
+  }
+
+  @media screen and (max-width: 1000px) {
+
+    .messagesContainer {
+      width: 70%;
+    }
+
+  }
+
+  @media screen and (max-width: 800px) {
+
+    .messagesContainer {
+      width: 80%;
+    }
+
+  }
+
+  @media screen and (max-width: 750px) {
+
+    .messagesContainer {
+      width: 95%;
+      margin: 10px 0;
+    }
+
+    .messageImage {
+      height: 55px;
+      width: 55px;
+      border-radius: 30px;
+    }
+
+    #receiver{
+      margin-right: 5px;
+
+    }
+
+    #sender{
+      margin-left: 5px;
+    }
+
+  }
 
 }

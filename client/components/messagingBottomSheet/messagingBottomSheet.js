@@ -6,7 +6,10 @@
   angular.module('app')
     .component("messagingBottomSheet", {
       templateUrl: 'components/messagingBottomSheet/messagingBottomSheet.html',
-      controller: messagingBottomSheetCtrl
+      controller: messagingBottomSheetCtrl,
+      bindings:{
+        active: '='
+      }
     });
 
   messagingBottomSheetCtrl.$inject = [];
@@ -14,7 +17,8 @@
     var ctrl = this;
 
 
-    ctrl.bsActive = false;
+
+    ctrl.bsActive = true;
 
 
   }
