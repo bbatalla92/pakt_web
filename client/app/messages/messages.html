@@ -7,25 +7,27 @@
       <span id="messagesHeader">Messages</span>
       <md-divider></md-divider>
       <md-list flex>
-        <md-list-item ng-click="$ctrl.messageItemClicked()" class="md-2-line" >
-          <img src="assets/images/defaultPerson.png"
+        <md-list-item ng-repeat="convo in $ctrl.conversations"  ng-class="{'activeConversation': convo.id === $ctrl.activeConversation.id && $ctrl.activeConversation}" ng-click="$ctrl.messageItemClicked(convo)" class="md-2-line" >
+          <img ng-src="{{convo.photoURL || 'assets/images/defaultPerson.png'}}"
                style=" height: 50px;width: 50px; border-radius: 25px; margin-right: 10px;">
           <div class="md-list-item-text">
-            <h3>Name goes here</h3>
-            <p>Date goes here</p>
+            <h3>{{convo.firstName +' '+ convo.lastName[0]+'.'}}</h3>
+            <p>{{convo.lastMessageDate | date}}</p>
           </div>
+          <md-divider></md-divider>
         </md-list-item>
         <md-divider></md-divider>
       </md-list>
     </md-content>
   </div>
 
-  <div style=" overflow: hidden; border: rgba(0, 0, 0, 0.12) 1px solid; margin-bottom: 0;" id="messageContainer"
+  <div style=" overflow: hidden; border: rgba(0, 0, 0, 0.12) 1px solid; margin-bottom: 0;width: 100%;" id="messageContainer"
        class="md-margin">
-    <messaging-container ></messaging-container>
+    <messaging-container conversation="$ctrl.activeConversation" ng-if="$ctrl.activeConversation" ></messaging-container>
+    <span style="display: block;width: 100%;text-align: center;font-weight: 100;margin-top: 10%;font-size: xx-large;" ng-if="!$ctrl.activeConversation">No Conversation Selected</span>
   </div>
 
 </div>
 
 
-<messaging-bottom-sheet active="$ctrl.bsActive" ng-if="$ctrl.bsActive"></messaging-bottom-sheet>
+<messaging-bottom-sheet active="$ctrl.bsActive" conversation="$ctrl.activeConversation" ng-if="$ctrl.bsActive"></messaging-bottom-sheet>

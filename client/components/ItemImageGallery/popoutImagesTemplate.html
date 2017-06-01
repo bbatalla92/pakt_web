@@ -1,0 +1,16 @@
+<div
+  style="width: 600px; height: 500px;text-align: center;background-size: cover !important;background: no-repeat center;"
+  ng-style="activeImage">
+
+  <div layout="row" layout-align="space-between center" style="height: 100%;">
+    <md-button ng-if="images.length > 1" aria-label="left button" class="itemImageGalleryButtons"
+               ng-click="nextImage(false)">
+      <ng-md-icon class="itemImageGalleryIcons" icon="keyboard_arrow_left" size="64"></ng-md-icon>
+    </md-button>
+    <md-button ng-if="images.length > 1" class="itemImageGalleryButtons" aria-label="Right button"
+               ng-click="nextImage(true)">
+      <ng-md-icon icon="keyboard_arrow_right" size="64" class="itemImageGalleryIcons" style=""></ng-md-icon>
+    </md-button>
+  </div>
+
+</div>

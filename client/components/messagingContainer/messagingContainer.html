@@ -3,7 +3,7 @@
     <div ng-repeat="message in [12,11, 13, 10]" style="width: 100%;">
       <div layout="row" class="messagesContainer" ng-if="message % 2 === 0">
         <div>
-          <img src="assets/images/defaultPerson.png" class="messageImage" >
+          <img ng-src="{{$ctrl.conversation.photoURL || 'assets/images/defaultPerson.png'}}" class="messageImage" >
         </div>
         <div class="messageText sender" id="sender">
           dsfagsgas gfhfjdkutyirgferjyeoi hwerdsfagsgasgfhfjdkutyig uheargferjyeo ihwerdsfagsgasgfhfj

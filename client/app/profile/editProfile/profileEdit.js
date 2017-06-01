@@ -19,6 +19,7 @@
     ctrl.image = "";
     ctrl.showImage = true;
 
+
     var locationAutocomplete = new google.maps.places.Autocomplete(document.getElementById("address"));
 
     locationAutocomplete.addListener('place_changed', function () {
@@ -31,10 +32,34 @@
       $scope.$apply();
     });
 
-
     function bootstrap() {
       ctrl.userObj = UserSvc.getCurrentUser();
     }
+
+    ctrl.onPhoneNumberChange = function(){
+      if(!ctrl.userObj.phoneNumber || !ctrl.userObj.phoneNumber.length) return;
+
+
+
+      if (isNaN(parseInt(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length-1]))) {
+        // Is a number
+        console.log(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length-1]);
+        ctrl.userObj.phoneNumber = ctrl.userObj.phoneNumber.slice(0,ctrl.userObj.phoneNumber.length-1);
+        return;
+      }
+
+      if(ctrl.userObj.phoneNumber.length == 3 && !ctrl.userObj.phoneNumber.includes('(')){
+        ctrl.userObj.phoneNumber = '('+ctrl.userObj.phoneNumber+') ';
+      }
+
+
+      if(ctrl.userObj.phoneNumber.length == 9 && !ctrl.userObj.phoneNumber.includes('-')){
+        ctrl.userObj.phoneNumber = ctrl.userObj.phoneNumber +" - ";
+      }
+
+
+    };
+
 
     ctrl.onImageLoaded = function (img) {
 
@@ -65,19 +90,15 @@
     };
 
     ctrl.save = function () {
-      console.log(ctrl.userObj);
-
       UserSvc.updateUser(ctrl.userObj);
     };
 
     // End of the controller
     bootstrap();
     ctrl.$onDestroy = function(){$mdDialog.cancel()};
-
     $scope.$on('user-object-updated', function (event, args) {
       ctrl.userObj = args.user;
       ctrl.showImage = true;
-
       $scope.$apply();
     });
 

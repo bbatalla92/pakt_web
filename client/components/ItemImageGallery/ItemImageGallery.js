@@ -13,13 +13,14 @@
       }
     });
 
-  itemImageGalleryCtrl.$inject = ["$timeout", "UtilsSvc", "$scope", "$mdDialog", "ItemSvc"];
-  function itemImageGalleryCtrl($timeout, UtilsSvc, $scope, $mdDialog, ItemSvc) {
+  itemImageGalleryCtrl.$inject = ["$timeout", "UtilsSvc", "$scope", "$mdDialog", "ItemSvc", "$mdMedia"];
+  function itemImageGalleryCtrl($timeout, UtilsSvc, $scope, $mdDialog, ItemSvc, $mdMedia) {
     var ctrl = this;
 
     ctrl.imageIndex = 0;
     ctrl.activeImage = {};
     var imageLength;
+    ctrl.sizeXS = $mdMedia('xs');
 
     // ___________ Functions below ____________
     function bootstrap() {
@@ -27,6 +28,37 @@
       ctrl.images = UtilsSvc.sortImages(ctrl.imageData);
       ctrl.activeImage.backgroundImage = "url(" + ctrl.images[ctrl.imageIndex] + ")";
     }
+
+    ctrl.imagePopout = function(ev){
+      console.log("POP out");
+      $mdDialog.show(
+        {
+          controller: function(images, $scope){
+            $scope.images = images;
+            $scope.imageIndex = 0;
+            $scope.activeImage = {};
+            $scope.activeImage.backgroundImage = "url(" + images[$scope.imageIndex] + ")";
+            $scope.nextImage = function (next) {
+              if (next) {
+                ($scope.imageIndex + 1 >= $scope.images.length) ? $scope.imageIndex = 0 : $scope.imageIndex++;
+              } else {
+                ($scope.imageIndex - 1 < 0) ? $scope.imageIndex = $scope.images.length - 1 : $scope.imageIndex--;
+              }
+              $scope.activeImage.backgroundImage = "url(" + $scope.images[$scope.imageIndex] + ")";
+
+            };
+
+          },
+          templateUrl: 'components/ItemImageGallery/popoutImagesTemplate.html',
+          parent: document.getElementById('itemPageGalleryImageContainer'),
+         // targetEvent: ev,
+          locals:{
+            images: ctrl.images
+          },
+          clickOutsideToClose:true,
+        }
+      )
+    };
 
     ctrl.nextImage = function (next) {
       if (ctrl.images.length !== ctrl.imageData.length) ctrl.images = UtilsSvc.sortImages(ctrl.imageData);

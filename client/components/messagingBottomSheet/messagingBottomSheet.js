@@ -8,7 +8,8 @@
       templateUrl: 'components/messagingBottomSheet/messagingBottomSheet.html',
       controller: messagingBottomSheetCtrl,
       bindings:{
-        active: '='
+        active: '=',
+        conversation : '='
       }
     });
 
