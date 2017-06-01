@@ -57,6 +57,7 @@
       }
     };
   });
+
   UtilsSvc.$inject = ["$q", "$http", "G_API_KEY", "$sce"];
 
   function UtilsSvc($q, $http, G_API_KEY, $sce) {

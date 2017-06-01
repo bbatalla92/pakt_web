@@ -13,7 +13,7 @@
         });
     }]);
 
-  profileEditCtrl.$inject = ["APP_NAME", "UserSvc", "$mdDialog", "$mdMedia","$scope"];
+  profileEditCtrl.$inject = ["APP_NAME", "UserSvc", "$mdDialog", "$mdMedia", "$scope"];
   function profileEditCtrl(APP_NAME, UserSvc, $mdDialog, $mdMedia, $scope) {
     var ctrl = this;
     ctrl.image = "";
@@ -36,29 +36,65 @@
       ctrl.userObj = UserSvc.getCurrentUser();
     }
 
-    ctrl.onPhoneNumberChange = function(){
-      if(!ctrl.userObj.phoneNumber || !ctrl.userObj.phoneNumber.length) return;
+    //var phoneNumLength = 16;
+    ctrl.onPhoneNumberChange = function () {
+      if (!ctrl.userObj.phoneNumber || !ctrl.userObj.phoneNumber.length) return;
 
-
-
-      if (isNaN(parseInt(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length-1]))) {
-        // Is a number
-        console.log(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length-1]);
-        ctrl.userObj.phoneNumber = ctrl.userObj.phoneNumber.slice(0,ctrl.userObj.phoneNumber.length-1);
+      // Following if statement tells if the recently added character is a number.
+      if (isNaN(parseInt(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length - 1]))) {
+        console.log(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length - 1]);
+        ctrl.userObj.phoneNumber = ctrl.userObj.phoneNumber.slice(0, ctrl.userObj.phoneNumber.length - 1);
         return;
       }
 
-      if(ctrl.userObj.phoneNumber.length == 3 && !ctrl.userObj.phoneNumber.includes('(')){
-        ctrl.userObj.phoneNumber = '('+ctrl.userObj.phoneNumber+') ';
-      }
-
-
-      if(ctrl.userObj.phoneNumber.length == 9 && !ctrl.userObj.phoneNumber.includes('-')){
-        ctrl.userObj.phoneNumber = ctrl.userObj.phoneNumber +" - ";
-      }
-
-
+      var num = ctrl.userObj.phoneNumber.replace(/[^0-9]/g, '');
+      ctrl.userObj.phoneNumber = formatPhoneNumber(num);
     };
+
+    function formatPhoneNumber(value) {
+      var country, city, number;
+      switch (value.length) {
+        case 1:
+        case 2:
+        case 3:
+          city = value;
+          break;
+
+        default:
+          city = value.slice(0, 3);
+          number = value.slice(3);
+      }
+
+      if (number) {
+        if (number.length > 3) {
+          number = number.slice(0, 3) + ' - ' + number.slice(3, 7);
+        }
+        else {
+          number = number;
+        }
+        return ("( " + city + " ) " + number).trim();
+      }
+      else {
+        return "( " + city;
+      }
+    }
+
+    function stripPhoneFormat(number) {
+      var num = number;
+      if (num.includes('(')) {
+        num = num.replace('(', '');
+      }
+
+      if (num.includes(')')) {
+        num = num.replace(')', '');
+      }
+
+      if (num.includes(' ')) {
+        num = num.replace(/ /g, '');
+      }
+
+      return num;
+    }
 
 
     ctrl.onImageLoaded = function (img) {
@@ -66,7 +102,7 @@
       $mdDialog.show(
         {
           template: '<image-crop-dialog image="img"></image-crop-dialog>',
-          controller: ["image", "$scope",function (image, $scope) {
+          controller: ["image", "$scope", function (image, $scope) {
             $scope.img = image;
           }],
           parent: angular.element(document.body),
@@ -80,7 +116,7 @@
         .then(function (imageResult) {
           ctrl.showImage = false;
           UserSvc.uploadMainImage(imageResult)
-            .then(function(res){
+            .then(function (res) {
               console.log("Image Resilt", res);
             });
         })
@@ -95,7 +131,9 @@
 
     // End of the controller
     bootstrap();
-    ctrl.$onDestroy = function(){$mdDialog.cancel()};
+    ctrl.$onDestroy = function () {
+      $mdDialog.cancel()
+    };
     $scope.$on('user-object-updated', function (event, args) {
       ctrl.userObj = args.user;
       ctrl.showImage = true;
