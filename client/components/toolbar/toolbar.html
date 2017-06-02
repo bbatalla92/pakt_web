@@ -11,7 +11,7 @@
 
     <span flex></span>
     <md-button style="color: #000;" hide-xs hide-sm>Start Earning</md-button>
-    <md-button style="color: #000;" hide-xs hide-sm>About</md-button>
+    <md-button style="color: #000;" hide-xs hide-sm ui-sref="about">About</md-button>
     <md-button ng-if="!$ctrl.flags.loggedIn && !$ctrl.flags.mediaXS"
                md-colors="{backgroundColor: 'primary-600'}" style="margin-right: 3%;"
                ng-click="$ctrl.openSignInDialog(false, $event)">
