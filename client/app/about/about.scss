@@ -3,7 +3,8 @@ about {
   #topImage {
     height: 80vh;
     width: 100%;
-    background-image: url('/assets/images/twoSurfBoarders.png') no-repeat;
+    background-image: url('/assets/images/twoSurfBoarders.png');
+    background-repeat: no-repeat;
     background-size: cover;
   }
 
