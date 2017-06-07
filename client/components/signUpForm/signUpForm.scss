@@ -1,14 +1,11 @@
 
 sign-up-form {
 
-
-
-
   #signUpFormContainer {
     border-top: 8px solid #f1f1f1 !important;
     background-color: #f8f8f9;
   }
-
+  width:40vw;
   @media screen and (max-width: 1100px) {
 
     #signUpFormContainer {
@@ -19,14 +16,5 @@ sign-up-form {
   @media screen and (max-width: 820px) {
 
   }
-
-
-
-
-
-
-
-
-
 
 }

@@ -7,7 +7,6 @@
   <h3 style="margin: 0 auto; margin-bottom: 15px; font-size: x-large;text-align: center">{{$ctrl.isNew ? "Sign up Now":
     "Login Here"}}</h3>
 
-
   <div style="width: 100%; margin: 0 auto;" layout="row">
     <md-button class="md-raised" style="color: #dd4b39; width: 50%;" ng-click="$ctrl.googleLogin()">
       <ng-md-icon icon="google-plus"></ng-md-icon>
@@ -78,10 +77,10 @@
         <input ng-model="$ctrl.userObj.birthday.year" type="number" min="1920" max="1999" required/>
       </md-input-container>
     </div>
-
+    <!--passwordConfirmationCheck doesnt work how it should...? Without '!' it will work fine, but should be notted to work right-->
     <md-button class="md-primary md-raised"
-               ng-disabled="signupForm.$invalid "
-               style="width: 50%;" ng-click="$ctrl.emailPassCreate()">Lets go
+               ng-disabled="signupForm.$invalid"
+               style="color:white;width: 50%;" ng-click="$ctrl.passwordConfirmationCheck() ? $ctrl.emailPassCreate() : ">Lets go
       <ng-md-icon icon="arrow_forward" style=";"></ng-md-icon>
     </md-button>
     <span style="cursor: pointer;font-size: small;" ng-click="$ctrl.isNew = false">Already have an account?</span>
@@ -89,21 +88,22 @@
 
   <form ng-if="!$ctrl.isNew" name="loginform" flex style="text-align: center; width: 100%;margin: 0 auto;">
     <md-input-container style="width: 75%; margin: 0;">
-      <input type="text" name="email" ng-model="$ctrl.signInObj.email"/>
+      <input type="email" name="email" ng-model="user.email" required />
       <label>Email</label>
+      <!--<span ng-show="loginform.email.$invalid">Invalid Email</span>-->
     </md-input-container>
     <br>
     <md-input-container style="width: 75%; margin-top: 0;">
-      <input type="password" ng-model="$ctrl.signInObj.password" name="password" required/>
+      <input type="password" ng-model="$ctrl.signInObj.password" ng-minLength = "6" name="password" required/>
       <label>Password</label>
       <div ng-if="$ctrl.flags.signInError" style="color: rgb(221,44,0); font-size: 14px; margin-top: 37px;">Invalid
         Email or Password
       </div>
     </md-input-container>
 
-    <md-button class="md-primary md-raised" ng-disabled="!$ctrl.signInObj.email || !$ctrl.signInObj.password"
+    <md-button class="md-primary md-raised" ng-disabled="loginform.$invalid"
                ng-click="$ctrl.emailPassLogin()"
-               style="width: 75%; margin: 0 auto; display: block;">
+               style="color: white; width: 75%; margin: 0 auto; display: block;">
       Login
       <ng-md-icon icon="arrow_forward"></ng-md-icon>
     </md-button>
