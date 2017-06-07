@@ -88,13 +88,14 @@
 
     function getUserData(uid) {
       //console.log("UID?",uid);
-      var obj = ref.child(uid);
-      return obj.on("value", function (res) {
+      var objRef = ref.child(uid);
+      return objRef.on("value", function (res) {
         userObj = res.val();
         userObj.uid = uid;
         getUserImage();
         return res.val();
       })
+
     }
 
     function getUserImage() {

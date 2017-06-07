@@ -20,7 +20,7 @@
   function aboutCtrl(APP_NAME) {
     var ctrl = this;
 
-
+    ctrl.APP_NAME = APP_NAME;
 
 
   }

@@ -8,6 +8,16 @@ about {
     background-size: cover;
   }
 
+  #lenderAboutText {
+    cursor: pointer;
+    color: rgb(255, 83, 14);
+  }
+
+  #lenderAboutText:hover {
+    color: rgba(255, 83, 14, 1);
+    font-weight: 400;
+  }
+
   #headingQuote {
     font-size: 70px;
     padding-top: 50px;
@@ -22,7 +32,7 @@ about {
     height: 2px;
     margin: 15px auto;
     border-radius: 3px;
-    background-color: rgba(83, 182, 140, 0.57)
+    background-color: rgba(83, 182, 140, 0.57);
   }
 
   .aboutSectionsTitle {
@@ -31,6 +41,8 @@ about {
     font-weight: 100;
     display: block;
     margin: 15px 0;
+    color: rgba(0, 0, 0, 0.54);
+
   }
 
   .text {
@@ -39,6 +51,7 @@ about {
     font-weight: 300;
     width: 70%;
     margin: auto;
+    color: rgba(0, 0, 0, 0.87);
   }
 
   #aboutContainer {
@@ -64,6 +77,16 @@ about {
     display: none;
   }
 
+  @media screen and (max-width: 900px) {
+
+    .text {
+      font-size: 17px;
+      line-height: 30px;
+      font-weight: 300;
+      width: 85%;
+    }
+  }
+
   @media screen and (max-width: 700px) {
 
     .landscapeImage {
@@ -86,6 +109,7 @@ about {
       font-size: 17px;
       line-height: 25px;
       font-weight: 300;
+      width: 95%;
     }
 
     #downloadAppButton {
