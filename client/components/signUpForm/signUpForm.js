@@ -62,9 +62,12 @@
           var errorMessage = error.message;
         });
     };
-
+    ctrl.passwordConfirmationCheck = function()
+    {
+      return ctrl.userObj.password === ctrl.passwordConfirm;
+    }
     ctrl.emailPassLogin = function () {
-    console.log(ctrl.userObj);
+      console.log(ctrl.userObj);
       UserSvc.login(EMAIL_PASS,ctrl.signInObj)
         .then(function(res){
           $mdDialog.hide();
