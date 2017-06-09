@@ -56,11 +56,32 @@
 
         }
       };
+    })
+    .factory('NetInterceptor', function () {
+      var interceptorFactory = {};
+
+      interceptorFactory.xhrRefCount = 0;
+
+      interceptorFactory.request = function (config) {
+        console.log("sent Req");
+        ++interceptorFactory.xhrRefCount;
+        return config;
+      };
+      interceptorFactory.response = function (resp) {
+        console.log("recieved Res");
+        --interceptorFactory.xhrRefCount;
+        return resp;
+      };
+
+      return interceptorFactory;
+    })
+    .config(function ($httpProvider) {
+      $httpProvider.interceptors.push('NetInterceptor');
     });
 
-  UtilsSvc.$inject = ["$q", "$http", "G_API_KEY", "$sce"];
+  UtilsSvc.$inject = ["$q", "$http", "G_API_KEY", "$sce", "$mdToast"];
 
-  function UtilsSvc($q, $http, G_API_KEY, $sce) {
+  function UtilsSvc($q, $http, G_API_KEY, $sce, $mdToast) {
 
     var userLocation = {};
     setLocation();
@@ -146,12 +167,24 @@
       navigator.geolocation.getCurrentPosition(getPosition);
     }
 
+    function toast(message, parentEl) {
+      var el = document.getElementById(parentEl || 'toolbarAnchorId');
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent(message)
+          .position('bottom right')
+          .hideDelay(3000)
+          .parent(el)
+      );
+    }
+
     return {
       sortImages: sortImages,
       hashString: hashString,
       hashStringWithTimeStamp: hashStringWithTimeStamp,
       downloadImageFromUrl: downloadImageFromUrl,
-      getUserLocation: getUserLocation
+      getUserLocation: getUserLocation,
+      toast: toast
     }
   }
 

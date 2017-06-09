@@ -13,8 +13,8 @@
         });
     }]);
 
-  profileEditCtrl.$inject = ["APP_NAME", "UserSvc", "$mdDialog", "$mdMedia", "$scope"];
-  function profileEditCtrl(APP_NAME, UserSvc, $mdDialog, $mdMedia, $scope) {
+  profileEditCtrl.$inject = ["APP_NAME", "UserSvc", "$mdDialog", "$mdMedia", "$scope", "UtilsSvc"];
+  function profileEditCtrl(APP_NAME, UserSvc, $mdDialog, $mdMedia, $scope, UtilsSvc) {
     var ctrl = this;
     ctrl.image = "";
     ctrl.showImage = true;
@@ -126,7 +126,15 @@
     };
 
     ctrl.save = function () {
-      UserSvc.updateUser(ctrl.userObj);
+      UserSvc.updateUser(ctrl.userObj)
+        .then(function () {
+          console.log("Saved");
+          UtilsSvc.toast("Save Complete!");
+        })
+        .catch(function(error){
+          console.log("ERROR SAVING USER", error);
+          UtilsSvc.toast("Error Saving");
+        });
     };
 
     // End of the controller

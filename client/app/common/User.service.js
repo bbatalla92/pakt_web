@@ -30,8 +30,7 @@
           $cookies.put(COOKIE_USER, undefined);
           $rootScope.$broadcast('user-object-updated', {user: undefined});
         }
-      }
-    );
+      });
 
     function login(type, data) {
       return FireAuth.login(type, data);
@@ -120,7 +119,6 @@
     }
 
     function updateUser(user) {
-      console.log(user);
       return ref.child(user.uid).set(user)
         .then(function (res) {
           $rootScope.$broadcast('user-object-updated', {user: userObj});

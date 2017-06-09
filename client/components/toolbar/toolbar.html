@@ -1,4 +1,4 @@
-<md-toolbar class="toolbarStyle" ng-class="{'toolbarBoxShadow': !$ctrl.flags.hideTitle}">
+<md-toolbar class="toolbarStyle" id="toolbarAnchorId" ng-class="{'toolbarBoxShadow': !$ctrl.flags.hideTitle}">
   <div class="md-toolbar-tools" style="margin: auto;">
     <md-button class="md-icon-button" id="menuIconButton" style=""
                ng-click="$ctrl.toggleSideNav()" ng-if="$ctrl.flags.loggedIn || $ctrl.flags.mediaXS">
@@ -19,3 +19,6 @@
     </md-button>
   </div>
 </md-toolbar>
+<div>
+  <md-progress-circular ng-show="$ctrl.showProgress" md-mode="indeterminate" class="md-accent"></md-progress-circular>
+</div>
