@@ -40,32 +40,34 @@
         }
       }
     })
-    .directive('disabletap', function($timeout) {
-    return {
-      link: function() {
-        $timeout(function() {
-          var container = document.getElementsByClassName('pac-container');
-          // disable ionic data tab
-          angular.element(container).attr('data-tap-disabled', 'true');
-          // leave input field if google-address-entry is selected
-          angular.element(container).on("click", function(){
-            document.getElementById('type-selector').blur();
-          });
+    .directive('disabletap', function ($timeout) {
+      return {
+        link: function () {
+          $timeout(function () {
+            var container = document.getElementsByClassName('pac-container');
+            // disable ionic data tab
+            angular.element(container).attr('data-tap-disabled', 'true');
+            // leave input field if google-address-entry is selected
+            angular.element(container).on("click", function () {
+              document.getElementById('type-selector').blur();
+            });
 
-        },500);
+          }, 500);
 
-      }
-    };
-  });
+        }
+      };
+    });
 
   UtilsSvc.$inject = ["$q", "$http", "G_API_KEY", "$sce"];
 
   function UtilsSvc($q, $http, G_API_KEY, $sce) {
+
     var userLocation = {};
     setLocation();
-    var geocoder = new google.maps.Geocoder();
 
     function getPosition(position) {
+      var geocoder = new google.maps.Geocoder();
+
       if (position.coords.latitude) {
         userLocation.lat = position.coords.latitude;
         userLocation.lng = position.coords.longitude;
@@ -149,7 +151,7 @@
       hashString: hashString,
       hashStringWithTimeStamp: hashStringWithTimeStamp,
       downloadImageFromUrl: downloadImageFromUrl,
-      getUserLocation:getUserLocation
+      getUserLocation: getUserLocation
     }
   }
 
