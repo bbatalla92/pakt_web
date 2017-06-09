@@ -38,5 +38,8 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js"
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^2.6.0"
   }
 }

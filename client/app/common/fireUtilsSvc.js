@@ -31,16 +31,21 @@
 
       return uploadTask
         .then(function (snapshot) {
+          var img = '';
+
+          if(snapshot.metadata && snapshot.metadata.downloadURLs.length){
+            img = snapshot.metadata.downloadURLs[0];
+          }
 
           return {
-            image: snapshot.a.downloadURLs[0],
+            image: img,
             metaData: {
-              contentType: snapshot.a.contentType,
-              customMetadata: snapshot.a.customMetadata,
-              size: snapshot.a.size,
-              key: snapshot.a.name,
-              timeCreated: snapshot.a.timeCreated,
-              updated: snapshot.a.updated,
+              contentType: snapshot.metadata.contentType,
+              customMetadata: snapshot.metadata.customMetadata,
+              size: snapshot.metadata.size,
+              key: snapshot.metadata.name,
+              timeCreated: snapshot.metadata.timeCreated,
+              updated: snapshot.metadata.updated,
               device: "web"
             }
           };

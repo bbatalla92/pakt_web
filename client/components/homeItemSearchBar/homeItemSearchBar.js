@@ -20,15 +20,12 @@
     var locationAutocomplete = new google.maps.places.Autocomplete(document.getElementById("locationSearchBar"));
 
 
-
-
     ctrl.searchParams = {
       keyword: "",
       location: UtilsSvc.getUserLocation(),
       startDate: '',
       endDate: ''
     };
-
 
 
     ctrl.showDatePanel = function (event) {

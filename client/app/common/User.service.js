@@ -14,8 +14,8 @@
     var userObj = {uid: ''};
 
     firebase.auth().onAuthStateChanged(function (userAuthData) {
-      if (userAuthData) {
-        userObj = $cookies.get(COOKIE_USER) && JSON.parse($cookies.get(COOKIE_USER)) ||  {uid: ''};
+        if (userAuthData) {
+          userObj = $cookies.get(COOKIE_USER) && JSON.parse($cookies.get(COOKIE_USER)) || {uid: ''};
           FireUtils.objectExists(ref.child(userAuthData.uid))
             .then(function (userExists) {
               if (!userExists) {
@@ -69,10 +69,11 @@
           return uploadMainImage(res, 'blob');
         })
         .then(function (res) {
-          var u = {photoURL: res,
-                    firstName: providerData.firstName,
-                    lastName: providerData.lastName,
-                    email: providerData.email
+          var u = {
+            photoURL: res,
+            firstName: providerData.firstName,
+            lastName: providerData.lastName,
+            email: providerData.email
           };
           userObj = u;
           userObj.uid = firebaseAuthUid;
@@ -102,7 +103,7 @@
       if (!userObj.uid) return;
 
       var storageRef = firebase.storage().ref(ST_PATH_PROFILE_IMAGE + "/" + UtilsSvc.hashString(userObj.uid));
-      storageRef.getDownloadURL()
+      return storageRef.getDownloadURL()
         .then(function (url) {
           userObj.photoURL = url;
           $rootScope.$broadcast('user-object-updated', {user: userObj});
@@ -155,7 +156,7 @@
       signUpUserEmailPass: signUpUserEmailPass,
       uploadMainImage: uploadMainImage,
       saveItemId: saveItemId,
-      deleteItemId:deleteItemId
+      deleteItemId: deleteItemId
     }
   }
 
