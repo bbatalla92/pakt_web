@@ -8,11 +8,11 @@
       <md-divider></md-divider>
       <md-list flex>
         <md-list-item ng-repeat="convo in $ctrl.conversations"  ng-class="{'activeConversation': convo.id === $ctrl.activeConversation.id && $ctrl.activeConversation}" ng-click="$ctrl.messageItemClicked(convo)" class="md-2-line" >
-          <img ng-src="{{convo.photoURL || 'assets/images/defaultPerson.png'}}"
+          <img ng-src="{{convo.targetUser.photoURL || 'assets/images/defaultPerson.png'}}"
                style=" height: 50px;width: 50px; border-radius: 25px; margin-right: 10px;">
           <div class="md-list-item-text">
-            <h3>{{convo.firstName +' '+ convo.lastName[0]+'.'}}</h3>
-            <p>{{convo.lastMessageDate | date}}</p>
+            <h3>{{convo.targetUser.firstName +' '+ convo.targetUser.lastName[0]+'.'}}</h3>
+            <p>{{convo.lastMessage.timeSent | date}}</p>
           </div>
           <md-divider></md-divider>
         </md-list-item>

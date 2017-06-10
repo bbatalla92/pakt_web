@@ -14,23 +14,23 @@
     var userObj = {uid: ''};
 
     firebase.auth().onAuthStateChanged(function (userAuthData) {
-        if (userAuthData) {
-          userObj = $cookies.get(COOKIE_USER) && JSON.parse($cookies.get(COOKIE_USER)) || {uid: ''};
-          FireUtils.objectExists(ref.child(userAuthData.uid))
-            .then(function (userExists) {
-              if (!userExists) {
-                userObj.uid = userAuthData.uid;
-                createUserData(userAuthData.providerData[0], userAuthData.uid);
-              } else {
-                getUserData(userAuthData.uid);
-              }
-            })
-        } else {
-          userObj = {};
-          $cookies.put(COOKIE_USER, undefined);
-          $rootScope.$broadcast('user-object-updated', {user: undefined});
-        }
-      });
+      if (userAuthData) {
+        userObj = $cookies.get(COOKIE_USER) && JSON.parse($cookies.get(COOKIE_USER)) || {uid: ''};
+        FireUtils.objectExists(ref.child(userAuthData.uid))
+          .then(function (userExists) {
+            if (userExists) {
+              getCurrentUserData(userAuthData.uid);
+            } else {
+              userObj.uid = userAuthData.uid;
+              createUserData(userAuthData.providerData[0], userAuthData.uid);
+            }
+          })
+      } else {
+        userObj = {};
+        $cookies.put(COOKIE_USER, undefined);
+        $rootScope.$broadcast('user-object-updated', {user: undefined});
+      }
+    });
 
     function login(type, data) {
       return FireAuth.login(type, data);
@@ -86,8 +86,7 @@
         });
     }
 
-    function getUserData(uid) {
-      //console.log("UID?",uid);
+    function getCurrentUserData(uid) {
       var objRef = ref.child(uid);
       return objRef.on("value", function (res) {
         userObj = res.val();
@@ -95,14 +94,12 @@
         getUserImage();
         return res.val();
       })
-
     }
 
     function getUserImage() {
       if (!userObj.uid) return;
 
-      var storageRef = firebase.storage().ref(ST_PATH_PROFILE_IMAGE + "/" + UtilsSvc.hashString(userObj.uid));
-      return storageRef.getDownloadURL()
+      return FireUtils.getProfileImageDownloadURL(userObj.uid)
         .then(function (url) {
           userObj.photoURL = url;
           $rootScope.$broadcast('user-object-updated', {user: userObj});
@@ -146,6 +143,19 @@
         });
     }
 
+    function getTargetUser(uid) {
+      var targetUser;
+      return ref.child(uid).once('value')
+        .then(function (res) {
+          targetUser = res.val();
+          return FireUtils.getProfileImageDownloadURL(uid);
+        })
+        .then(function(res){
+          targetUser.photoURL = res;
+          return targetUser;
+        });
+    }
+
     return {
       getCurrentUser: getCurrentUser,
       signOutUser: signOutUser,
@@ -154,7 +164,8 @@
       signUpUserEmailPass: signUpUserEmailPass,
       uploadMainImage: uploadMainImage,
       saveItemId: saveItemId,
-      deleteItemId: deleteItemId
+      deleteItemId: deleteItemId,
+      getTargetUser:getTargetUser
     }
   }
 

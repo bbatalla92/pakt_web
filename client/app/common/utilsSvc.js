@@ -11,7 +11,6 @@
       return {
         restrict: 'A',
         link: function (scope, element, attrs, ctrl) {
-          var model = $parse(attrs.fileInput);
           var onChange = $parse(attrs.onChange);
           var reader = new FileReader();
           var image;
@@ -21,12 +20,12 @@
             scope.$apply(function () {
               reader.addEventListener("load", function () {
                 image = reader.result;
-                //model.assign(scope, image);
-                // attrs.fileInput()
                 if (image) {
                   scope.$ctrl.onImageLoaded(image);
                 }
                 reader = new FileReader();
+                element[0].files[0].value = null;
+
               }, false);
 
               if (element[0].files[0]) {
@@ -35,6 +34,7 @@
 
               onChange(scope);
             });
+
           };
           element.on('change', listener);
         }

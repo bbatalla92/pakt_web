@@ -7,8 +7,8 @@
   angular.module('app')
     .factory("FireUtils", firebaseSvc);
 
-  firebaseSvc.$inject = ["$q", "ST_PATH_ITEM_IMAGES"];
-  function firebaseSvc($q, ST_PATH_ITEM_IMAGES) {
+  firebaseSvc.$inject = ["$q", "ST_PATH_ITEM_IMAGES", "ST_PATH_PROFILE_IMAGE", "UtilsSvc"];
+  function firebaseSvc($q, ST_PATH_ITEM_IMAGES,ST_PATH_PROFILE_IMAGE, UtilsSvc) {
     var storageRef = firebase.storage().ref();
 
     function objectExists(ref) {
@@ -17,6 +17,13 @@
         q.resolve(res.exists());
       });
       return q.promise;
+    }
+
+    function getProfileImageDownloadURL(uid) {
+      return storageRef.child(ST_PATH_PROFILE_IMAGE).child(""+UtilsSvc.hashString(uid)).getDownloadURL()
+        .then(function (url) {
+          return url;
+        })
     }
 
     function uploadImage(file, path, metaData, type) {
@@ -33,7 +40,7 @@
         .then(function (snapshot) {
           var img = '';
 
-          if(snapshot.metadata && snapshot.metadata.downloadURLs.length){
+          if (snapshot.metadata && snapshot.metadata.downloadURLs.length) {
             img = snapshot.metadata.downloadURLs[0];
           }
 
@@ -80,7 +87,8 @@
       objectExists: objectExists,
       uploadImage: uploadImage,
       updateImage: updateImage,
-      deleteImage:deleteImage
+      deleteImage: deleteImage,
+      getProfileImageDownloadURL: getProfileImageDownloadURL
     }
   }
 

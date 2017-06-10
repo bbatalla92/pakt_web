@@ -1,35 +1,41 @@
 <div layout="column" layout-align="end" style="height: 100%;">
-  <div flex layout="column" layout-align="end" style="display: block;overflow-x: hidden; overflow-y: auto;padding: 15px;">
-    <div ng-repeat="message in [12,11, 13, 10]" style="width: 100%;">
-      <div layout="row" class="messagesContainer" ng-if="message % 2 === 0">
+  <div flex layout="column" layout-align="end"
+       style="" id="messagesInnerContainer">
+    <div ng-repeat="message in $ctrl.conversation.messages track by $index" style="max-width: 100%;">
+      <div layout="row" class="messagesContainer" ng-if="message.senderId !== $ctrl.userObj.uid">
         <div>
-          <img ng-src="{{$ctrl.conversation.photoURL || 'assets/images/defaultPerson.png'}}" class="messageImage" >
+          <img ng-src="{{$ctrl.conversation.targetUser.photoURL || 'assets/images/defaultPerson.png'}}"
+               class="messageImage">
         </div>
-        <div class="messageText sender" id="sender">
-          dsfagsgas gfhfjdkutyirgferjyeoi hwerdsfagsgasgfhfjdkutyig uheargferjyeo ihwerdsfagsgasgfhfj
-          dkutyiguheargferjyeoihwerdsfag
-          sgasgf fjdkuyiguhea rgferjyeoihwerdsfagsg asgfhfjdkutyiguheargferjyeoih werdsfagsgasgfhfjdkutyig
-          uheargferjyeoihwerdsfagsgasgfk
+        <div>
+          <div class="messageText sender" id="sender">
+            {{message.message | date}}
+          </div>
+          <span class="messageDateTime" style="float:right; margin-right: 20px;">{{$ctrl.daydiff(message.timeSent)}}</span>
         </div>
       </div>
 
-      <div layout="row" class="messagesContainer" style="float: right;" ng-if="message % 2 !== 0">
-        <div class="messageText" id="receiver">
-          dsfagsgas gfhfjdkutyirgferjyeoi hwerdsfagsgasgfhfjdkutyig uheargferjyeo ihwerdsfagsgasgfhfj
-          dkutyiguheargferjyeoihwerdsfag
-          sgasgf fjdkuyiguhea rgferjyeoihwerdsfagsg asgfhfjdkutyiguheargferjyeoih werdsfagsgasgfhfjdkutyig
-          uheargferjyeoihwerdsfagsgasgfk
+      <div layout="row" class="messagesContainer" style="float: right;" ng-if="message.senderId === $ctrl.userObj.uid">
+        <span flex></span>
+        <div>
+          <div class="messageText" id="receiver">
+            {{message.message | date}}
+          </div>
+          <span class="messageDateTime" style="float:right; margin-right: 20px;">{{$ctrl.daydiff(message.timeSent)}}</span>
         </div>
       </div>
     </div>
+    <br>
   </div>
 
   <form style="border-top: solid rgba(0, 0, 0, 0.12); " layout="row">
-    <md-input-container flex md-no-float style="margin: 0 0 -20px; min-height: 30px; max-height: 200px; overflow: auto; padding-top: 10px; padding-left: 10px;">
-      <textarea style="padding-left: 15px !important;" ng-model="$ctrl.textMessage" placeholder="Start typing..." maxlength="250"></textarea>
+    <md-input-container flex md-no-float
+                        style="margin: 0 0 -20px; min-height: 30px; max-height: 200px; overflow: auto; padding-top: 10px; padding-left: 10px;">
+      <textarea style="padding-left: 15px !important;" ng-model="$ctrl.messageText" placeholder="Start typing..."
+                maxlength="250"></textarea>
     </md-input-container>
     <md-button type="submit" ng-style="{backgroundColor: 'rgb(83,182,140)'}"
-               style="margin: 0;color: white;" ng-click="$ctrl.sendMessage();">
+               style="margin: 0;color: white;" ng-click="$ctrl.sendMessage()">
       Send
     </md-button>
   </form>
