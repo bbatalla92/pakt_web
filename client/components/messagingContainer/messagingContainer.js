@@ -52,6 +52,7 @@
         .finally(function () {
             $timeout(function () {
               document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight
+              $scope.$apply();
             }, 1)
           }
         );
