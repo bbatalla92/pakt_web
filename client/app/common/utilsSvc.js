@@ -15,8 +15,6 @@
           var reader = new FileReader();
           var image;
           var listener = function () {
-            console.log("LOADED");
-
             scope.$apply(function () {
               reader.addEventListener("load", function () {
                 image = reader.result;
@@ -63,12 +61,12 @@
       interceptorFactory.xhrRefCount = 0;
 
       interceptorFactory.request = function (config) {
-        console.log("sent Req");
+        //console.log("sent Req");
         ++interceptorFactory.xhrRefCount;
         return config;
       };
       interceptorFactory.response = function (resp) {
-        console.log("recieved Res");
+      //  console.log("recieved Res");
         --interceptorFactory.xhrRefCount;
         return resp;
       };

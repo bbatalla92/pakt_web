@@ -1,3 +1,5 @@
+
+
 (function () {
   'use strict';
   angular.module('app')
@@ -28,7 +30,7 @@
     function getConversations() {
       MessageSvc.getConversations()
         .then(function (res) {
-          console.log("Conversations", res);
+          //console.log("Conversations", res);
           ctrl.conversations = res;
         })
         .catch(function (error) {
@@ -43,15 +45,13 @@
       }
 
       if (ctrl.activeConversation && ctrl.activeConversation.id === conversation.id) return;
+
       if (conversation.messages) {
         ctrl.activeConversation = conversation;
         return;
       }
 
       ctrl.activeConversation = conversation;
-
-
-
     };
 
 

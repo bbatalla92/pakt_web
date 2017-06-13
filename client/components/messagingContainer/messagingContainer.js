@@ -36,11 +36,7 @@
 
       MessageSvc.sendMessage(message, ctrl.conversation.id)
         .then(function (res) {
-          console.log("Message Sent");
           ctrl.messageText = '';
-          $timeout(function () {
-            document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight
-          }, 1)
         })
     };
 
@@ -50,10 +46,7 @@
         .then(function () {
         })
         .finally(function () {
-            $timeout(function () {
               document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight
-              $scope.$apply();
-            }, 1)
           }
         );
     };
@@ -89,6 +82,10 @@
 
     ctrl.$onInit = ctrl.getMessages;
 
+    $scope.$watch('$ctrl.conversation.id', function(){
+      ctrl.getMessages();
+
+    })
   }
 
 })();

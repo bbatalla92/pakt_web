@@ -7,9 +7,10 @@
   angular.module('app')
     .factory("MessageSvc", UserSvc);
 
-  UserSvc.$inject = ["$firebaseObject", "UserSvc", "$q"];
+  UserSvc.$inject = ["$timeout", "UserSvc", "$q", "$rootScope"];
 
-  function UserSvc($firebaseObject, UserSvc, $q) {
+  function UserSvc($timeout, UserSvc, $q, $rootScope) {
+
     var convoRef = firebase.database().ref("conversation");
     var messageRef = firebase.database().ref("message");
     var userObj = UserSvc.getCurrentUser();
@@ -61,21 +62,26 @@
 
     function getMessages(convoId, convo) {
       var q = $q.defer();
+
       messageRef.child(convoId).on('value', function (res) {
         var arr = [];
+        // @TODO - Change 'value' to 'child_added' event, but figure out duplicate issue first with child_added event
+
+
         for (var key in res.val()) {
           arr.push(res.val()[key]);
         }
+
         arr.sort(function (a, b) {
           return a.timeSent - b.timeSent;
         });
 
-        if (convo.messages.length) {
-          convo.messages.push(arr[arr.length - 1])
-        } else {
-          for (var i = 0; i < arr.length; i++) {
-            convo.messages.push(arr[i]);
-          }
+        convo.messages = arr;
+
+        document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight;
+        // if angular is not running through the watchers, make it run through them.
+        if (!$rootScope.$$phase) {
+          $rootScope.$apply();
         }
 
 

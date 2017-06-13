@@ -1,6 +1,7 @@
 <div layout="column" layout-align="end" style="height: 100%;">
   <div flex layout="column" layout-align="end"
        style="" id="messagesInnerContainer">
+    <span flex></span>
     <div ng-repeat="message in $ctrl.conversation.messages track by $index" style="max-width: 100%;">
       <div layout="row" class="messagesContainer" ng-if="message.senderId !== $ctrl.userObj.uid">
         <div>
