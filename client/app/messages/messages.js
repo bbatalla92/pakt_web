@@ -1,5 +1,3 @@
-
-
 (function () {
   'use strict';
   angular.module('app')
@@ -17,7 +15,7 @@
         );
     }]);
 
-  messagesCtrl.$inject = ["$mdMedia", "UserSvc", "MessageSvc", "UtilsSvc","$scope"];
+  messagesCtrl.$inject = ["$mdMedia", "UserSvc", "MessageSvc", "UtilsSvc", "$scope"];
 
   function messagesCtrl($mdMedia, UserSvc, MessageSvc, UtilsSvc, $scope) {
     var ctrl = this;
@@ -40,6 +38,7 @@
     }
 
     ctrl.messageItemClicked = function (conversation) {
+
       if ($mdMedia('xs') || $mdMedia('sm')) {
         ctrl.bsActive = true;
       }

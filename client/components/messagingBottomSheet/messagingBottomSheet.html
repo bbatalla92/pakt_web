@@ -1,7 +1,7 @@
-<div md-whiteframe="3"  id="bottomSheetContainer" layout="column">
-  <md-toolbar ng-click="$ctrl.bsActive = true"  layout="row" layout-align="start center" class="md-theme-light"
+<div md-whiteframe="3" id="bottomSheetContainer" layout="column">
+  <md-toolbar ng-click="$ctrl.bsActive = true" layout="row" layout-align="start center" class="md-theme-light"
               id="toolbar">
-    <span style="padding-left: 20px;">Brennan B.</span>
+    <span style="padding-left: 20px;">{{$ctrl.conversation.targetUser.firstName + ' ' + $ctrl.conversation.targetUser.lastName[0] + '.'}}</span>
     <span flex></span>
     <md-button class="md-icon-button" ng-click="$ctrl.active = false">
       <ng-md-icon icon="cancel"></ng-md-icon>
@@ -13,10 +13,7 @@
     <messaging-container conversation="$ctrl.conversation"></messaging-container>
   </div>
 
-
 </div>
-
-
 
 <div ng-click="$ctrl.bsActive = false" ng-if="$ctrl.bsActive"
      style="background: transparent; position: fixed; height: 100vh; width: 150vh; bottom: 0;">

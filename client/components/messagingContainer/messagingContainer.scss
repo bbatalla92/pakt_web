@@ -2,6 +2,7 @@ messaging-container {
 
   .messagesContainer {
     width: 70%;
+    margin-top: 15px;
   }
 
   .messageDateTime {
@@ -17,13 +18,13 @@ messaging-container {
   }
 
   .messageImage {
+    margin-right: 15px;
     height: 70px;
     width: 70px;
     border-radius: 35px;
   }
 
   .messageText {
-    margin-top: 40px;
     word-wrap: break-word;
     padding: 8px;
     max-width: 100%;
@@ -37,8 +38,9 @@ messaging-container {
   }
 
   #sender {
+    margin-top: 25px;
     background-color: rgba(83, 182, 140, .23);
-    margin-left: 15px;
+    //margin-left: 15px;
   }
 
   @media screen and (max-width: 1000px) {

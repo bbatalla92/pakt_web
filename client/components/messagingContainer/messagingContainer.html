@@ -1,12 +1,10 @@
 <div layout="column" layout-align="end" style="height: 100%;">
-  <div flex layout="column" layout-align="end"
-       style="" id="messagesInnerContainer">
-    <span flex></span>
+  <div flex layout="column" layout-align="end" id="messagesInnerContainer">
     <div ng-repeat="message in $ctrl.conversation.messages track by $index" style="max-width: 100%;">
+
       <div layout="row" class="messagesContainer" ng-if="message.senderId !== $ctrl.userObj.uid">
         <div>
-          <img ng-src="{{$ctrl.conversation.targetUser.photoURL || 'assets/images/defaultPerson.png'}}"
-               class="messageImage">
+          <img ng-src="{{$ctrl.conversation.targetUser.photoURL || 'assets/images/defaultPerson.png'}}" class="messageImage">
         </div>
         <div>
           <div class="messageText sender" id="sender">
@@ -25,7 +23,9 @@
           <span class="messageDateTime" style="float:right; margin-right: 20px;">{{$ctrl.daydiff(message.timeSent)}}</span>
         </div>
       </div>
+
     </div>
+    <span style="display: block;text-align: center;color: rgba(0, 0, 0, 0.57);" ng-if="!$ctrl.conversation.id">No messages have been sent yet</span>
     <br>
   </div>
 

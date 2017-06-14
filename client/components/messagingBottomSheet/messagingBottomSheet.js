@@ -17,8 +17,6 @@
   function messagingBottomSheetCtrl() {
     var ctrl = this;
 
-
-
     ctrl.bsActive = true;
 
 

@@ -150,10 +150,14 @@
           targetUser = res.val();
           return FireUtils.getProfileImageDownloadURL(uid);
         })
-        .then(function(res){
+        .then(function (res) {
           targetUser.photoURL = res;
           return targetUser;
         });
+    }
+
+    function setConversationId(user, convoId){
+      return ref.child(user.uid).child('conversations').child(convoId).set(true);
     }
 
     return {
@@ -165,7 +169,8 @@
       uploadMainImage: uploadMainImage,
       saveItemId: saveItemId,
       deleteItemId: deleteItemId,
-      getTargetUser:getTargetUser
+      getTargetUser: getTargetUser,
+      setConversationId:setConversationId
     }
   }
 

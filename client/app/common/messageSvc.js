@@ -15,7 +15,15 @@
     var messageRef = firebase.database().ref("message");
     var userObj = UserSvc.getCurrentUser();
 
-    function createConversation() {
+    function createConversation(conversation, targetUser, convoId) {
+      return convoRef.child(convoId).set(conversation)
+        .then(function(res){
+          return UserSvc.setConversationId(userObj, convoId);
+        })
+        .then(function(){
+          return UserSvc.setConversationId(targetUser, convoId);
+        })
+
 
     }
 
@@ -61,39 +69,57 @@
     }
 
     function getMessages(convoId, convo) {
-      var q = $q.defer();
 
       messageRef.child(convoId).on('value', function (res) {
         var arr = [];
         // @TODO - Change 'value' to 'child_added' event, but figure out duplicate issue first with child_added event
-
-
         for (var key in res.val()) {
           arr.push(res.val()[key]);
         }
-
         arr.sort(function (a, b) {
           return a.timeSent - b.timeSent;
         });
-
         convo.messages = arr;
-
-        document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight;
-        // if angular is not running through the watchers, make it run through them.
-        if (!$rootScope.$$phase) {
-          $rootScope.$apply();
-        }
-
-
-        q.resolve("success");
-        return q.promise;
+        $timeout(function () {
+          if (!$rootScope.$$phase) {
+            $rootScope.$apply();
+          }
+          document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight;
+        }, 1);
       });
-      return q.promise;
+
     }
 
+    function doesConversationExist(targetUser){
+      for(var key in userObj.conversations){
+        console.log(targetUser);
+        if(key.includes(targetUser.uid)){
+          return key;
+        }
+      }
+      return false;
+    }
 
-    function sendMessage(message, convoId) {
-      return messageRef.child(convoId).push(message);
+    function sendMessage(message, conversation) {
+      if(conversation.id){
+        return messageRef.child(conversation.id).push(message);
+      }else{
+        var convoId = userObj.uid +''+ conversation.targetUser.uid;
+        return messageRef.child(convoId).push(message)
+          .then(function(res){
+            var convo = {
+              lastMessageId: res.key,
+              startDate: message.timeSent
+            };
+            return createConversation(convo, conversation.targetUser, convoId)
+          })
+          .then(function(res){
+            conversation.id = convoId;
+            return 'success';
+          })
+      }
+
+
     }
 
 
@@ -102,7 +128,8 @@
       getMessage: getMessage,
       getMessages: getMessages,
       getConversations: getConversations,
-      createConversation: createConversation
+      createConversation: createConversation,
+      doesConversationExist:doesConversationExist
     }
 
 

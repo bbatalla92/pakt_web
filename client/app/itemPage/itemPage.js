@@ -18,15 +18,17 @@
         );
     }]);
 
-  itemPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$timeout","G_API_KEY", "$mdMedia"];
+  itemPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$timeout", "G_API_KEY", "$mdMedia", "ItemSvc", "MessageSvc"];
 
-  function itemPageCtrl($stateParams, $scope, $window, $timeout, G_API_KEY, $mdMedia) {
+  function itemPageCtrl($stateParams, $scope, $window, $timeout, G_API_KEY, $mdMedia, ItemSvc, MessageSvc) {
     var ctrl = this;
 
     ctrl.flags = {
       mapInitialized: false
     };
     ctrl.item = $stateParams.item;
+
+    ctrl.nItem = {};
 
     ctrl.dynamicStyleClass = {stickyForm: false};
     ctrl.rentalDuration = "hour";
@@ -41,68 +43,82 @@
 
     // ___________ Functions below ____________
     function bootstrap() {
+      getItem();
       initMap();
     }
 
-    ctrl.button = function () {
-      console.log(document.scrollingElement.scrollTop);
-      console.log($window.scrollY);
+    ctrl.conversation = {};
+
+    ctrl.messageOwner = function () {
+      var convoId = MessageSvc.doesConversationExist(ctrl.nItem.owner);
+      ctrl.conversation = {
+        targetUser: ctrl.nItem.owner
+      };
+      if (convoId) {
+        console.log(convoId);
+        ctrl.conversation = {
+          id: convoId,
+          targetUser: ctrl.nItem.owner
+        };
+      } else {
+        ctrl.conversation = {
+          targetUser: ctrl.nItem.owner
+        };
+      }
+
+      ctrl.bsActive = true
 
     };
 
-
-
-    console.log("MAP", ctrl.mapUrl);
-
     function initMap() {
       var mapBaseUrl = 'https://maps.googleapis.com/maps/api/staticmap?zoom=12&scale=4';
-      var key = "key="+ G_API_KEY;
+      var key = "key=" + G_API_KEY;
       var marker = "markers=icon:https://goo.gl/52bjtg|39.835700,%20-74.187158";
-      var center = "center="+"39.835700,%20-74.187158";
+      var center = "center=" + "39.835700,%20-74.187158";
       var size = "size=1200x200";
 
-      if($mdMedia("xs")){
+      if ($mdMedia("xs")) {
         size = "size=1200x300";
       }
 
-      ctrl.mapUrl = mapBaseUrl+"&"+center+"&"+size+"&"+marker+"&"+key;
+      ctrl.mapUrl = mapBaseUrl + "&" + center + "&" + size + "&" + marker + "&" + key;
 
 
       /*  ctrl.map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 39.9525839, lng: -75.16522150000003},
-        zoom: 12,
-        disableDefaultUI: true,
-        scrollwheel: false
-      });
+       center: {lat: 39.9525839, lng: -75.16522150000003},
+       zoom: 12,
+       disableDefaultUI: true,
+       scrollwheel: false
+       });
 
-      new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#C58DA1',
-        fillOpacity: 0.35,
-        map: ctrl.map,
-        center: {lat: 39.944296, lng: -75.169242},
-        radius: 600
-      });*/
+       new google.maps.Circle({
+       strokeColor: '#FF0000',
+       strokeOpacity: 0.8,
+       strokeWeight: 2,
+       fillColor: '#C58DA1',
+       fillOpacity: 0.35,
+       map: ctrl.map,
+       center: {lat: 39.944296, lng: -75.169242},
+       radius: 600
+       });*/
     }
 
     ctrl.calculateTotal = function () {
       if (ctrl.rentalForm.startDate && ctrl.rentalForm.endDate) {
-        var diffDates = calculateDaysDiff(ctrl.rentalForm.startDate,ctrl.rentalForm.endDate);
+        var diffDates = calculateDaysDiff(ctrl.rentalForm.startDate, ctrl.rentalForm.endDate);
 
-        if(diffDates != 0){
+        if (diffDates != 0) {
           console.log(diffDates);
-          ctrl.rentalForm.totalPrice = Math.floor(diffDates/7)* ctrl.item.price['week'] + Math.floor(diffDates % 7)* ctrl.item.price['day'];
-        }else{
+          ctrl.rentalForm.totalPrice = Math.floor(diffDates / 7) * ctrl.item.price['week'] + Math.floor(diffDates % 7) * ctrl.item.price['day'];
+        } else {
           ctrl.rentalForm.totalPrice = ctrl.rentalForm.hours * ctrl.item.price['hour'];
         }
       }
     };
 
-    var calculateDaysDiff = function( startDate, endDate ) {
+    var calculateDaysDiff = function (startDate, endDate) {
       //Get 1 day in milliseconds
-      var one_day=1000*60*60*24;
+      var one_day = 1000 * 60 * 60 * 24;
       var date1 = new Date(startDate);
       var date2 = new Date(endDate);
 
@@ -114,8 +130,16 @@
       var difference_ms = date2_ms - date1_ms;
 
       // Convert back to days and return
-      return Math.round(difference_ms/one_day);
+      return Math.round(difference_ms / one_day);
     };
+
+    function getItem() {
+      ItemSvc.getItem($stateParams.id)
+        .then(function (res) {
+          console.log("item", res);
+          ctrl.nItem = res;
+        })
+    }
 
     angular.element($window).bind("scroll", function () {
       ctrl.dynamicStyleClass.stickyForm = this.pageYOffset >= 490 && this.pageYOffset < 1900;

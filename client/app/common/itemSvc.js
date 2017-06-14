@@ -7,10 +7,11 @@
   angular.module('app')
     .factory("ItemSvc", UserSvc);
 
-  UserSvc.$inject = ["$q", "$firebaseObject", "UserSvc", "$firebaseStorage", "FireAuth", "FireUtils", "UtilsSvc", "ST_PATH_ITEM_IMAGES"];
+  UserSvc.$inject = ["$q", "UserSvc", "FireAuth", "FireUtils", "UtilsSvc", "ST_PATH_ITEM_IMAGES"];
 
-  function UserSvc($q, $firebaseObject, UserSvc, $firebaseStorage, FireAuth, FireUtils, UtilsSvc, ST_PATH_ITEM_IMAGES) {
+  function UserSvc($q, UserSvc, FireAuth, FireUtils, UtilsSvc, ST_PATH_ITEM_IMAGES) {
     var ref = firebase.database().ref("item");
+
     var userObj = UserSvc.getCurrentUser();
 
     var userItems = [];
@@ -18,13 +19,18 @@
     function saveItem(item) {
 
       return item.id ? updateItem(item) : createItem(item);
-
     }
 
     function getItem(id) {
+      var item;
       return ref.child(id).once("value")
         .then(function (res) {
-          return res.val();
+          item = res.val();
+          return UserSvc.getTargetUser(item.ownerUid);
+        })
+        .then(function (res) {
+          item.owner = res;
+          return item;
         })
     }
 
@@ -119,7 +125,7 @@
 
     function deleteAllImages(imageData) {
       var promiseArr = [];
-      for(var i = 0; i < imageData.length; i++){
+      for (var i = 0; i < imageData.length; i++) {
         var q = FireUtils.deleteImage(ST_PATH_ITEM_IMAGES + "/" + imageData[i].metaData.key);
         promiseArr.push(q);
       }

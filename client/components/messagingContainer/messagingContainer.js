@@ -33,22 +33,22 @@
         timeSent: (new Date()).getTime(),
         senderId: ctrl.userObj.uid
       };
+      ctrl.messageText = '';
 
-      MessageSvc.sendMessage(message, ctrl.conversation.id)
-        .then(function (res) {
-          ctrl.messageText = '';
-        })
+
+
+      MessageSvc.sendMessage(message, ctrl.conversation)
+        .then(function(res){
+          console.log(ctrl.conversation);
+        });
     };
 
     ctrl.getMessages = function () {
+      console.log(ctrl.conversation);
       ctrl.conversation.messages = [];
-      return MessageSvc.getMessages(ctrl.conversation.id, ctrl.conversation)
-        .then(function () {
-        })
-        .finally(function () {
-              document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight
-          }
-        );
+      if (ctrl.conversation.id) {
+        MessageSvc.getMessages(ctrl.conversation.id, ctrl.conversation);
+      }
     };
 
     ctrl.daydiff = function (mDate) {
@@ -82,9 +82,8 @@
 
     ctrl.$onInit = ctrl.getMessages;
 
-    $scope.$watch('$ctrl.conversation.id', function(){
+    $scope.$watch('$ctrl.conversation.id', function () {
       ctrl.getMessages();
-
     })
   }
 
