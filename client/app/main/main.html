@@ -16,7 +16,11 @@
                           show-search-form="$ctrl.searchBarOpenFlag" ng-click="$ctrl.searchBarOpen()"></home-item-search-bar>
   </div>
 
-  <div style="width: 100%;" ng-repeat="carousel in $ctrl.carouselData">
+
+
+  <loading-dots ng-if="!$ctrl.carouselData.length" style="position: relative; margin: 100px auto 0; display: block; height: 0;"></loading-dots>
+
+  <div ng-if="$ctrl.carouselData.length" style="width: 100%;" ng-repeat="carousel in $ctrl.carouselData">
     <div id="carouselOuterContainer" style="">
       <h3 id="carouselTitle" style="">{{carousel.title}}</h3>
       <div id="carouselCoreContainer" layout="row" layout-align="space-between center">

@@ -59,6 +59,8 @@
 
 
     // End of the controller
-    bootstrap();
+    $timeout(function(){
+      bootstrap();
+    }, 3000)
   }
 })();
