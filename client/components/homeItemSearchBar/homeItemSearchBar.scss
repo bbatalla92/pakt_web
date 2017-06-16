@@ -10,6 +10,8 @@ home-item-search-bar {
   }
 
   #mainSearchBar {
+    border-radius: 5px;
+    border: rgba(0, 0, 0, 0.12) solid 1px;
     width: 60%;
     margin: 0 auto !important;
     background-color: white;

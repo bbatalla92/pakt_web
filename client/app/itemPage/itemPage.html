@@ -130,8 +130,8 @@
         <div class="sectionContent">
           <div layout="column" layout-align="center center">
             <div flex layout="row" layout-align="center center" style="">
-              <img style=" border-radius: 40px;  height: 80px;margin-right: 15px;"
-                   ng-src="{{$ctrl.nItem.owner.photoURL}}"/>
+              <img style="cursor: pointer; border-radius: 40px;  height: 80px;margin-right: 15px;"
+                   ng-src="{{$ctrl.nItem.owner.photoURL}}" ui-sref="userProfile({id:$ctrl.nItem.owner.uid})"/>
               <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">{{$ctrl.nItem.owner.firstName + ' ' + $ctrl.nItem.owner.lastName[0]+'.'}}</h2>
             </div>
             <star-rating rating="'4.5'" read-only="true" size="'lg'" reviews="9"

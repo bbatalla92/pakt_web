@@ -4,13 +4,15 @@
 
       <div layout="row" class="messagesContainer" ng-if="message.senderId !== $ctrl.userObj.uid">
         <div>
-          <img ng-src="{{$ctrl.conversation.targetUser.photoURL || 'assets/images/defaultPerson.png'}}" class="messageImage">
+          <img ng-src="{{$ctrl.conversation.targetUser.photoURL || 'assets/images/defaultPerson.png'}}"
+               class="messageImage" ui-sref="userProfile({id:$ctrl.conversation.targetUser.uid})">
         </div>
         <div>
           <div class="messageText sender" id="sender">
             {{message.message | date}}
           </div>
-          <span class="messageDateTime" style="float:right; margin-right: 20px;">{{$ctrl.daydiff(message.timeSent)}}</span>
+          <span class="messageDateTime"
+                style="float:right; margin-right: 20px;">{{$ctrl.daydiff(message.timeSent)}}</span>
         </div>
       </div>
 
@@ -20,7 +22,8 @@
           <div class="messageText" id="receiver">
             {{message.message | date}}
           </div>
-          <span class="messageDateTime" style="float:right; margin-right: 20px;">{{$ctrl.daydiff(message.timeSent)}}</span>
+          <span class="messageDateTime"
+                style="float:right; margin-right: 20px;">{{$ctrl.daydiff(message.timeSent)}}</span>
         </div>
       </div>
 

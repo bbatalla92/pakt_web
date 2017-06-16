@@ -41,7 +41,7 @@
       if ($mdMedia('xs')) {
         ctrl.searchBarOpenFlag = true;
       } else {
-        window.scrollTo(0, 550);
+       // window.scrollTo(0, 550);
       }
     };
 

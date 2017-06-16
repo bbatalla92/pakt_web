@@ -1,0 +1,72 @@
+<div id="userProfile">
+
+  <div ng-if="$ctrl.user">
+    <div id="coverImage"></div>
+
+
+      <div id="coverImageBorder" style=""></div>
+      <img id="profileImage" ng-src="{{$ctrl.user.photoURL || 'assets/images/defaultPerson.png'}}"/>
+
+
+
+    <div id="userProfileContent">
+
+      <div id="userName">
+        Hey! I'm {{$ctrl.user.firstName}}
+      </div>
+
+      <div style="color: rgba(0, 0, 0, 0.86); font-size: 16px; font-weight: 600;">
+        {{$ctrl.user.location.address}}
+      </div>
+
+      <p style="text-align: left;"> {{$ctrl.user.bio}}</p>
+
+      <div>
+        <h2 style="font-size: 35px;color: rgba(0, 0, 0, 0.58);">Verified Information</h2>
+        <div class="verifiedContent" layout="row" layout-align="space-between center">
+          <span>Member Since July 2016</span>
+          <ng-md-icon style="color: rgb(83,182,140);margin: 0;" icon="check_circle"></ng-md-icon>
+        </div>
+        <div class="verifiedContent" layout="row" layout-align="space-between center">
+          <span>Phone number verified</span>
+          <ng-md-icon style="color: rgb(83,182,140);margin: 0;" icon="check_circle"></ng-md-icon>
+        </div>
+        <div class="verifiedContent" layout="row" layout-align="space-between center">
+          <span>Email verified</span>
+          <ng-md-icon style="color: rgb(83,182,140);margin: 0;" icon="check_circle"></ng-md-icon>
+        </div>
+        <div class="verifiedContent" layout="row" layout-align="space-between center">
+          <span>Reviewed • 57 reviews</span>
+          <ng-md-icon style="color: rgb(83,182,140);margin: 0;" icon="check_circle"></ng-md-icon>
+        </div>
+        <div class="verifiedContent" layout="row" layout-align="space-between center">
+          <span>Listed a car</span>
+          <ng-md-icon style="color: rgb(83,182,140);margin: 0;" icon="check_circle"></ng-md-icon>
+        </div>
+        <div class="verifiedContent" layout="row" layout-align="space-between center">
+          <label>Response Rate</label>
+          <label>100%</label>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="font-size: 35px;color: rgba(0, 0, 0, 0.58);">Reviews</h2>
+
+        <review class="sectionContentText" ng-repeat="r in [0,1,2]"></review>
+      </div>
+
+      <div>
+        <h2 style="font-size: 35px;color: rgba(0, 0, 0, 0.58);">Items</h2>
+
+        <span>{{$ctrl.user.firstName}} has no available items</span>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <loading-dots ng-if="!$ctrl.user"
+                style="position: relative; margin: 100px auto 0; display: block; height: 0;"></loading-dots>
+
+</div>
