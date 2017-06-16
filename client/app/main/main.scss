@@ -25,12 +25,12 @@ main {
     display: block;
     margin-top: -10%;
     position: absolute;
-    padding:5px 20px;
+    padding: 5px 20px;
     width: 100%;
     outline: none;
   }
 
-  .searchBarOpen{
+  .searchBarOpen {
     display: block;
     position: absolute;
     width: 100%;
@@ -202,7 +202,7 @@ main {
 
   @media screen and (max-width: 600px) {
 
-    .searchBarOpen{
+    .searchBarOpen {
       display: block;
       margin-top: -40%;
       position: absolute;
