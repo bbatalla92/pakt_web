@@ -11,6 +11,7 @@
 
   function UserSvc($firebaseObject, UtilsSvc, $rootScope, FireAuth, FireUtils, ST_PATH_PROFILE_IMAGE, $cookies, COOKIE_USER) {
     var ref = firebase.database().ref("user");
+    var rootRef = firebase.database().ref();
     var userObj = {uid: ''};
 
     firebase.auth().onAuthStateChanged(function (userAuthData) {
@@ -88,12 +89,20 @@
 
     function getCurrentUserData(uid) {
       var objRef = ref.child(uid);
-      return objRef.on("value", function (res) {
-        userObj = res.val();
-        userObj.uid = uid;
-        getUserImage();
-        return res.val();
-      })
+      return objRef.once("value")
+        .then(function (res) {
+          userObj = res.val();
+          userObj.uid = uid;
+          getUserImage();
+          return rootRef.child('userConversations').child(userObj.uid).once("value")
+        })
+        .then(function (res) {
+
+          userObj.conversations = res.val();
+
+          console.log("USER", userObj);
+
+        })
     }
 
     function getUserImage() {
@@ -156,10 +165,6 @@
         });
     }
 
-    function setConversationId(user, convoId){
-      return ref.child(user.uid).child('conversations').child(convoId).set(true);
-    }
-
     return {
       getCurrentUser: getCurrentUser,
       signOutUser: signOutUser,
@@ -169,8 +174,7 @@
       uploadMainImage: uploadMainImage,
       saveItemId: saveItemId,
       deleteItemId: deleteItemId,
-      getTargetUser: getTargetUser,
-      setConversationId:setConversationId
+      getTargetUser: getTargetUser
     }
   }
 

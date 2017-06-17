@@ -52,7 +52,7 @@
           }
         },
         {
-          "image": "assets/images/firepit.jpeg",
+          "image": "assets/images/firepit.jpg",
           "metaData": {
             "customMetadata": {
               "order": 0
@@ -68,7 +68,7 @@
           }
         },
         {
-          "image": "assets/images/firepit.jpeg",
+          "image": "assets/images/firepit.jpg",
           "metaData": {
             "customMetadata": {
               "order": 3

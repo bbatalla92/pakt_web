@@ -19,8 +19,6 @@
 
   function aboutCtrl(UserSvc, $stateParams, $scope) {
     var ctrl = this;
-    //ctrl.user = undefined;
-
     function getUser(){
 
       UserSvc.getTargetUser($stateParams.id)

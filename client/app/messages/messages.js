@@ -28,7 +28,6 @@
     function getConversations() {
       MessageSvc.getConversations()
         .then(function (res) {
-          //console.log("Conversations", res);
           ctrl.conversations = res;
         })
         .catch(function (error) {
@@ -38,6 +37,9 @@
     }
 
     ctrl.messageItemClicked = function (conversation) {
+      if(!conversation.read && conversation.lastMessage.senderId !== ctrl.userObj.uid){
+        conversation.read = true;
+      }
 
       if ($mdMedia('xs') || $mdMedia('sm')) {
         ctrl.bsActive = true;

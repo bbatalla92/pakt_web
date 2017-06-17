@@ -39,15 +39,13 @@
 
       MessageSvc.sendMessage(message, ctrl.conversation)
         .then(function(res){
-          console.log(ctrl.conversation);
         });
     };
 
     ctrl.getMessages = function () {
-      console.log(ctrl.conversation);
       ctrl.conversation.messages = [];
       if (ctrl.conversation.id) {
-        MessageSvc.getMessages(ctrl.conversation.id, ctrl.conversation);
+        MessageSvc.getMessages(ctrl.conversation);
       }
     };
 

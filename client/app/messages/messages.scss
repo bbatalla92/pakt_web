@@ -8,7 +8,12 @@ messages {
     font-weight: 100;
     font-size: xx-large;
     color: rgba(0, 0, 0, 0.56);
-    padding-bottom:20px;
+    padding:10px 0;
+  }
+
+  .unreadMessage{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 1px 5px;
   }
 
   #messageContainer {

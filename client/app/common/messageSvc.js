@@ -11,20 +11,19 @@
 
   function UserSvc($timeout, UserSvc, $q, $rootScope) {
 
+    var userConvoRef = firebase.database().ref("userConversations");
     var convoRef = firebase.database().ref("conversation");
     var messageRef = firebase.database().ref("message");
     var userObj = UserSvc.getCurrentUser();
 
     function createConversation(conversation, targetUser, convoId) {
       return convoRef.child(convoId).set(conversation)
-        .then(function(res){
+        .then(function (res) {
           return UserSvc.setConversationId(userObj, convoId);
         })
-        .then(function(){
+        .then(function () {
           return UserSvc.setConversationId(targetUser, convoId);
         })
-
-
     }
 
     function getConversations() {
@@ -34,7 +33,14 @@
           promise.push(getConversation(key));
         }
       }
-      return $q.all(promise);
+      return $q.all(promise)
+        .then(function(res){
+          res.sort(function (a, b) {
+            return b.lastMessage.timeSent - a.lastMessage.timeSent;
+          });
+          console.log(res);
+          return res;
+        });
     }
 
     function getConversation(id) {
@@ -43,11 +49,6 @@
         .then(function (res) {
           conversation = res.val();
           conversation.id = id;
-          return getMessage(id, conversation.lastMessageId);
-        })
-        .then(function (res) {
-          // Get Last Message
-          conversation.lastMessage = res;
 
           return UserSvc.getTargetUser(id.replace(userObj.uid, ''));
         })
@@ -68,9 +69,12 @@
       return q.promise;
     }
 
-    function getMessages(convoId, convo) {
+    function getMessages(convo) {
+      if(convo.lastMessage.senderId !== userObj.uid){
+        convoRef.child(convo.id).child('read').set(true);
+      }
 
-      messageRef.child(convoId).on('value', function (res) {
+      messageRef.child(convo.id).on('value', function (res) {
         var arr = [];
         // @TODO - Change 'value' to 'child_added' event, but figure out duplicate issue first with child_added event
         for (var key in res.val()) {
@@ -90,10 +94,10 @@
 
     }
 
-    function doesConversationExist(targetUser){
-      for(var key in userObj.conversations){
+    function doesConversationExist(targetUser) {
+      for (var key in userObj.conversations) {
         console.log(targetUser);
-        if(key.includes(targetUser.uid)){
+        if (key.includes(targetUser.uid)) {
           return key;
         }
       }
@@ -101,25 +105,33 @@
     }
 
     function sendMessage(message, conversation) {
-      if(conversation.id){
+      message.timeSent = firebase.database.ServerValue.TIMESTAMP;
+
+      if (conversation.id) {
+        conversation.read = false;
+        convoRef.child(conversation.id).child("lastMessage").set(message);
+        convoRef.child(conversation.id).child("read").set(false);
         return messageRef.child(conversation.id).push(message);
-      }else{
-        var convoId = userObj.uid +''+ conversation.targetUser.uid;
+      } else {
+        var convoId = userObj.uid + '' + conversation.targetUser.uid;
         return messageRef.child(convoId).push(message)
-          .then(function(res){
+          .then(function (res) {
             var convo = {
-              lastMessageId: res.key,
-              startDate: message.timeSent
+              lastMessage: message,
+              created: message.timeSent,
+              read: false
             };
             return createConversation(convo, conversation.targetUser, convoId)
           })
-          .then(function(res){
+          .then(function (res) {
             conversation.id = convoId;
             return 'success';
           })
       }
+    }
 
-
+    function setConversationId(user, convoId) {
+      return userConvoRef.child(user.uid).child(convoId).set(true);
     }
 
 
@@ -129,10 +141,8 @@
       getMessages: getMessages,
       getConversations: getConversations,
       createConversation: createConversation,
-      doesConversationExist:doesConversationExist
+      doesConversationExist: doesConversationExist
     }
-
-
   }
 
 })();
