@@ -1,24 +1,25 @@
 <div style="margin-bottom: 75px;">
-  <div id="mainHeaderTextContainer" >
-    <h2 id="mainHeaderText">Borrow with <b style=" font-size: larger" md-colors="{color: 'primary'}" class="app-name">{{$ctrl.appName}}</b>
-    </h2>
-    <h3 class="mainHeaderSubHeader" hide-xs>Don't buy, when you can rent</h3>
+
+  <div id="mainSecondHeaderContainer">
+    <div id="mainHeaderTextContainer">
+      <h2 id="mainHeaderText">Borrow anything with <b style=" font-size: larger" md-colors="{color: 'primary'}" class="app-name">{{$ctrl.appName}}</b>
+      </h2>
+      <h3 class="mainHeaderSubHeader">Don't buy, when you can rent</h3>
+    </div>
+
+    <div id="headerImageTint">
+    </div>
+
+    <div style="width: 100%"></div>
+    <home-item-search-bar id="searchBar"
+                          show-search-form="$ctrl.searchBarOpenFlag"
+                          ng-click="$ctrl.searchBarOpen()"></home-item-search-bar>
+
   </div>
 
-  <div id="mainSecondHeaderContainer" style="">
-    <div id="imageCaptionContainer" hide-xs>
-      <h3 id="imageCaptionText">Search Borrow Enjoy Return</h3>
-    </div>
-    <div md-colors="{backgroundColor: 'primary-100'}" style="overflow: hidden; max-height: 440px">
-      <img id="mainImage" src='assets/images/bikeBeach.png' style="">
-    </div>
-    <home-item-search-bar class="searchBarClosed" ng-class="{'searchBarOpen': $ctrl.searchBarOpenFlag}"
-                          show-search-form="$ctrl.searchBarOpenFlag" ng-click="$ctrl.searchBarOpen()"></home-item-search-bar>
-  </div>
 
-
-
-  <loading-dots ng-if="!$ctrl.carouselData.length" style="position: relative; margin: 100px auto 0; display: block; height: 0;"></loading-dots>
+  <loading-dots ng-if="!$ctrl.carouselData.length"
+                style="position: relative; margin: 100px auto 0; display: block; height: 0;"></loading-dots>
 
   <div ng-if="$ctrl.carouselData.length" style="width: 100%;" ng-repeat="carousel in $ctrl.carouselData">
     <div id="carouselOuterContainer" style="">

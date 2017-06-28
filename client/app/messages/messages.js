@@ -23,17 +23,10 @@
     ctrl.userObj = UserSvc.getCurrentUser();
     ctrl.bsActive = false;
     ctrl.activeConversation = undefined;
-    ctrl.conversations = [];
+    ctrl.conversations = {};
 
     function getConversations() {
-      MessageSvc.getConversations()
-        .then(function (res) {
-          ctrl.conversations = res;
-        })
-        .catch(function (error) {
-          console.log("Error", error);
-          UtilsSvc.toast("There was an error retrieving messages")
-        })
+      MessageSvc.getConversations(ctrl.conversations);
     }
 
     ctrl.messageItemClicked = function (conversation) {

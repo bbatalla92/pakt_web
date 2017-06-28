@@ -28,11 +28,19 @@
     var ctrl = this;
     ctrl.showImage = true;
     ctrl.activeImage = {};
+    ctrl.search = {};
     ctrl.item = {
       isRented: false,
       rates: {hourly: 0, daily: 0, weekly: 0, monthly: 0, currency: "dollar"},
-      imageData: []
-    };
+      imageData: [],
+      _geoloc: {},
+      location: {
+        address: null,
+        lat: '',
+        lng: ''
+      }
+    }
+    ;
     //ctrl.images = [];
     var addressAutocomplete = new google.maps.places.Autocomplete(document.getElementById("editPageAutoComplete"));
 
@@ -58,8 +66,13 @@
 
     addressAutocomplete.addListener('place_changed', function () {
       var place = addressAutocomplete.getPlace();
-      ctrl.search.location = {
+      console.log(place);
+      ctrl.item.location = {
         address: place.formatted_address,
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      };
+      ctrl.item._geoloc = {
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng()
       };
@@ -82,12 +95,18 @@
     };
 
     ctrl.save = function () {
+
       ItemSvc.saveItem(ctrl.item)
         .then(function (res) {
-          $state.go('listingEditPage', {id: res.id}, {notify: false})
+          if (!ctrl.item.id) {
+            $state.go('listingEditPage', {id: res.id}, {notify: false});
+            ctrl.item.id = res.id;
+          }
+          UtilsSvc.toast("Item Saved!");
         })
         .catch(function (error) {
           console.log("Error", error);
+          UtilsSvc.toast("Error saving item");
         })
     };
 

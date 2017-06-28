@@ -1,0 +1,23 @@
+[debug] [2017-06-28T03:09:16.263Z] ----------------------------------------------------------------------
+[debug] [2017-06-28T03:09:16.266Z] Command:      /Users/bbatal200/.nvm/versions/node/v6.9.1/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-06-28T03:09:16.266Z] CLI Version:  3.9.1
+[debug] [2017-06-28T03:09:16.266Z] Platform:     darwin
+[debug] [2017-06-28T03:09:16.266Z] Node Version: v6.9.1
+[debug] [2017-06-28T03:09:16.267Z] Time:         Tue Jun 27 2017 23:09:16 GMT-0400 (EDT)
+[debug] [2017-06-28T03:09:16.267Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-06-28T03:09:16.282Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-06-28T03:09:16.283Z] > authorizing via signed-in user
+[debug] [2017-06-28T03:09:16.284Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-06-28T03:09:16.285Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/zO62ju4XPiTrErhOVVnHG2fld3Z1kBTa9I3d6Ap1H6M',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Jun 27 2017 23:09:16 GMT-0400 (EDT)
+[debug] [2017-06-28T03:09:18.353Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-28T03:09:18.354Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pakt-f51bc  
+ Tue Jun 27 2017 23:09:18 GMT-0400 (EDT)
+[debug] [2017-06-28T03:09:19.829Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-28T03:09:19.830Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/pakt-f51bc/tokens  
+ Tue Jun 27 2017 23:09:19 GMT-0400 (EDT)

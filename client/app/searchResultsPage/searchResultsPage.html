@@ -72,18 +72,24 @@
       </div>
     </md-toolbar>
 
-    <div ng-if="!$ctrl.flags.showMap" class="md-padding" id="searchPageListContainer">
+    <loading-dots ng-if="$ctrl.flags.loading" style="position: relative; margin: 100px auto 0; display: block; height: 0;"></loading-dots>
+
+    <div id="noItemsText" ng-if="!$ctrl.flags.showMap && !$ctrl.flags.loading && !$ctrl.items.length">
+      Sorry, no items yet that matched your criteria.  If you have items lying around, why not make some extra money?
+      <span id="lenderAboutText" ui-sref="lenderAbout">click here to find out more!</span>
+    </div>
+
+    <div ng-if="!$ctrl.flags.showMap && !$ctrl.flags.loading && $ctrl.items.length" class="md-padding" id="searchPageListContainer">
       <div id="searchPageListItemsGrid">
-        <div id="listItemsGridCell" ng-repeat="j in [0,1,2,3,4,5,6,7]" ui-sref="item({id: j.id, item:$ctrl.item })">
+        <div id="listItemsGridCell" ng-repeat="item in $ctrl.items" ui-sref="item({id: item.id, item: item })">
           <div style="height: 230px;">
-            <item-image-gallery image-data="$ctrl.item.imageData"></item-image-gallery>
+            <item-image-gallery image-data="item.imageData"></item-image-gallery>
           </div>
           <div style="margin:10px 3px">
-            <h3 id="itemCarouselDescription" style="margin-bottom: -20px;"><b>{{"$" +
-              $ctrl.item.price['day']}} &middot;</b> Lawnmower <b>&middot;</b>
-              Forked River
-            </h3>
-            <star-rating rating="'3.5'" readOnly="true" size="'sm'" reviews="2"></star-rating>
+            <div id="itemText" style="margin-bottom: -20px;"><b>
+              {{"$" +item.rates['daily']}} &middot;</b> {{item.name}} <b>&middot;</b> {{item.location.address}}
+            </div>
+            <star-rating ng-if="item.rating" rating="item.rating" readOnly="true" size="'sm'" reviews="2"></star-rating>
           </div>
         </div>
       </div>
@@ -97,3 +103,5 @@
     <div id="searchMap" style="height:100%"></div>
   </div>
 </div>
+
+

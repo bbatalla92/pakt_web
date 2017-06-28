@@ -1,4 +1,4 @@
-<div style="background-color: white;position: relative;" ng-cloak>
+<div ng-if="$ctrl.item.id" style="background-color: white;position: relative;" ng-cloak>
   <div id="galleryContainer">
     <item-image-gallery image-data="$ctrl.item.imageData" edit-mode="false"></item-image-gallery>
   </div>
@@ -10,11 +10,11 @@
            style="border-bottom: rgba(0, 0, 0, 0.2) 1px solid;">
         <h1
           style="font-size: 40px !important; text-align: center;margin:0; line-height: 42px !important;font-weight: 700; opacity: .54;">
-          Lawnmower
+          {{$ctrl.item.name}}
         </h1>
         <star-rating rating="'1'" read-only="true" size="'md'" reviews="5"
-                     style="margin-top: -10px;margin-bottom: 10px;"></star-rating>
-        <label>Forked River, NJ 08731</label>
+                     style="margin-top: 10px;margin-bottom: 10px;"></star-rating>
+        <label>{{$ctrl.item.location.address}}</label>
       </div>
 
       <!-- Rent Form below - mobile/tablet screen -->
@@ -131,15 +131,16 @@
           <div layout="column" layout-align="center center">
             <div flex layout="row" layout-align="center center" style="">
               <img style="cursor: pointer; border-radius: 40px;  height: 80px;margin-right: 15px;"
-                   ng-src="{{$ctrl.nItem.owner.photoURL}}" ui-sref="userProfile({id:$ctrl.nItem.owner.uid})"/>
-              <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">{{$ctrl.nItem.owner.firstName + ' ' + $ctrl.nItem.owner.lastName[0]+'.'}}</h2>
+                   ng-src="{{$ctrl.item.owner.photoURL}}" ui-sref="userProfile({id:$ctrl.item.owner.uid})"/>
+              <h2 style="font-size: 22px !important; text-align: center; line-height: 22px !important;">
+                {{$ctrl.item.owner.firstName + ' ' + $ctrl.item.owner.lastName[0]+'.'}}</h2>
             </div>
             <star-rating rating="'4.5'" read-only="true" size="'lg'" reviews="9"
-                         style="margin-top: -10px;margin-bottom: 10px;"></star-rating>
+                         style="margin-top: 10px;margin-bottom: 10px;"></star-rating>
           </div>
           <br>
           <p class="sectionContentText">
-            {{$ctrl.nItem.owner.bio}}
+            {{$ctrl.item.owner.bio}}
             <span style="color: rgb(130, 95, 108);">...read more</span></p>
           <div layout="row">
             <span flex></span>
@@ -222,5 +223,9 @@
 
 </div>
 
+<div style="height: 400px;" ng-if="!$ctrl.item.id">
+  <loading-dots style="position: relative; margin: 100px auto 0; display: block; height: 0;"></loading-dots>
+</div>
 
-<messaging-bottom-sheet active="$ctrl.bsActive" conversation="$ctrl.conversation"  ng-if="$ctrl.bsActive"></messaging-bottom-sheet>
+<messaging-bottom-sheet active="$ctrl.bsActive" conversation="$ctrl.conversation"
+                        ng-if="$ctrl.bsActive"></messaging-bottom-sheet>

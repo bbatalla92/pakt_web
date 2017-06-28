@@ -1,47 +1,31 @@
-<div md-whiteframe="3" class="md-padding blah" id="mainSearchBar">
-  <div layout="row" layout-align="start center" style="height: 30px;cursor: pointer"
-       ng-click="$ctrl.showSearchForm = !$ctrl.showSearchForm">
-    <md-icon style="margin: 0 10px 0 0;">
+<div layout="row" layout-xs="column" style="background-color: white;width: 100%">
+  <div flex class="searchInputsContainer" id="whatSearchContainer" layout="row" layout-align="start center">
+    <md-icon>
       <ng-md-icon icon="search"></ng-md-icon>
     </md-icon>
-    <h3 id="searchBarText">Rent anything, anywhere</h3>
+    <input type="text" ng-model="$ctrl.searchParams.keyword" class="searchInputs" placeholder="Searching for ..."/>
   </div>
-
-  <div style="border-top: 1px solid rgba(0, 0, 0, 0.42);margin-top: 5px;" ng-show="$ctrl.showSearchForm">
-    <md-input-container md-no-float style="margin: 10px 0 0;width: 90%;height: 35px;">
-      <md-icon>
-        <ng-md-icon icon="date_range"></ng-md-icon>
-      </md-icon>
-      <input type="text" ng-model="$ctrl.searchParams.keyword" autofocus placeholder="Searching for ..."/>
-    </md-input-container>
-
-    <md-input-container style="margin:10px 0 0 0;width: 90%;height: 35px;" md-no-float>
-      <md-icon>
-        <ng-md-icon icon="location_on"></ng-md-icon>
-      </md-icon>
-      <input id="locationSearchBar" ng-value="$ctrl.searchParams.location.address" type="text" placeholder="Anywhere"/>
-    </md-input-container>
-
-    <md-input-container md-no-float style="margin: 10px 0 0;width: 90%;height: 35px;">
-      <md-icon>
-        <ng-md-icon icon="date_range"></ng-md-icon>
-      </md-icon>
-      <input ng-click="$ctrl.showDatePanel($event)" type="text"
-             ng-value="$ctrl.searchParams.startDate ? ($ctrl.searchParams.startDate | date) + ' To ' + ($ctrl.searchParams.endDate | date) : ''"
-             placeholder="Anytime"/>
-    </md-input-container>
-
-    <br>
-
-    <md-button md-colors="{backgroundColor:'primary'}" style="width: 100%; margin:10px 0 0;color: white;"
-               ng-click="$ctrl.showSearchForm = false"
-               ui-sref="results({searchParams: $ctrl.searchParams})">
-      <span style="color:white">Search</span>
+  <div flex class="searchInputsContainer" id="searchInputsContainerCenter whereSearchContainer" layout="row"
+       layout-align="start center">
+    <md-icon>
+      <ng-md-icon icon="location_on"></ng-md-icon>
+    </md-icon>
+    <input id="locationSearchBar" class="searchInputs" ng-value="$ctrl.searchParams.location.address" type="text"
+           placeholder="Anywhere"/>
+  </div>
+  <div flex class="searchInputsContainer" id="whenSearchContainer" layout="row" layout-align="start center"
+       ng-click="$ctrl.showDatePanel($event)">
+    <md-icon>
+      <ng-md-icon icon="date_range"></ng-md-icon>
+    </md-icon>
+    <input type="text" class="searchInputs"
+           ng-value="$ctrl.searchParams.startDate ? ($ctrl.searchParams.startDate | date) + ' To ' + ($ctrl.searchParams.endDate | date) : ''"
+           placeholder="Anytime"/>
+  </div>
+  <div class="searchInputsContainer" style="background-color: #4AA02C">
+    <md-button style="color: white;width: 100%;margin: 0;"
+               ui-sref="results({searchParams: $ctrl.searchParams, keyword: $ctrl.searchParams.keyword, address:$ctrl.searchParams.location.address, lat: $ctrl.searchParams.location.lat, lng: $ctrl.searchParams.location.lng , start: $ctrl.searchParams.startDate ,end: $ctrl.searchParams.endDate})">
+      Search
     </md-button>
-
   </div>
 </div>
-
-<div ng-if="$ctrl.showSearchForm" ng-click="$ctrl.showSearchForm = false"
-     style="background-color: transparent; min-width: 100vw; min-height: 100vh; position: fixed; top: 0; z-index: 0;"></div>
-

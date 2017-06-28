@@ -11,7 +11,7 @@
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider
         .state('results', {
-          url: '/results',
+          url: '/results?:keyword&&:address&&:lat&&:lng&&:start&&:end',
           template: '<search-results-page></search-results-page>',
           params: {
             searchParams: null
@@ -19,18 +19,20 @@
         });
     }]);
 
-  searchResultsPageCtrl.$injector = ['$stateParams', "$timeout", "$mdMedia", "$mdPanel"];
+  searchResultsPageCtrl.$injector = ['$stateParams', "$timeout", "$mdMedia", "$mdPanel", "ItemSvc","$scope"];
 
-  function searchResultsPageCtrl($stateParams, $timeout, $mdMedia, $mdPanel) {
+  function searchResultsPageCtrl($stateParams, $timeout, $mdMedia, $mdPanel, ItemSvc, $scope) {
     var ctrl = this;
-    ctrl.searchParams = $stateParams.searchParams || {what: "", startDate: "", endDate: "", where: ""};
+
     ctrl.flags = {
       screenSMoXS: false,
       showMap: false,
       whenPanelActive: false,
       whatPanelActive: false,
-      wherePanelActive: false
+      wherePanelActive: false,
+      loading: true
     };
+    ctrl.items = [];
     ctrl.item = {
       "price": {
         "hour": 10,
@@ -81,47 +83,48 @@
 
 
     function bootstrap() {
-      ctrl.initMap();
+      ctrl.search();
       ctrl.flags.screenSMoXS = $mdMedia('xs') || $mdMedia('sm');
     }
 
+    ctrl.search = function() {
+      ItemSvc.searchItems($stateParams.keyword, $stateParams.lat,  $stateParams.lng)
+        .then(function(res){
+          ctrl.flags.loading = false;
+          ctrl.items = res.hits;
+          ctrl.initMap();
+          $scope.$apply();
+        })
+        .catch(function(error){
+          console.log("ERROR", error);
+          ctrl.flags.loading = false;
+
+        })
+    };
 
     ctrl.initMap = function () {
       ctrl.map = new google.maps.Map(document.getElementById('searchMap'), {
-        center: {lat: 39.9525839, lng: -75.16522150000003},
+        center: {lat: parseFloat($stateParams.lat), lng: parseFloat($stateParams.lng)},
         zoom: 13,
         disableDefaultUI: false,
         scrollwheel: false
       });
 
-      new google.maps.Circle({
-        strokeColor: '#FF0000',
-        //strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        //fillOpacity: 0.35,
-        map: ctrl.map,
-        center: {lat: 39.944296, lng: -75.169242},
-        radius: 150
+      ctrl.items.forEach(function(item){
+        console.log(item);
+
+        new google.maps.Circle({
+          strokeColor: '#FF0000',
+          //strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          //fillOpacity: 0.35,
+          map: ctrl.map,
+          center: {lat: item.location.lat, lng: item.location.lng},
+          radius: 150
+        });
       });
 
-      new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        map: ctrl.map,
-        center: {lat: 39.971291, lng: -75.179141},
-        radius: 150
-      });
-
-      new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        map: ctrl.map,
-        center: {lat: 39.951291, lng: -75.159141},
-        radius: 150
-      });
     };
 
     ctrl.resizeMap = function () {

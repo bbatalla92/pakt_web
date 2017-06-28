@@ -1,68 +1,67 @@
 home-item-search-bar {
 
-  div.md-datepicker-input-container {
-    width: 75%;
-    margin-left: 0 !important;
+  $placeholderSize: 20px;
+
+  // __________ CLasses and Ids below __________
+
+  .searchInputsContainer {
+    border-top: rgba(0, 0, 0, 0.13) solid 1px;
+    border-bottom: rgba(0, 0, 0, 0.13) solid 1px;
+    overflow: hidden;
+    border-right: rgba(0, 0, 0, 0.13) solid 1px;
+    padding-left: 5px;
   }
 
-  button.md-button.md-icon-button {
-    margin-left: -7px;
-  }
-
-  #mainSearchBar {
-    border-radius: 5px;
-    border: rgba(0, 0, 0, 0.12) solid 1px;
-    width: 60%;
-    margin: 0 auto !important;
-    background-color: white;
-    z-index: 1;
-    position: relative;
-  }
-
-  #searchBarText {
-    opacity: 07;
-  }
-
-  .datePickerContainers {
-    margin: 10px 0 0;
-    width: 45%;
+  .searchInputs {
     height: 35px;
+    border: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.57);
+    width: 100%;
+    outline: none;
+    text-overflow: ellipsis !important;
+    padding-left: 5px;
   }
 
-  #searchBarGoButton {
-    min-width: 1%;
-    width: 50px;
-  }
-
-  /*-------------------------------------------*/
-
-  @media screen and (max-width: 900px) {
-    #mainSearchBar {
-      width: 70%;
-    }
+  .searchInputsContainer:focus {
 
   }
 
-  @media screen and (max-width: 600px) {
+  #whatSearchContainer {
+  }
 
-    .datePickerContainers {
-      width: 100%;
-    }
+  #whatSearchContainer:focus {
+    min-width: 300px;
+    background-color: black;
+  }
 
-    #mainSearchBar {
-      width: 90%;
+  #whenSearchContainer {
+    //width: 25%;
+  }
 
-    }
+  #whereSearchContainer {
+    //width: 25%;
+  }
 
-    #searchBarText {
-      font-size: 14px;
+  // Sets the place holder for inputs in different browsers
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-size: $placeholderSize;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: $placeholderSize;
 
-    }
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: $placeholderSize;
 
-    #searchBarGoButton {
-      left: 85%;
-      margin-top: -42px;
-    }
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: $placeholderSize;
+
+  }
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    font-size: $placeholderSize;
 
   }
 }

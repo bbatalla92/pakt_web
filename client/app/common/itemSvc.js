@@ -7,24 +7,31 @@
   angular.module('app')
     .factory("ItemSvc", UserSvc);
 
-  UserSvc.$inject = ["$q", "UserSvc", "FireAuth", "FireUtils", "UtilsSvc", "ST_PATH_ITEM_IMAGES"];
+  UserSvc.$inject = ["$q", "UserSvc", "FireAuth", "FireUtils", "UtilsSvc", "ST_PATH_ITEM_IMAGES", "Algol_APP_ID", "Algol_API_KEY"];
 
-  function UserSvc($q, UserSvc, FireAuth, FireUtils, UtilsSvc, ST_PATH_ITEM_IMAGES) {
+  function UserSvc($q, UserSvc, FireAuth, FireUtils, UtilsSvc, ST_PATH_ITEM_IMAGES, Algol_APP_ID, Algol_API_KEY) {
     var ref = firebase.database().ref("item");
+
+    const ONE_MILE = 1609.344;
+
+    var searchClient = algoliasearch(Algol_APP_ID, Algol_API_KEY);
+    var itemIndex = searchClient.initIndex('item');//.setSettings({ranking: ['geo', 'words', 'attribute', 'proximity', 'exact', 'custom'] });
+    //var itemIndex = algoliasearchHelper(searchClient, "item", {});
 
     var userObj = UserSvc.getCurrentUser();
 
     var userItems = [];
 
     function saveItem(item) {
-
       return item.id ? updateItem(item) : createItem(item);
     }
 
     function getItem(id) {
       var item;
+      console.log("GETTING ITEM", id);
       return ref.child(id).once("value")
         .then(function (res) {
+          console.log("ITEM ID:", res.val());
           item = res.val();
           return UserSvc.getTargetUser(item.ownerUid);
         })
@@ -102,7 +109,7 @@
           return ref.child(copyItem.id).update(copyItem);
         })
         .then(function (res) {
-          return "success";
+          return item;
         })
         .catch(function (error) {
           console.log("Error updating item", error);
@@ -148,12 +155,35 @@
       return $q.all(promises);
     }
 
+    function searchItems(keyword, lat, lng, miles) {
+      var distance = ONE_MILE * (miles || 15);
+      var searchObj = {
+        query: keyword,
+        aroundRadius: 15000,  // 15 kilometers
+        getRankingInfo: true
+      };
+
+      if (lat && lng) {
+        searchObj.aroundLatLng = lat + ',' + lng;
+      } else {
+        searchObj.aroundLatLngViaIP = true;
+      }
+      console.log("SEARCH OBJ", searchObj);
+
+      return itemIndex.search(searchObj)
+        .then(function (content) {
+          console.log("content", content);
+          return content;
+        })
+    }
+
     return {
       saveItem: saveItem,
       getUserItems: getUserItems,
       getItem: getItem,
       deleteImage: deleteImage,
-      deleteItem: deleteItem
+      deleteItem: deleteItem,
+      searchItems: searchItems
     }
   }
 

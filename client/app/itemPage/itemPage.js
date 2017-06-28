@@ -28,8 +28,6 @@
     };
     ctrl.item = $stateParams.item;
 
-    ctrl.nItem = {};
-
     ctrl.dynamicStyleClass = {stickyForm: false};
     ctrl.rentalDuration = "hour";
     ctrl.totalPrice = "";
@@ -50,19 +48,19 @@
     ctrl.conversation = {};
 
     ctrl.messageOwner = function () {
-      var convoId = MessageSvc.doesConversationExist(ctrl.nItem.owner);
+      var convoId = MessageSvc.doesConversationExist(ctrl.item.owner);
       ctrl.conversation = {
-        targetUser: ctrl.nItem.owner
+        targetUser: ctrl.item.owner
       };
       if (convoId) {
         console.log(convoId);
         ctrl.conversation = {
           id: convoId,
-          targetUser: ctrl.nItem.owner
+          targetUser: ctrl.item.owner
         };
       } else {
         ctrl.conversation = {
-          targetUser: ctrl.nItem.owner
+          targetUser: ctrl.item.owner
         };
       }
 
@@ -136,8 +134,11 @@
     function getItem() {
       ItemSvc.getItem($stateParams.id)
         .then(function (res) {
-          console.log("item", res);
-          ctrl.nItem = res;
+          ctrl.item = res;
+          $scope.$apply();
+        })
+        .catch(function(error){
+          console.log("Error getting item", error)
         })
     }
 

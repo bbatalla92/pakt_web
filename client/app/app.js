@@ -28,7 +28,7 @@ angular
     $mdAriaProvider.disableWarnings();
 
     //TODO - Enable this when going live
-    //$locationProvider.html5Mode(true).hashPrefix('!');
+   // $locationProvider.html5Mode(true).hashPrefix('!');
 
     $urlRouterProvider.otherwise('/');
 
@@ -89,7 +89,6 @@ angular
         if (error === "AUTH_REQUIRED") {
           $state.go("main");
         }
-
 
       });
     }]);

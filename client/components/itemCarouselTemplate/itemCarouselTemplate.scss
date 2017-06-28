@@ -1,7 +1,9 @@
-#itemCarouselContainer{
+item-carousel-template {
+
+#itemCarouselContainer {
   cursor: pointer;
   margin: 5px;
-  padding-bottom:30px;
+  padding-bottom: 30px;
 
 }
 
@@ -14,7 +16,6 @@
   border-radius: 15px;
 
 }
-
 
 #itemCarouselDescription {
   margin: 0;
@@ -36,3 +37,6 @@
     width: 120px;
   }
 }
+
+}
+

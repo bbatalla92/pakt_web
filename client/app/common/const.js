@@ -13,4 +13,6 @@
     .constant("ST_PATH_ITEM_IMAGES", "itemImages")
     .constant("ST_PATH_PROFILE_IMAGE", "profileImages")
     .constant("COOKIE_USER", "user")
+    .constant("Algol_APP_ID", "B716CFFGIG")
+    .constant("Algol_API_KEY", "58256bad9c7935982ee29e48ef9b600f")
 })();

@@ -1,46 +1,43 @@
 main {
 
   #mainHeaderTextContainer {
-    width: 50%;
-    padding-left: 15% !important;
+    color: #fff;
+    position: relative;
+    z-index: 10;
+    top: 20%;
+    //left: 20%;
+    text-align: center;
   }
 
-  #imageCaptionContainer {
+  #mainSecondHeaderContainer {
+    position: relative;
+    height: 500px;
+    background-image: url('/assets/images/bikeBeach.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  #headerImageTint {
     position: absolute;
-    padding: 9px;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 0, 0, 0.3);
     color: white;
-    right: 10%;
-    top: 4%;
-    width: 216px;
-  }
-
-  #imageCaptionText {
-    margin: 0;
-    font-size: 41px;
-    font-weight: 900;
-  }
-
-  .searchBarClosed {
-    display: block;
-    margin-top: -10%;
-    position: absolute;
     width: 100%;
-    outline: none;
+    height: 100%;
+    top: 0;
   }
 
-  .searchBarOpen {
-    display: block;
+  #searchBar {
+    width: 75%;
     position: absolute;
-    width: 100%;
-    margin-top: -2%;
+    bottom: 20%;
+    left: 12.5%;
   }
 
   .mainHeaderSubHeader {
-    opacity: .7;
     margin-top: 0;
-    font-size: 45px !important;
-    letter-spacing: -0.8px !important;
+    font-size: 45px;
+    letter-spacing: -0.8px;
     line-height: 56px;
     margin-bottom: 20px;
   }
@@ -50,20 +47,17 @@ main {
   }
 
   #mainHeaderText {
-    margin-bottom: 0;
-    font-size: 48px !important;
-    letter-spacing: -0.8px !important;
+    margin: 0;
+    font-size: 55px;
+    letter-spacing: 2px;
     line-height: 56px;
+    font-weight: 400;
   }
 
   #signupComponent {
     position: absolute;
     top: -19%;
     right: 8%;
-  }
-
-  #mainSecondHeaderContainer {
-    position: relative;
   }
 
   #carouselOuterContainer {
@@ -77,9 +71,6 @@ main {
     margin-left: 4%;
     font-size: 19px;
     font-weight: 500;
-  }
-
-  #carouselCoreContainer {
   }
 
   .carouselLeftRightButtons {
@@ -104,15 +95,9 @@ main {
     }
 
     .mainHeaderSubHeader {
-      font-size: 40px !important;
+      font-size: 40px;
       line-height: 40px;
     }
-
-    #mainHeaderTextContainer {
-      width: 60%;
-      padding-left: 7% !important;
-    }
-
   }
 
   @media screen and (max-width: 1040px) {
@@ -125,46 +110,28 @@ main {
 
   @media screen and (max-width: 900px) {
 
-    #mainHeaderTextContainer {
-      width: 100%;
-    }
-
     #mainHeaderText {
-      font-size: 36px !important;
+      font-size: 44px;
     }
 
     .mainHeaderSubHeader {
-      font-size: 33px !important;
+      font-size: 33px;
     }
 
     #mainImage {
       width: 90%;
     }
-
-    #imageCaptionContainer {
-      top: 3%;
-      width: 191px;
-    }
-
-    #imageCaptionText {
-      font-size: 41px;
-    }
-
   }
 
   @media screen and (max-width: 700px) {
 
     #mainHeaderText {
-      font-size: 26px !important;
+      font-size: 40px;
     }
 
     .mainHeaderSubHeader {
-      font-size: 24px !important;
+      font-size: 30px;
       line-height: 20px;
-    }
-
-    #mainHeaderTextContainer {
-      width: 100%;
     }
 
     #mainImage {
@@ -172,23 +139,13 @@ main {
       max-height: 600px;
     }
 
-    .searchBarClosed {
+    #searchBar {
       display: block;
       margin-top: -3%;
     }
 
     #mainSecondHeaderContainer {
       margin-bottom: 50px;
-    }
-
-    #imageCaptionContainer {
-      top: 6%;
-      width: 138px;
-      right: 3%;
-    }
-
-    #imageCaptionText {
-      font-size: 30px;
     }
 
     #carouselOuterContainer {
@@ -201,15 +158,22 @@ main {
 
   @media screen and (max-width: 600px) {
 
-    .searchBarOpen {
-      display: block;
-      margin-top: -40%;
-      position: absolute;
-      width: 100%;
-      -webkit-transition: margin-top .3s 0s;
-      -moz-transition: margin-top .3s 0s;
-      -o-transition: margin-top .3s 0s;
-      transition: margin-top .3s 0s;
+    #mainSecondHeaderContainer {
+      height: 400px;
+    }
+
+    #mainHeaderText {
+      font-size: 35px;
+      line-height: 35px;
+    }
+
+    #mainHeaderTextContainer {
+      top: 15%;
+    }
+
+    .mainHeaderSubHeader {
+      font-size: 25px;
+      line-height: 25px;
     }
 
     #carouselOuterContainer {
@@ -220,18 +184,21 @@ main {
       margin-left: 20px;
     }
 
-  }
-
-  @media screen and (max-width: 450px) {
-
-    #imageCaptionContainer {
-      width: 114px;
-      right: 2%;
-      top: 4%;
+    #searchBar {
+      width:100%;
+      left: 0;
     }
 
-    #imageCaptionText {
-      font-size: 22px;
+    }
+
+  @media screen and (max-width: 500px) {
+    #mainHeaderText {
+      font-size: 20px;
+    }
+
+    .mainHeaderSubHeader {
+      font-size: 20px;
+      line-height: 15px;
     }
 
   }

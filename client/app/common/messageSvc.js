@@ -26,37 +26,61 @@
         })
     }
 
-    function getConversations() {
+    function getConversations(conversations) {
       var promise = [];
+      //console.log("Conversations", userObj.conversations);
+      //$rootScope.$apply();
       for (var key in  userObj.conversations) {
         if (userObj.conversations[key]) {
-          promise.push(getConversation(key));
+          getConversation(key, conversations);
         }
       }
-      return $q.all(promise)
-        .then(function(res){
-          res.sort(function (a, b) {
-            return b.lastMessage.timeSent - a.lastMessage.timeSent;
-          });
-          console.log(res);
-          return res;
-        });
+
     }
 
-    function getConversation(id) {
+    function getConversation(id, convo) {
       var conversation = {};
-      return convoRef.child(id).once('value')
-        .then(function (res) {
+      return convoRef.child(id)
+        .on('value', function (res) {
           conversation = res.val();
           conversation.id = id;
+          UserSvc.getTargetUser(id.replace(userObj.uid, ''))
+            .then(function (res) {
+              // Get Target User
+              conversation.targetUser = res;
+              //return conversation;
+              convo[id] = conversation;
 
-          return UserSvc.getTargetUser(id.replace(userObj.uid, ''));
+              convo = sortConversationsByLastMessage(convo);
+
+              if (!$rootScope.$$phase) {
+                $rootScope.$apply();
+              }
+
+            })
+          ;
         })
-        .then(function (res) {
-          // Get Target User
-          conversation.targetUser = res;
-          return conversation;
-        })
+    }
+
+    function sortConversationsByLastMessage(map) {
+      var arr = [];
+      var newMap = {};
+      for (var key in map) {
+        arr.push(map[key]);
+      }
+
+      arr.sort(function (a, b) {
+        return a.lastMessage.timeSent - b.lastMessage.timeSent;
+      });
+
+      for (var i = 0; i < arr.length; i++) {
+        newMap[arr[i].id] = arr[i];
+      }
+
+      console.log("NEW MAP", newMap);
+
+      return newMap;
+
     }
 
     function getMessage(convoId, messageId) {
@@ -70,7 +94,7 @@
     }
 
     function getMessages(convo) {
-      if(convo.lastMessage.senderId !== userObj.uid){
+      if (convo.lastMessage.senderId !== userObj.uid) {
         convoRef.child(convo.id).child('read').set(true);
       }
 
@@ -133,7 +157,6 @@
     function setConversationId(user, convoId) {
       return userConvoRef.child(user.uid).child(convoId).set(true);
     }
-
 
     return {
       sendMessage: sendMessage,

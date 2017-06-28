@@ -63,7 +63,7 @@
           return res;
         })
         .catch(function (error) {
-          console.error("error", error);
+          console.log("error", error);
           return error;
         })
     }
