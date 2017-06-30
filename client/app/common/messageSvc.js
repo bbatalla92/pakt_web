@@ -145,9 +145,6 @@
     }
 
     function setConversationId(user, convoId) {
-      console.log(user);
-      console.log(convoId);
-
       return userConvoRef.child(user.uid).child(convoId).set(true);
     }
 

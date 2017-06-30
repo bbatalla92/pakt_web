@@ -42,7 +42,6 @@
 
       // Following if statement tells if the recently added character is a number.
       if (isNaN(parseInt(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length - 1]))) {
-        console.log(ctrl.userObj.phoneNumber[ctrl.userObj.phoneNumber.length - 1]);
         ctrl.userObj.phoneNumber = ctrl.userObj.phoneNumber.slice(0, ctrl.userObj.phoneNumber.length - 1);
         return;
       }

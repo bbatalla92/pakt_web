@@ -63,7 +63,6 @@
         var diffDates = calculateDaysDiff(ctrl.rentalForm.startDate, ctrl.rentalForm.endDate);
 
         if (diffDates != 0) {
-          console.log(diffDates);
           ctrl.rentalForm.totalPrice = Math.floor(diffDates / 7) * ctrl.item.price['week'] + Math.floor(diffDates % 7) * ctrl.item.price['day'];
         } else {
           ctrl.rentalForm.totalPrice = ctrl.rentalForm.hours * ctrl.item.price['hour'];

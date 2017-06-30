@@ -193,7 +193,6 @@
         locals: {
           panel: whenMdPanel,
           close: function (start, end) {
-            console.log(start);
             ctrl.searchParams.startDate = start;
             ctrl.searchParams.endDate = end;
             ctrl.flags.whenPanelActive = false;
@@ -284,7 +283,6 @@
       $scope.endDate;
 
       $scope.closePanel = function () {
-        console.log("CLOSE", $scope.startDate);
         close($scope.startDate, $scope.endDate);
         mdPanelRef.hide($scope.startDate, $scope.endDate);
       }

@@ -28,10 +28,8 @@
 
     function getItem(id) {
       var item;
-      console.log("GETTING ITEM", id);
       return ref.child(id).once("value")
         .then(function (res) {
-          console.log("ITEM ID:", res.val());
           item = res.val();
           return UserSvc.getTargetUser(item.ownerUid);
         })
@@ -73,7 +71,6 @@
         })
         .then(function (res) {
           userItems = [];
-          console.log("RES", res);
         });
     }
 
@@ -168,11 +165,9 @@
       } else {
         searchObj.aroundLatLngViaIP = true;
       }
-      console.log("SEARCH OBJ", searchObj);
 
       return itemIndex.search(searchObj)
         .then(function (content) {
-          console.log("content", content);
           return content;
         })
     }

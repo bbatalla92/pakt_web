@@ -68,7 +68,6 @@
     }
 
     function signInWithCredentials(credential) {
-      console.log("Cred", credential);
 
       return $firebaseAuth.$signInWithCredential(credential)
         .then(function (res) {

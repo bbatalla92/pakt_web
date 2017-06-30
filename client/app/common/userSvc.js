@@ -94,7 +94,7 @@
 
         rootRef.child('userConversations').child(userObj.uid).on("value", function (res) {
             userObj.conversations = res.val();
-            console.log("USER", userObj);
+            //console.log("USER", userObj);
           })
       })
     }

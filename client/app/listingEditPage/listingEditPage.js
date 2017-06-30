@@ -66,7 +66,6 @@
 
     addressAutocomplete.addListener('place_changed', function () {
       var place = addressAutocomplete.getPlace();
-      console.log(place);
       ctrl.item.location = {
         address: place.formatted_address,
         lat: place.geometry.location.lat(),
