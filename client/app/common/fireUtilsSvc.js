@@ -20,6 +20,7 @@
     }
 
     function getProfileImageDownloadURL(uid) {
+      if(!uid) return;
       return storageRef.child(ST_PATH_PROFILE_IMAGE).child(""+UtilsSvc.hashString(uid)).getDownloadURL()
         .then(function (url) {
           return url;

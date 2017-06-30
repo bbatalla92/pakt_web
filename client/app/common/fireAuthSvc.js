@@ -7,8 +7,7 @@
   angular.module('app')
     .factory("FireAuth", AuthEmailPassSvc);
 
-  AuthEmailPassSvc.$inject = ["$timeout", "$rootScope", "$firebaseAuth", "G", "FB", "EMAIL_PASS"];
-
+  /*@ngInject*/
   function AuthEmailPassSvc($timeout, $rootScope, $firebaseAuth, G, FB, EMAIL_PASS) {
 
     var providerG = new firebase.auth.GoogleAuthProvider();

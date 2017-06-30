@@ -12,8 +12,9 @@
           style="font-size: 40px !important; text-align: center;margin:0; line-height: 42px !important;font-weight: 700; opacity: .54;">
           {{$ctrl.item.name}}
         </h1>
+
         <star-rating rating="'1'" read-only="true" size="'md'" reviews="5"
-                     style="margin-top: 10px;margin-bottom: 10px;"></star-rating>
+                     style="margin: 20px auto;"></star-rating>
         <label>{{$ctrl.item.location.address}}</label>
       </div>
 
@@ -21,21 +22,20 @@
       <div class="itemPageFormContainerMobileScreen" style="border-bottom: rgba(0, 0, 0, 0.2) 1px solid;">
         <div class="md-padding" class="itemPageFormInnerContainerMobileScreen" style="">
           <div layout="row" layout-align="center end" style="margin-bottom: 10px;">
-            <h1 style="margin: 0;">$30</h1>
+            <h1 style="margin: 0;">{{'$'+$ctrl.item.rates.daily}}</h1>
             <span style="margin-left: 5px;"><em> per Day</em></span>
           </div>
-          <div layout="row">
-            <form flex="50" layout="column">
-              <md-input-container style="margin-bottom: 0; text-align: left">
-                <label style="">Start Date</label>
-                <md-datepicker ng-model="$ctrl.rentalForm.startDate" ng-change="$ctrl.calculateTotal()"
-                               md-open-on-focus md-min-date="$ctrl.minDate" flex></md-datepicker>
-              </md-input-container>
-              <md-input-container style="margin: 0; text-align: left">
-                <label style="">End Date</label>
-                <md-datepicker ng-disabled="!$ctrl.rentalForm.startDate" ng-model="$ctrl.rentalForm.endDate"
-                               ng-change="$ctrl.calculateTotal()" md-open-on-focus flex
-                               md-min-date="$ctrl.rentalForm.startDate"></md-datepicker>
+          <div>
+            <form flex layout="row">
+              <md-input-container layout="row" flex md-no-float
+                                  layout-align="start center" style="margin-top: 0;"
+                                  ng-click="$ctrl.showDatePanel($event)">
+                <md-icon>
+                  <ng-md-icon icon="date_range"></ng-md-icon>
+                </md-icon>
+                <input type="text" class="searchInputs" style="text-overflow: ellipsis;"
+                       ng-value="$ctrl.rentalForm.startDate ? ($ctrl.rentalForm.startDate | date) + ' To ' + ($ctrl.rentalForm.endDate | date) : ''"
+                       placeholder="Start Date - End Date"/>
               </md-input-container>
               <md-input-container style="width:80px; text-align: left; margin: 0 auto"
                                   ng-if="$ctrl.rentalForm.startDate === $ctrl.rentalForm.endDate && $ctrl.rentalForm.startDate !== ''">
@@ -43,27 +43,31 @@
                 <input type="number" ng-model="$ctrl.rentalForm.hours" ng-change="$ctrl.calculateTotal()" min="1"/>
               </md-input-container>
             </form>
-            <div flex="50" style="text-align: center">
-              <div layout="column" style="margin: 10px 0">
-                <div style="text-align: center" layout="column" flex>
-                  <label style="font-size: larger;">Total</label>
-                  <em id="textTotal">${{$ctrl.rentalForm.totalPrice}}</em>
+            <div layout="row" flex>
+
+              <div style="text-align: center">
+                <div layout="column" style="margin: 10px 0">
+                  <ul style="list-style-type: none;padding-left: 20px;margin:0" flex>
+                    <li ng-repeat="(key, value) in $ctrl.item.rates" ng-if="key !== 'currency'"
+                        style="width:130px;font-size: large; text-align: left">
+                      ${{value+' '}}<em style="font-size: smaller">per {{key}}</em>
+                    </li>
+                  </ul>
                 </div>
-
-                <ul style="list-style-type: none;padding-left: 20px;margin:0" flex="40">
-                  <li ng-repeat="(key, value) in $ctrl.item.price"
-                      style="width:130px;font-size: large; text-align: left">
-                    ${{value+''}}<em style="font-size: smaller">per {{key}}</em>
-                  </li>
-                </ul>
-
               </div>
+
+              <div style="text-align: center" layout="column" flex>
+                <label style="font-size: larger;">Total</label>
+                <em id="textTotal">${{$ctrl.rentalForm.totalPrice}}</em>
+              </div>
+
+            </div>
+            <div>
               <md-button class="md-raised" ng-click="$ctrl.button()"
-                         style="background: rgba(91, 191, 73, 0.63); color: rgba(0, 0, 0, 0.58);max-width: 200px;" flex>
-                Rent this
-                item
+                         style="background: rgba(91, 191, 73, 0.63); color: rgba(0, 0, 0, 0.58);width: 100%; margin: 0 auto;">
+                Rent this item
               </md-button>
-              <div style="color: rgba(93, 93, 93, 0.74); margin-top: 8px;font-size: 13px;">You won't be charged yet
+              <div style="color: rgba(93, 93, 93, 0.74); margin-top: 8px;font-size: 13px;text-align: center">You won't be charged yet
               </div>
               <!--
                             <span style="" class="rentalFormFlagButton">
@@ -82,21 +86,28 @@
           <h4 class="sectionTitle">Description</h4>
         </div>
         <div class="sectionContent">
-          <p class="sectionContentText">Sed ut perspiciatis unde omnis iste natus error sit
-            voluptatem accusantium doloremque
-            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-            consequuntur magni dolores<br><br>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-            doloremque
-            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-            consequuntur magni dolores<br><br>
+          <p class="sectionContentText">
+            {{$ctrl.item.description}}
+            <br><br>
+          </p>
+        </div>
+      </div>
+
+      <!-- Pickup/Drop Off-->
+      <div layout="row" layout-xs="column" class="md-padding">
+        <div flex>
+          <h4 class="sectionTitle">Pickup Instructions</h4>
+        </div>
+        <div class="sectionContent">
+          <p class="sectionContentText">
+            {{$ctrl.item.pickupInstructions}}
+            <br><br>
           </p>
         </div>
       </div>
 
       <!-- Additional Features -->
-      <div layout="row" layout-xs="column" class="md-padding">
+      <div ng-if="false" layout="row" layout-xs="column" class="md-padding">
         <div flex>
           <h4 class="sectionTitle">Features</h4>
         </div>
@@ -144,7 +155,8 @@
             <span style="color: rgb(130, 95, 108);">...read more</span></p>
           <div layout="row">
             <span flex></span>
-            <md-button class="ng-md-icon md-fab md-primary md-mini" ng-click="$ctrl.messageOwner()">
+            <md-button ng-if="$ctrl.userObj.uid !== $ctrl.item.owner.uid" class="ng-md-icon md-fab md-primary md-mini"
+                       ng-click="$ctrl.messageOwner()">
               <ng-md-icon icon="message"></ng-md-icon>
             </md-button>
             <div layout="column" layout-align="center start">
@@ -155,8 +167,9 @@
         </div>
       </div>
 
-
     </div>
+
+
     <!-- Rent Form below - wide screen -->
     <div class="itemPageFormContainerWideScreen" flex="40">
       <div class="md-padding stuckFormTop"
@@ -164,21 +177,20 @@
         <div md-whiteframe="2" class="mainRentalForm md-padding"
              style="">
           <div layout="row" layout-align="center end" style="margin-bottom: 10px;">
-            <h1 style="margin: 0;">$30</h1>
+            <h1 style="margin: 0;">{{'$'+$ctrl.item.rates.daily}}</h1>
             <span style="margin-left: 5px;"><em> per Day</em></span>
           </div>
           <md-divider></md-divider>
           <form layout="column">
-            <md-input-container style="margin-bottom: 0; text-align: left">
-              <label style="">Start Date</label>
-              <md-datepicker ng-model="$ctrl.rentalForm.startDate" ng-change="$ctrl.calculateTotal()"
-                             md-open-on-focus md-min-date="$ctrl.minDate" flex></md-datepicker>
-            </md-input-container>
-            <md-input-container style="margin: 0; text-align: left">
-              <label style="">End Date</label>
-              <md-datepicker ng-disabled="!$ctrl.rentalForm.startDate" ng-model="$ctrl.rentalForm.endDate"
-                             ng-change="$ctrl.calculateTotal()" md-open-on-focus flex
-                             md-min-date="$ctrl.rentalForm.startDate"></md-datepicker>
+            <md-input-container flex layout="row"
+                                layout-align="start center"
+                                ng-click="$ctrl.showDatePanel($event)">
+              <md-icon>
+                <ng-md-icon icon="date_range"></ng-md-icon>
+              </md-icon>
+              <input type="text" class="searchInputs"
+                     ng-value="$ctrl.rentalForm.startDate ? ($ctrl.rentalForm.startDate | date) + ' To ' + ($ctrl.rentalForm.endDate | date) : ''"
+                     placeholder="Start Date - End Date"/>
             </md-input-container>
             <md-input-container style="width:80px; text-align: left; margin: 0 auto"
                                 ng-if="$ctrl.rentalForm.startDate === $ctrl.rentalForm.endDate && $ctrl.rentalForm.startDate !== ''">
@@ -189,12 +201,13 @@
           <md-divider></md-divider>
           <div layout="row" style="margin: 10px 0">
             <ul style="list-style-type: none;padding-left: 15px;margin:0" flex="40">
-              <li ng-repeat="(key, value) in $ctrl.item.price" style="width:130px; text-align: left">${{value+ ' '}}<em
-                style="font-size: smaller">per {{key}}</em>
+              <li ng-repeat="(key, value) in $ctrl.item.rates" ng-if="key !== 'currency'"
+                  style="width:130px; text-align: left">
+                ${{value+ ' '}}<em style="font-size: smaller">per {{key}}</em>
               </li>
             </ul>
             <div style="text-align: center" layout="column" flex>
-              <label style="font-size: larger;">total</label>
+              <label style="font-size: larger;">Total</label>
               <em style="font-size: 2.5em;">${{$ctrl.rentalForm.totalPrice}}</em>
             </div>
           </div>
@@ -210,6 +223,7 @@
         </span>
       </div>
     </div>
+
   </div>
 
   <div>

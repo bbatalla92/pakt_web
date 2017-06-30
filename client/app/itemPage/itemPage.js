@@ -18,9 +18,8 @@
         );
     }]);
 
-  itemPageCtrl.$inject = ["$stateParams", '$scope', '$window', "$timeout", "G_API_KEY", "$mdMedia", "ItemSvc", "MessageSvc"];
-
-  function itemPageCtrl($stateParams, $scope, $window, $timeout, G_API_KEY, $mdMedia, ItemSvc, MessageSvc) {
+  /*@ngInject*/
+  function itemPageCtrl($stateParams, $scope, $window, $timeout, G_API_KEY, $mdMedia, ItemSvc, MessageSvc, $mdDialog, UserSvc) {
     var ctrl = this;
 
     ctrl.flags = {
@@ -43,6 +42,7 @@
     function bootstrap() {
       getItem();
       initMap();
+      ctrl.userObj = UserSvc.getCurrentUser();
     }
 
     ctrl.conversation = {};
@@ -53,19 +53,43 @@
         targetUser: ctrl.item.owner
       };
       if (convoId) {
-        console.log(convoId);
-        ctrl.conversation = {
-          id: convoId,
-          targetUser: ctrl.item.owner
-        };
-      } else {
-        ctrl.conversation = {
-          targetUser: ctrl.item.owner
-        };
+        ctrl.conversation.id = convoId;
       }
+      ctrl.bsActive = true;
+    };
 
-      ctrl.bsActive = true
+    ctrl.calculateTotal = function () {
+      if (ctrl.rentalForm.startDate && ctrl.rentalForm.endDate) {
+        var diffDates = calculateDaysDiff(ctrl.rentalForm.startDate, ctrl.rentalForm.endDate);
 
+        if (diffDates != 0) {
+          console.log(diffDates);
+          ctrl.rentalForm.totalPrice = Math.floor(diffDates / 7) * ctrl.item.price['week'] + Math.floor(diffDates % 7) * ctrl.item.price['day'];
+        } else {
+          ctrl.rentalForm.totalPrice = ctrl.rentalForm.hours * ctrl.item.price['hour'];
+        }
+      }
+    };
+
+    ctrl.showDatePanel = function (event) {
+      var config = {
+        attachTo: angular.element(document.body),
+        targetEvent: event,
+        template: '<date-picker></date-picker>',
+        clickOutsideToClose: true,
+        escapeToClose: true,
+        focusOnOpen: true,
+        fullscreen: $mdMedia('xs')
+      };
+      $mdDialog.show(config)
+        .then(function (arr) {
+          ctrl.rentalForm.startDate = arr[0];
+          ctrl.rentalForm.endDate = arr[1];
+          ctrl.rentalForm.totalPrice = calculateDaysDiff();
+        })
+        .catch(function () {
+
+        })
     };
 
     function initMap() {
@@ -101,20 +125,9 @@
        });*/
     }
 
-    ctrl.calculateTotal = function () {
-      if (ctrl.rentalForm.startDate && ctrl.rentalForm.endDate) {
-        var diffDates = calculateDaysDiff(ctrl.rentalForm.startDate, ctrl.rentalForm.endDate);
-
-        if (diffDates != 0) {
-          console.log(diffDates);
-          ctrl.rentalForm.totalPrice = Math.floor(diffDates / 7) * ctrl.item.price['week'] + Math.floor(diffDates % 7) * ctrl.item.price['day'];
-        } else {
-          ctrl.rentalForm.totalPrice = ctrl.rentalForm.hours * ctrl.item.price['hour'];
-        }
-      }
-    };
-
-    var calculateDaysDiff = function (startDate, endDate) {
+    var calculateDaysDiff = function () {
+      var startDate = ctrl.rentalForm.startDate;
+      var endDate = ctrl.rentalForm.endDate;
       //Get 1 day in milliseconds
       var one_day = 1000 * 60 * 60 * 24;
       var date1 = new Date(startDate);
@@ -132,12 +145,14 @@
     };
 
     function getItem() {
+      if (ctrl.item) return;
+
       ItemSvc.getItem($stateParams.id)
         .then(function (res) {
           ctrl.item = res;
           $scope.$apply();
         })
-        .catch(function(error){
+        .catch(function (error) {
           console.log("Error getting item", error)
         })
     }

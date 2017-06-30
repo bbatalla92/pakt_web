@@ -43,7 +43,7 @@
     }
 
     $scope.$on('user-object-updated', function (event, args) {
-      console.log("Listings page", args);
+      if(!args.user) return;
       userObj = args.user;
       if (!ctrl.items.length)
         getItems(userObj.items);

@@ -7,37 +7,31 @@
   angular.module('app')
     .factory("UserSvc", UserSvc);
 
-  UserSvc.$inject = ["$firebaseObject", "UtilsSvc", "$rootScope", "FireAuth", "FireUtils", "ST_PATH_PROFILE_IMAGE", "$cookies", "COOKIE_USER"];
-
-  function UserSvc($firebaseObject, UtilsSvc, $rootScope, FireAuth, FireUtils, ST_PATH_PROFILE_IMAGE, $cookies, COOKIE_USER) {
+  /*@ngInject*/
+  function UserSvc($state, UtilsSvc, $rootScope, FireAuth, FireUtils, ST_PATH_PROFILE_IMAGE, $cookies, COOKIE_USER) {
     var ref = firebase.database().ref("user");
     var rootRef = firebase.database().ref();
     var userObj = {uid: ''};
 
     firebase.auth().onAuthStateChanged(function (userAuthData) {
-      if (userAuthData) {
-        userObj = $cookies.get(COOKIE_USER) && JSON.parse($cookies.get(COOKIE_USER)) || {uid: ''};
-        FireUtils.objectExists(ref.child(userAuthData.uid))
-          .then(function (userExists) {
-            if (userExists) {
-              getCurrentUserData(userAuthData.uid);
-            } else {
-              userObj.uid = userAuthData.uid;
-              createUserData(userAuthData.providerData[0], userAuthData.uid);
-            }
-          })
-      } else {
-        userObj = {};
-        $cookies.put(COOKIE_USER, undefined);
-        $rootScope.$broadcast('user-object-updated', {user: undefined});
+        $rootScope.$broadcast('user-object-updated', {user: userObj});
+        if (userAuthData) {
+          userObj = $cookies.get(COOKIE_USER) && JSON.parse($cookies.get(COOKIE_USER)) || {uid: ''};
+          getCurrentUserData(userAuthData.uid, userAuthData.providerData[0]);
+        }
+        else {
+          userObj = {};
+          $cookies.put(COOKIE_USER, undefined);
+          $rootScope.$broadcast('user-object-updated', {user: undefined});
+        }
       }
-    });
+    );
 
     function login(type, data) {
       return FireAuth.login(type, data);
     }
 
-    // This function allows a user to be created then saves its initial data in the realtime DB.
+// This function allows a user to be created then saves its initial data in the realtime DB.
     function signUpUserEmailPass(data) {
       return FireAuth.createUserEmailPassword(data)
         .then(function (res) {
@@ -87,27 +81,26 @@
         });
     }
 
-    function getCurrentUserData(uid) {
+    function getCurrentUserData(uid, authData) {
       var objRef = ref.child(uid);
-      return objRef.once("value")
-        .then(function (res) {
-          userObj = res.val();
-          userObj.uid = uid;
-          getUserImage();
-          return rootRef.child('userConversations').child(userObj.uid).once("value")
-        })
-        .then(function (res) {
+      objRef.on("value", function (res) {
+        if (res == null || res.val() == null) {
+          objRef.off();
+          return createUserData(authData, uid);
+        }
+        userObj = res.val();
+        userObj.uid = uid;
+        getUserImage();
 
-          userObj.conversations = res.val();
-
-          console.log("USER", userObj);
-
-        })
+        rootRef.child('userConversations').child(userObj.uid).on("value", function (res) {
+            userObj.conversations = res.val();
+            console.log("USER", userObj);
+          })
+      })
     }
 
     function getUserImage() {
       if (!userObj.uid) return;
-
       return FireUtils.getProfileImageDownloadURL(userObj.uid)
         .then(function (url) {
           userObj.photoURL = url;
@@ -178,4 +171,5 @@
     }
   }
 
-})();
+})
+();

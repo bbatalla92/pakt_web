@@ -9,7 +9,7 @@
       <md-list flex>
         <md-list-item ng-repeat="(key, convo) in $ctrl.conversations"
                       ng-class="[{'activeConversation': convo.id === $ctrl.activeConversation.id && $ctrl.activeConversation}, {'unreadMessage': convo.lastMessage.senderId !== $ctrl.userObj.uid && !convo.read}]"
-                      ng-click="$ctrl.messageItemClicked(convo)" class="md-2-line">
+                      ng-click="$ctrl.conversationClicked(convo)" class="md-2-line">
           <img ng-src="{{convo.targetUser.photoURL || 'assets/images/defaultPerson.png'}}"
                style=" height: 50px;width: 50px; border-radius: 25px; margin-right: 10px;">
           <div class="md-list-item-text">

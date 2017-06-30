@@ -9,8 +9,7 @@
   angular.module("app")
     .factory("mainSvc", mainSvc);
 
-  mainSvc.$inject = ["$http"];
-
+  /*@ngInject*/
   function mainSvc($http) {
 
     function getCarouselItems() {

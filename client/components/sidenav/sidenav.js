@@ -39,7 +39,6 @@
 
     $scope.$on('user-object-updated', function (event, args) {
         ctrl.user = args.user;
-
     });
 
     // Functions below

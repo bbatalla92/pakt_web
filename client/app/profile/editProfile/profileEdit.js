@@ -143,6 +143,8 @@
       $mdDialog.cancel()
     };
     $scope.$on('user-object-updated', function (event, args) {
+      if(!args.user) return;
+
       ctrl.userObj = args.user;
       ctrl.showImage = true;
       $scope.$apply();

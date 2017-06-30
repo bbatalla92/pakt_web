@@ -10,17 +10,24 @@
         .state('messages',
           {
             url: '/messages',
-            template: '<messages></messages>'
+            template: '<messages></messages>',
+            resolve: {
+              "currentAuth": ["$firebaseAuth", function ($firebaseAuth) {
+                // $requireSignIn returns a promise so the resolve waits for it to complete
+                // If the promise is rejected, it will throw a $stateChangeError (see above)
+                return $firebaseAuth().$requireSignIn();
+              }]
+            }
           }
         );
     }]);
 
-  messagesCtrl.$inject = ["$mdMedia", "UserSvc", "MessageSvc", "UtilsSvc", "$scope"];
-
+  /*@ngInject*/
   function messagesCtrl($mdMedia, UserSvc, MessageSvc, UtilsSvc, $scope) {
     var ctrl = this;
 
     ctrl.userObj = UserSvc.getCurrentUser();
+
     ctrl.bsActive = false;
     ctrl.activeConversation = undefined;
     ctrl.conversations = {};
@@ -29,8 +36,8 @@
       MessageSvc.getConversations(ctrl.conversations);
     }
 
-    ctrl.messageItemClicked = function (conversation) {
-      if(!conversation.read && conversation.lastMessage.senderId !== ctrl.userObj.uid){
+    ctrl.conversationClicked = function (conversation) {
+      if (conversation.lastMessage.senderId !== ctrl.userObj.uid && !conversation.read) {
         conversation.read = true;
       }
 
@@ -48,8 +55,16 @@
       ctrl.activeConversation = conversation;
     };
 
-
     // bootstrap
-    getConversations();
+    if (ctrl.userObj.uid) {
+      getConversations();
+    }
+
+    $scope.$on('user-object-updated', function (event, args) {
+      if (args.user && args.user.uid) { //&& !ctrl.userObj.uid || ctrl.userObj.conversations.length !== args.user.conversations.length) {
+        ctrl.userObj = args.user;
+        getConversations();
+      }
+    })
   }
 })();

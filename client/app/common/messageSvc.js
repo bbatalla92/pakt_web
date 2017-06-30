@@ -7,8 +7,7 @@
   angular.module('app')
     .factory("MessageSvc", UserSvc);
 
-  UserSvc.$inject = ["$timeout", "UserSvc", "$q", "$rootScope"];
-
+  /*@ngInject*/
   function UserSvc($timeout, UserSvc, $q, $rootScope) {
 
     var userConvoRef = firebase.database().ref("userConversations");
@@ -19,23 +18,19 @@
     function createConversation(conversation, targetUser, convoId) {
       return convoRef.child(convoId).set(conversation)
         .then(function (res) {
-          return UserSvc.setConversationId(userObj, convoId);
+          return setConversationId(userObj, convoId);
         })
         .then(function () {
-          return UserSvc.setConversationId(targetUser, convoId);
+          return setConversationId(targetUser, convoId);
         })
     }
 
     function getConversations(conversations) {
-      var promise = [];
-      //console.log("Conversations", userObj.conversations);
-      //$rootScope.$apply();
       for (var key in  userObj.conversations) {
         if (userObj.conversations[key]) {
           getConversation(key, conversations);
         }
       }
-
     }
 
     function getConversation(id, convo) {
@@ -51,20 +46,22 @@
               //return conversation;
               convo[id] = conversation;
 
-              convo = sortConversationsByLastMessage(convo);
+              if (Object.keys(convo).length > 1) {
+                convo = sortConversationsByLastMessage(convo);
+              }
 
               if (!$rootScope.$$phase) {
                 $rootScope.$apply();
               }
 
-            })
-          ;
+            });
         })
     }
 
     function sortConversationsByLastMessage(map) {
       var arr = [];
       var newMap = {};
+
       for (var key in map) {
         arr.push(map[key]);
       }
@@ -76,11 +73,7 @@
       for (var i = 0; i < arr.length; i++) {
         newMap[arr[i].id] = arr[i];
       }
-
-      console.log("NEW MAP", newMap);
-
       return newMap;
-
     }
 
     function getMessage(convoId, messageId) {
@@ -94,10 +87,9 @@
     }
 
     function getMessages(convo) {
-      if (convo.lastMessage.senderId !== userObj.uid) {
+      if (convo.lastMessage && convo.lastMessage.senderId !== userObj.uid) {
         convoRef.child(convo.id).child('read').set(true);
       }
-
       messageRef.child(convo.id).on('value', function (res) {
         var arr = [];
         // @TODO - Change 'value' to 'child_added' event, but figure out duplicate issue first with child_added event
@@ -115,12 +107,10 @@
           document.getElementById('messagesInnerContainer').scrollTop = document.getElementById('messagesInnerContainer').scrollHeight;
         }, 1);
       });
-
     }
 
     function doesConversationExist(targetUser) {
       for (var key in userObj.conversations) {
-        console.log(targetUser);
         if (key.includes(targetUser.uid)) {
           return key;
         }
@@ -155,8 +145,15 @@
     }
 
     function setConversationId(user, convoId) {
+      console.log(user);
+      console.log(convoId);
+
       return userConvoRef.child(user.uid).child(convoId).set(true);
     }
+
+    $rootScope.$on('user-object-updated', function (event, args) {
+      userObj = args.user;
+    });
 
     return {
       sendMessage: sendMessage,
@@ -164,7 +161,8 @@
       getMessages: getMessages,
       getConversations: getConversations,
       createConversation: createConversation,
-      doesConversationExist: doesConversationExist
+      doesConversationExist: doesConversationExist,
+      getConversation: getConversation
     }
   }
 

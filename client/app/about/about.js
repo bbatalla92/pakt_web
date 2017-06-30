@@ -15,8 +15,7 @@
         );
     }]);
 
-  aboutCtrl.$inject = ["APP_NAME"];
-
+  /*@ngInject*/
   function aboutCtrl(APP_NAME) {
     var ctrl = this;
 

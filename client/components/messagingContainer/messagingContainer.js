@@ -16,7 +16,6 @@
   function messagingContainerCtrl(MessageSvc, UserSvc, $timeout, $scope) {
     var ctrl = this;
 
-
     ctrl.messageText = '';
     ctrl.userObj = UserSvc.getCurrentUser();
     const DAY_IN_MS = 86400000;
@@ -24,21 +23,18 @@
     const MIN_IN_MS = 60 * 1000;
     var todaysDate = (new Date()).getTime();
 
-
     ctrl.sendMessage = function () {
       if (!ctrl.messageText) return;
 
       var message = {
         message: ctrl.messageText,
-        timeSent: (new Date()).getTime(),
+        timeSent: firebase.database.ServerValue.TIMESTAMP,
         senderId: ctrl.userObj.uid
       };
       ctrl.messageText = '';
 
-
-
       MessageSvc.sendMessage(message, ctrl.conversation)
-        .then(function(res){
+        .then(function (res) {
         });
     };
 

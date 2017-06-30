@@ -16,7 +16,7 @@
         });
     }]);
 
-  mainCtrl.$inject = ["mainSvc", "APP_NAME", "$mdMedia", "$timeout"];
+  /*@ngInject*/
   function mainCtrl(mainSvc, APP_NAME, $mdMedia, $timeout) {
     var ctrl = this;
 

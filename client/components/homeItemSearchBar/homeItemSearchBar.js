@@ -29,9 +29,6 @@
 
 
     ctrl.showDatePanel = function (event) {
-
-      console.log(event);
-
       var config = {
         attachTo: angular.element(document.body),
         targetEvent: event,
@@ -40,9 +37,7 @@
         escapeToClose: true,
         focusOnOpen: true,
         fullscreen: $mdMedia('xs')
-
       };
-
       $mdDialog.show(config)
         .then(function (arr) {
           ctrl.searchParams.startDate = arr[0];
